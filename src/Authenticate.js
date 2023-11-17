@@ -1,10 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './Authenticate.css';
+
 
 export function Authenticate() {
     return (
         <body>
             <h1>This is the authenticate page, while we will need to actually authenticate later, below are buttons to send to other pages</h1>
+            <div className="flex-container-row">
+                <p>Authenticate:    </p>
+                <input type="text" id="name" name="name" height="2" required minlength="1" maxlength="10" size="10" />
+            </div>
+
             <div>
             <Link to='/Admin'>Admin</Link>
             </div>

@@ -1,0 +1,53 @@
+.pad {
+    margin: 2%;
+}
+
+.pad button {
+    margin: 1%;
+}
+
+.pad input {
+    margin: 1%;
+}
+
+.flex{
+    display: flex;
+}
+
+.spaced {
+    justify-content: space-evenly;
+}
+
+.row-wrap {
+    flex-flow: row wrap;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.center {
+    align-items: center;
+}
+
+.left50 {
+    width: 50%;
+}
+
+.scroll {
+    overflow: scroll;
+}
+
+.list1 {
+    height: 100px;
+    width: 200px;
+}
+
+.list2 {
+    height: 100px;
+    width: 400px;
+}
