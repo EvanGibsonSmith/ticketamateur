@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 
 export function authenticateUser (authPageToken) {
-    let authenticateToken = authPageToken
-    let payload = {"authToken": authenticateToken}
+    console.log(authPageToken)
+    let payload = {"authToken": authPageToken}
     const response = fetch(
         {method: "POST", 
         body: JSON.stringify(payload)}).then((response) => response)
@@ -19,7 +19,8 @@ export function authenticateUser (authPageToken) {
                 case "administrator":
                   //navigate("/admin"); TODO make this work
                   break;
-              }
+                default:
+            }
         }
         fetchResult() 
 }

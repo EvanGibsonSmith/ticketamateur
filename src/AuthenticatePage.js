@@ -18,9 +18,8 @@ export function Authenticate() {
             <h1>This is the authenticate page, while we will need to actually authenticate later, below are buttons to send to other pages</h1>
             <div className="flex-container-row">
                 <p>Authenticate:    </p>
-                <input type="text" id="authenticatePageID" name="name" height="2" required minlength="1" maxlength="20" size="10"
-                    value={message} onChange={handleChange}/>
-                <button onClick={authenticateUser(message)}>Submit</button>
+                <input type="text" id="authenticatePageID" name="name" height="2" value={message} onChange={handleChange}/>
+                <button onClick={() => authenticateUser(message)}>Submit</button>
             </div>
 
             <div>

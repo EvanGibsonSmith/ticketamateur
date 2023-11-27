@@ -14,11 +14,11 @@ export function VenueManager() {
                     <input type="text" id="venueCenterSeats" placeholder="Seat Number Center" width="30px"/>
                     <input type="text" id="venueRightSeats" placeholder="Seat Number Right" width="30px"/>
 
-                    <button onClick={e => createVenue(null, "test name")}>Create Venue</button>
+                    <button onClick={e => createVenue()}>Create Venue</button>
                 </div>
                 <div className="flex row left50 pad">
                     <input type="text" id="deleteVenueID" placeholder="Enter Venue Here"/>
-                    <button onClick={e => deleteVenue(null, "test delete name")}>Delete Venue</button>
+                    <button onClick={e => deleteVenue()}>Delete Venue</button>
                 </div>
                 <div className="flex row pad">
                     <input type="text" id="showName" placeholder="Enter Show Here"/>
