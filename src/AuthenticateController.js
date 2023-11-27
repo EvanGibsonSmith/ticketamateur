@@ -9,7 +9,7 @@ export function authenticateUser (authPageToken) {
         body: JSON.stringify(payload)}).then((response) => response)
 
         const fetchResult = async() => {
-            const navigate = useNavigate()
+            //const navigate = useNavigate()
             let val = await response
             let result = await val.json()
             switch(result.userType) {
