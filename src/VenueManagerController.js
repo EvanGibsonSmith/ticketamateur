@@ -8,7 +8,7 @@ export function createVenue() {
     let numSeatsRight = document.getElementById("venueRightSeats").value
     let payload = {"nameVenue": venueName} 
     //let payload = {"nameVenue": venueName, "numberOfRows" : numberRows, "leftSeats" : numSeatsLeft, "centerSeats" : numSeatsCenter, "rightSeats" : numSeatsRight} 
-    const response = fetch(
+    const response = fetch("https://k60w2rdui3.execute-api.us-east-1.amazonaws.com/intialStage/createVenue", 
         {method: "POST", 
         body: JSON.stringify(payload)}).then((response) => response)
 
