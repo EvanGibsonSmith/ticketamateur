@@ -1,6 +1,6 @@
 
 
-export function createVenue(model, name) {
+export function createVenue() {
     let venueName = document.getElementById("createVenueID").value
     let numberRows = document.getElementById("venueNumberOfRows").value
     let numSeatsLeft = document.getElementById("venueLeftSeats").value
@@ -21,7 +21,7 @@ export function createVenue(model, name) {
     console.log("Clicked")
 }
 
-export function deleteVenue(model, name) {
+export function deleteVenue() {
     let venueName = document.getElementById("deleteVenueID").value
     let payload = {"nameVenueDelete": venueName} 
     const response = fetch(
@@ -37,7 +37,7 @@ export function deleteVenue(model, name) {
     console.log("Test delete successful")
 }
 
-export function createShow(model, name) {
+export function createShow() {
     let showName = document.getElementById("showName").value
     let venueName = document.getElementById("venueNameShow").value
     let showTime = document.getElementById("showTime").value 
