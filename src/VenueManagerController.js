@@ -2,7 +2,12 @@
 
 export function createVenue(model, name) {
     let venueName = document.getElementById("createVenueID").value
+    let numberRows = document.getElementById("venueNumberOfRows").value
+    let numSeatsLeft = document.getElementById("venueLeftSeats").value
+    let numSeatsCenter = document.getElementById("venueCenterSeats").value
+    let numSeatsRight = document.getElementById("venueRightSeats").value
     let payload = {"nameVenue": venueName} 
+    //let payload = {"nameVenue": venueName, "numberOfRows" : numberRows, "leftSeats" : numSeatsLeft, "centerSeats" : numSeatsCenter, "rightSeats" : numSeatsRight} 
     const response = fetch(
         {method: "POST", 
         body: JSON.stringify(payload)}).then((response) => response)
