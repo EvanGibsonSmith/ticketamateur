@@ -1,9 +1,9 @@
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Consumer from './Consumer';
-import Admin from './Admin';
-import VenueManager from './VenueManager';
-import Authenticate from './Authenticate';
+import Consumer from './ConsumerPage';
+import Admin from './AdminPage';
+import VenueManager from './VenueManagerPage';
+import Authenticate from './AuthenticatePage';
 
 function App() {
   return (

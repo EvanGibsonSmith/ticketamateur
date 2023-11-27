@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './Authenticate.css';
+import './AuthenticatePage.css';
 
 
 export function Authenticate() {

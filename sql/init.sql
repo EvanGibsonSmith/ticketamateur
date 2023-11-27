@@ -8,7 +8,6 @@ DROP TABLE Shows;
 DROP TABLE Seats;
 
 
-
 CREATE TABLE Admins (
 	auth CHAR(30) PRIMARY KEY
 );

@@ -1,18 +1,20 @@
 import React from "react";
-import "./VenueManager.css";
+import "./VenueManagerPage.css";
+import { createVenue, deleteVenue, createShow } from "./VenueManagerController"
 
 export function VenueManager() {
+    // TODO add the model trickery in here so that this actually works
     return (
         <body>
             <h1>This is the Venue Manager page</h1>
             <div className='flex-container-space column'>
                 <div className="flex-container-space row left50 pad">
-                    <input type="text" id="name" placeholder="Enter Venue Here"/>
-                    <button>Create Venue</button>
+                    <input type="text" id="createVenueID" placeholder="Enter Venue Here"/>
+                    <button onClick={e => createVenue(null, "test name")}>Create Venue</button>
                 </div>
                 <div className="flex row left50 pad">
-                    <input type="text" id="name" placeholder="Enter Venue Here"/>
-                    <button>Delete Venue</button>
+                    <input type="text" id="deleteVenueID" placeholder="Enter Venue Here"/>
+                    <button onClick={e => deleteVenue(null, "test delete name")}>Delete Venue</button>
                 </div>
                 <div className="flex row pad">
                     <input type="text" id="name" placeholder="Enter Show Here"/>
@@ -29,7 +31,7 @@ export function VenueManager() {
                     <input type="text" placeholder="Start Row"/>
                     <input type="text" placeholder="End Row"/>
                     <div className="flex column">
-                        <button>Create Show</button>
+                        <button onClick={e => createShow(null, "test create show")}>Create Show</button>
                         <button>Delete Show</button>
                     </div>
                 </div>
