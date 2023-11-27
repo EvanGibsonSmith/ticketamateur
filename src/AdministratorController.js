@@ -1,4 +1,4 @@
 
-export function deleteShow(model, name) {
+export function deleteShow() {
     console.log("Test delete successful")
 }

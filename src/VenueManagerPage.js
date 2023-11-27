@@ -3,7 +3,6 @@ import "./VenueManagerPage.css";
 import { createVenue, deleteVenue, createShow } from "./VenueManagerController"
 
 export function VenueManager() {
-    // TODO add the model trickery in here so that this actually works
     return (
         <body>
             <h1>This is the Venue Manager page</h1>

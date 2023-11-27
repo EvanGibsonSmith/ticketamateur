@@ -59,14 +59,3 @@ CREATE TABLE Seats (
     CONSTRAINT Seats_showID_FK FOREIGN KEY (showID) REFERENCES Shows(showID)
 );
 
-
-
-
-
-
-
-INSERT INTO Admins VALUES ("234567");
-
-
-
-
