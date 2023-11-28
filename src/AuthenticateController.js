@@ -15,17 +15,3 @@ export function authenticateUser(authPageToken) {
           }
       })
 }
-
-export function generateVenueTest() { // TODO delete this and replace in proper location. Axios would allow me to pretend the API gave a proper call but I have not done axios so here we are
-  let cd = document.getElementById('authCode');
-  cd.innerHTML = "myTestAuthCode"
-}
-
-
-export function generateNewVenueManagerAuthCode() { 
-
-  get('/NewAuthenticationCode', response => {
-          let cd = document.getElementById('authCode'); // TODO should this be stored within the entity instead of just somewhere on the boundary?
-          cd.innerHTML = response.authCode
-      })
-}
