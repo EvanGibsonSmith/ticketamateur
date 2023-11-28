@@ -22,11 +22,6 @@ export function Authenticate() {
                 <button onClick={() => authenticateUser(message)}>Submit</button>
             </div>
 
-            <button onClick={() => generateVenueTest()}>
-                Generate Authentication Code (Venue Manager)
-            </button>
-            <text id="authCode"></text>
-
             <div>
             <Link to='/Admin'>Admin</Link>
             </div>

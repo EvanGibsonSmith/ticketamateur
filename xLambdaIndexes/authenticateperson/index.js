@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const db_access = require('/opt/nodejs/db_access');
-const { randomInt } = require('crypto');
+//const { randomInt } = require('crypto'); TODO is this needed? I'm making generate authentication
 
 exports.handler = async (event) => {
   
