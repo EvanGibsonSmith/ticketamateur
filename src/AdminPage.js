@@ -15,25 +15,15 @@ export function Admin() {
                             <button onClick={e => listVenues()}>List Venues</button>
                         </div>
                         <div id = "listVenuesBox"className="flex column scroll list1 pad">
-                            <text>Venue 1</text>
-                            <text>Venue 2</text>
-                            <text>Venue 3</text>
-                            <text>Venue 4</text>
-                            <text>Venue 5</text>
-                            <text>Venue 6</text>
+                            <text>No Venues</text>
                         </div>
                     </div>
                     <div className="flex column">
                         <div className="flex row pad">
                             <button>Show Report</button>
                         </div>
-                        <div className="flex column scroll list2 pad">
-                            <text>Show 1</text>
-                            <text>Show 2</text>
-                            <text>Show 3</text>
-                            <text>Show 4</text>
-                            <text>Show 5</text>
-                            <text>Show 6</text>
+                        <div id = "listShowBox" className="flex column scroll list2 pad">
+                            <text>No Shows</text>
                         </div>
                     </div>
         </body>
