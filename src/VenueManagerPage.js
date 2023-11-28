@@ -15,6 +15,8 @@ export function VenueManager() {
                     <input type="text" id="venueRightSeats" placeholder="Seat Number Right" width="30px"/>
 
                     <button onClick={e => createVenue()}>Create Venue</button>
+                    <text>Authentication Token:</text>
+                    <output type='text' id='authenticationToken'></output>
                 </div>
                 <div className="flex row left50 pad">
                     <input type="text" id="deleteVenueID" placeholder="Enter Venue Here"/>
