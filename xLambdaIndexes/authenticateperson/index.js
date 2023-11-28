@@ -62,7 +62,7 @@ exports.handler = async (event) => {
       response = {
         statusCode: 400,
         
-        success: false
+        body: {"type" : "false"}
       };
   }
 
