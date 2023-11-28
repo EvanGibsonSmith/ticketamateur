@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-import { authenticateUser } from "./AuthenticateController";
+import { authenticateUser, generateNewVenueManagerAuthCode, generateVenueTest } from "./AuthenticateController";
 import './AuthenticatePage.css';
 
 
@@ -21,6 +21,11 @@ export function Authenticate() {
                 <input type="text" id="authenticatePageID" name="name" height="2" value={message} onChange={handleChange}/>
                 <button onClick={() => authenticateUser(message)}>Submit</button>
             </div>
+
+            <button onClick={() => generateVenueTest()}>
+                Generate Authentication Code (Venue Manager)
+            </button>
+            <text id="authCode"></text>
 
             <div>
             <Link to='/Admin'>Admin</Link>

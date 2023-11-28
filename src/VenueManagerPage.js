@@ -27,7 +27,7 @@ export function VenueManager() {
                     <input type="text" id="venueNameShow" placeholder="Enter Venue Here"/>
                     <input type="text" id="showTime" placeholder="Enter Time Here"/>
                     <div className="flex column">
-                        <button>Create Show</button>
+                        <button onClick={e => createShow()}>Create Show</button>
                         <button>Delete Show</button>
                     </div>
                 </div>
