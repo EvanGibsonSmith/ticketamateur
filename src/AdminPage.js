@@ -1,7 +1,7 @@
 import React from "react";
 import "./AdministratorPage.css";
 import { deleteShow } from "./AdministratorController"
-
+import { listVenues } from "./AdministratorController";
 export function Admin() {
     return (
         <body>
@@ -14,7 +14,7 @@ export function Admin() {
                         <div className="flex row pad center">
                             <button onClick={e => listVenues()}>List Venues</button>
                         </div>
-                        <div className="flex column scroll list1 pad">
+                        <div id = "listVenuesBox"className="flex column scroll list1 pad">
                             <text>Venue 1</text>
                             <text>Venue 2</text>
                             <text>Venue 3</text>

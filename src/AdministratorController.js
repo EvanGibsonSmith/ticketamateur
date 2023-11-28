@@ -11,7 +11,7 @@ export function listVenues() {
 
             // insert HTML in the <div> with 
             // constant-list
-            let cd = document.getElementById('flex column scroll list1 pad')
+            let cd = document.getElementById('listVenuesBox')
             cd.innerHTML = str
 
         })
