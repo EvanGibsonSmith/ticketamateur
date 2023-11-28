@@ -12,7 +12,7 @@ export function Admin() {
                 </div>
             <div className="flex column">
                         <div className="flex row pad center">
-                            <button>List Venues</button>
+                            <button onClick={e => listVenues()}>List Venues</button>
                         </div>
                         <div className="flex column scroll list1 pad">
                             <text>Venue 1</text>

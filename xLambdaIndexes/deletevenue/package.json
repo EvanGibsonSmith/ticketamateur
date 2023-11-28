@@ -1,5 +1,5 @@
 {
-"name":"createvenue",
+"name":"deletevenue",
 "version": "1.0.0",
 
 "dependencies" : {

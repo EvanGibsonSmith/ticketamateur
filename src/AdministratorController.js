@@ -1,17 +1,17 @@
 import { get } from "./Api"
 
 export function listVenues() { 
-    get('/constants')
+    get('/listVenues')
         .then(function (response) {
 
             let str = ''
             for (let c of response.constants) {
-                str += c.name + '=' + c.value + '<br>'
+                str += c.venueName + '<br>'
             }
 
             // insert HTML in the <div> with 
             // constant-list
-            let cd = document.getElementById('constant-list')
+            let cd = document.getElementById('flex column scroll list1 pad')
             cd.innerHTML = str
 
         })

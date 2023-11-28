@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
-import { axios } from "axios"; // TODO remove if not used eventually, might be easier
+//import { axios } from "axios"; // TODO remove if not used eventually, might be easier
 
 const URL = "REALURL";
 
 // TODO later make this imported in multiple places so that URL doesn't need to be copied in a bunch of places if using axios. Use import port from API like he has in many of his examples
-const instance = axios.create({ 
-  baseURL: URL // TODO make actual URL
-});
+//const instance = axios.create({ 
+  //baseURL: URL // TODO make actual URL
+//});
 
 export function authenticateUser (authPageToken) {
     console.log(authPageToken)
