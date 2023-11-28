@@ -12,9 +12,9 @@ exports.handler = async (event) => {
       database: db_access.config.database
   });
   
-  let ValidateExists = (name) => {
+  let isVenueManager = (auth) => {
         return new Promise((resolve, reject) => {
-            pool.query("SELECT * FROM Shows WHERE name=?", [name], (error, rows) => {
+            pool.query("SELECT * FROM VenueManagers WHERE auth=?", [auth], (error, rows) => {
                 if (error) { return reject(error); }
                 console.log(rows)
                 if ((rows) && (rows.length == 1)) {
@@ -25,35 +25,44 @@ exports.handler = async (event) => {
             });
         });
   }
-  
-  let response = undefined
-  const can_create = await ValidateExists(event.nameVenue);
 
-  if (!can_create) {
-      let createShow = (name, venue, time) => {
-        return new Promise((resolve, reject) => {
-            pool.query("INSERT into Shows(showID, showName, venueName, showDate) VALUES(?,?,?);", [randomInt(100),name], (error, rows) => {
-                if (error) { return reject(error); }
-                if ((rows) && (rows.affectedRows == 1)) {
-                    return resolve(true);
-                } else {
-                    return resolve(false);
-                }
-            });
+  let isAdmin = (auth) => {
+    return new Promise((resolve, reject) => {
+        pool.query("SELECT * FROM Admins WHERE auth=?", [auth], (error, rows) => {
+            if (error) { return reject(error); }
+            console.log(rows)
+            if ((rows) && (rows.length == 1)) {
+                return resolve(true); 
+            } else {
+                return resolve(false);
+            }
         });
-      }
-      
-      let add_result = await createShow(event.nameShow,event.nameVenue, event.showTime)
+    });
+}
+  
+    let response = undefined
+    const admin = await isVenueManager(event.authToken);
+    const manager = await isAdmin(event.authToken);
+  if(!admin){
       response = {
         statusCode: 200,
         
-        success: add_result
+        body: {"type" : "Admin"}
+
       }
-  } else {
+  } else if (!manager){
+    response = {
+        statusCode: 200,
+        
+        body: {"type" : "manager"}
+        
+      }
+
+  }else{
       response = {
         statusCode: 400,
         
-        success: false
+        body: {"type" : "false"}
       };
   }
 
