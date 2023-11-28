@@ -1,44 +1,25 @@
 import { useNavigate } from "react-router-dom";
+import { post } from "./Api";
 
-//import { axios } from "axios"; // TODO remove if not used eventually, might be easier
+export function authenticateUser(authPageToken) { 
+  let payload = {"authToken": authPageToken}
 
-const URL = "REALURL";
+  post(payload, '/authenticateUser')
+      .then(function (response) {
 
-// TODO later make this imported in multiple places so that URL doesn't need to be copied in a bunch of places if using axios. Use import port from API like he has in many of his examples
-//const instance = axios.create({ 
-  //baseURL: URL // TODO make actual URL
-//});
+          switch (response.userType) {
+            case "venueManager":
+              console.log("Venue manager") // TODO add page redirect
+              break;
+            case "admin":
+              console.log("Admin") // TODO add page redirect
+              break;
+          }
 
-export function authenticateUser (authPageToken) {
-    console.log(authPageToken)
-    let payload = {"authToken": authPageToken}
 
-    // TODO I have this axios way in here just to see how they compare for now. This way might be easier, following his hangman example
-    //instance.post('/authenticate').then((response) => {
-    //  model.setInfo(response.data.gameID, response.data.wordLength)
-    //  forceRedraw(redraw+1)
-    //})
-
-    const response = fetch(URL, 
-        {method: "POST", 
-        body: JSON.stringify(payload)}).then((response) => response)
-
-        const fetchResult = async() => {
-            //const navigate = useNavigate()
-            let val = await response
-            let result = await val.json()
-            switch(result.userType) {
-                case "venueManager":
-                  console.log("VENUEMANAGERTYPE")
-                  //navigate("/venuemanager"); TODO make this work
-                  break;
-                case "administrator":
-                  console.log("ADMINTYPE")
-
-                  //navigate("/admin"); TODO make this work
-                  break;
-                default:
-            }
-        }
-        fetchResult() 
+      })
+      .catch(function (error) {
+          // not much to do
+          console.log(error)
+      })
 }
