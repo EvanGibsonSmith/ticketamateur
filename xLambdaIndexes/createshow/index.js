@@ -32,7 +32,7 @@ exports.handler = async (event) => {
   if (!can_create) {
       let createShow = (name, venue, time) => {
         return new Promise((resolve, reject) => {
-            pool.query("INSERT into Shows(showID, venueID, showName, showDate) VALUES(?,?,?);", [randomInt(100),name], (error, rows) => {
+            pool.query("INSERT into Shows(showID, showName, venueName, showDate) VALUES(?,?,?);", [randomInt(100),name], (error, rows) => {
                 if (error) { return reject(error); }
                 if ((rows) && (rows.affectedRows == 1)) {
                     return resolve(true);
