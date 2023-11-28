@@ -36,17 +36,10 @@ export function createShow() {
     let showName = document.getElementById("showName").value
     let venueName = document.getElementById("venueNameShow").value
     let showTime = document.getElementById("showTime").value 
-    let payload = {"nameVenue": venueName, "nameShow": showName, "time": showTime} 
-    const response = fetch(
-        {method: "POST", 
-        body: JSON.stringify(payload)}).then((response) => response)
 
-        const fetchResult = async() => {
-            let val = await response
-            let result = await val.json()
-            document.getElementById("result").value = result.body
-        }
-        fetchResult() 
-    console.log("Clicked")
-    console.log("Create show test")
+    let payload = {"showName": showName, "venueNameShow": venueName, "time": showTime} 
+
+    post('/createShow', payload, response => {
+        console.log(response)
+    })
 }

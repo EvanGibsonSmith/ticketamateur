@@ -4,22 +4,14 @@ import { post } from "./Api";
 export function authenticateUser(authPageToken) { 
   let payload = {"authToken": authPageToken}
 
-  post(payload, '/authenticateUser')
-      .then(function (response) {
-
-          switch (response.userType) {
-            case "venueManager":
+  post(payload, '/Authenticate', response => {
+          switch (response.type) {
+            case "manager":
               console.log("VenueManager") // TODO add page redirect
               break;
             case "admin":
               console.log("Admin") // TODO add page redirect
               break;
           }
-
-
-      })
-      .catch(function (error) {
-          // not much to do
-          console.log(error)
       })
 }
