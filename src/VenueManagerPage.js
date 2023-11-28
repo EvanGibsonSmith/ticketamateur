@@ -26,24 +26,25 @@ export function VenueManager() {
                     <input type="text" id="showName" placeholder="Enter Show Here"/>
                     <input type="text" id="venueNameShow" placeholder="Enter Venue Here"/>
                     <input type="text" id="showTime" placeholder="Enter Time Here"/>
+                    <input type="text" id="showDate" placeholder="Enter Date Here"/>
                     <div className="flex column">
-                        <button>Create Show</button>
+                        <button onClick={e => createShow()}>Create Show</button>
                         <button>Delete Show</button>
                     </div>
                 </div>
                 <div className="flex row row-wrap pad">
-                    <input type="text" placeholder="Enter Block Name"/>
-                    <input type="text" placeholder="Enter Block Price"/>
-                    <input type="text" placeholder="Start Row"/>
-                    <input type="text" placeholder="End Row"/>
+                    <input type="text" id="enterBlockName" placeholder="Enter Block Name"/>
+                    <input type="text" id="enterBlockPrice" placeholder="Enter Block Price"/>
+                    <input type="text" id="startRow" placeholder="Start Row"/>
+                    <input type="text" id="endRow" placeholder="End Row"/>
                     <div className="flex column">
-                        <button onClick={e => createShow(null, "test create show")}>Create Show</button>
-                        <button>Delete Show</button>
+                        <button>Create Block</button>
+                        <button>Delete Block</button>
                     </div>
                 </div>
                 <div className="flex row left50 pad">
-                    <input type="text" placeholder="Enter Venue Here"/>
-                    <button>Delete Venue</button>
+                    <input type="text" placeholder="Enter Show Here"/>
+                    <button>Delete Show</button>
                 </div>
                 <div className="flex row left50 pad">
                     <input type="text" placeholder="Enter Block"/>

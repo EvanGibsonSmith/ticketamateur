@@ -33,20 +33,26 @@ export function deleteVenue() {
 }
 
 export function createShow() {
-    let showName = document.getElementById("showName").value
-    let venueName = document.getElementById("venueNameShow").value
-    let showTime = document.getElementById("showTime").value 
-    let payload = {"nameVenue": venueName, "nameShow": showName, "time": showTime} 
-    const response = fetch(
-        {method: "POST", 
-        body: JSON.stringify(payload)}).then((response) => response)
-
-        const fetchResult = async() => {
-            let val = await response
-            let result = await val.json()
-            document.getElementById("result").value = result.body
-        }
-        fetchResult() 
-    console.log("Clicked")
-    console.log("Create show test")
+    let nameShow = document.getElementById("showName").value
+    let nameVenue = document.getElementById("venueNameShow").value
+    let time = document.getElementById("showTime").value
+    let date = document.getElementById("showDate").value
+    let payload = {"nameShow": nameShow, "nameVenue" : nameVenue, "showTime" : time, "showDate": date} 
+  
+    post('/createShow', payload, response => {
+        console.log(response)
+    })
 }
+
+// export function createBlock() {
+//     let block = document.getElementById("enterBlockName").value
+//     let price = document.getElementById("enterBlockPrice").value
+//     let startRow = document.getElementById("startRow").value
+//     let endRow = document.getElementById("endRow").value
+
+//     let payload = {"block": block, "price" : price, "leftSeats" : startRow, "centerSeats" : endRow, "rightSeats" : numSeatsRight} 
+  
+//     post('/createBlock', payload, response => {
+//         console.log(response)
+//     })
+// }
