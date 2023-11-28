@@ -15,7 +15,7 @@ export function createVenue() {
         const fetchResult = async() => {
             let val = await response
             let result = await val.json()
-            document.getElementByld("result").value = result.body
+            document.getElementById("result").value = result.body
         }
         fetchResult() 
     console.log("Clicked")
@@ -31,7 +31,7 @@ export function deleteVenue() {
         const fetchResult = async() => {
             let val = await response
             let result = await val.json()
-            document.getElementByld("result").value = result.body
+            document.getElementById("result").value = result.body
         }
         fetchResult() 
     console.log("Test delete successful")
@@ -49,7 +49,7 @@ export function createShow() {
         const fetchResult = async() => {
             let val = await response
             let result = await val.json()
-            document.getElementByld("result").value = result.body
+            document.getElementById("result").value = result.body
         }
         fetchResult() 
     console.log("Clicked")
