@@ -58,13 +58,8 @@ export function VenueManager() {
                         <div className="flex row pad">
                             <button>List Shows</button>
                         </div>
-                        <div className="flex column scroll list1 pad">
-                            <text>Show 1</text>
-                            <text>Show 2</text>
-                            <text>Show 3</text>
-                            <text>Show 4</text>
-                            <text>Show 5</text>
-                            <text>Show 6</text>
+                        <div id = "listShowsBoxVM"className="flex column scroll list1 pad">
+                            <text>No Shows</text>
                         </div>
                     </div>
                     <div className="flex column">
@@ -72,13 +67,8 @@ export function VenueManager() {
                             <input type='text' placeholder="Enter Show Here"></input>
                             <button>List Blocks</button>
                         </div>
-                        <div className="flex column scroll list2 pad">
-                            <text>Block 1</text>
-                            <text>Block 2</text>
-                            <text>Block 3</text>
-                            <text>Block 4</text>
-                            <text>Block 5</text>
-                            <text>Block 6</text>
+                        <div id = "listBlocksBoxVM" className="flex column scroll list2 pad">
+                            <text>No Blocks</text>
                         </div>
                     </div>
                     
@@ -86,13 +76,8 @@ export function VenueManager() {
                         <div className="flex row pad center">
                             <text>My Venues</text>
                         </div>
-                        <div className="flex column scroll list1 pad">
-                            <text>Venue 1</text>
-                            <text>Venue 2</text>
-                            <text>Venue 3</text>
-                            <text>Venue 4</text>
-                            <text>Venue 5</text>
-                            <text>Venue 6</text>
+                        <div id = "listBlocksBoxVM" className="flex column scroll list1 pad">
+                            <text>No Venues</text>
                         </div>
                     </div>
                 </div>
