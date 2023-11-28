@@ -25,14 +25,21 @@ exports.handler = async (event) => {
             });
         });
   }
-  
+  let getShows = (venue) => {
+    return new Promise((resolve, reject) => {
+        pool.query("SELECT * FROM Shows WHERE venueName=?", [venue], (error, rows) => {
+            if (error) { return reject(error); }
+            return resolve(rows);
+        })
+    })
+}
   let response = undefined
-  const can_create = await ValidateExists(event.nameVenue);
+  const can_create = await ValidateExists(event.nameShow);
 
   if (!can_create) {
-      let createShow = (name, venue, time) => {
+      let createShow = (name, venue, time, date) => {
         return new Promise((resolve, reject) => {
-            pool.query("INSERT into Shows(showID, venueID, showName, showDate) VALUES(?,?,?);", [randomInt(100),name], (error, rows) => {
+            pool.query("INSERT into Shows(showID, showName, showTime, showDate, soldOut, activated, venueName) VALUES(?,?,?,?,?,?,?);", [randomInt(1000000000),name,time,date,0,0,venue], (error, rows) => {
                 if (error) { return reject(error); }
                 if ((rows) && (rows.affectedRows == 1)) {
                     return resolve(true);
@@ -43,11 +50,11 @@ exports.handler = async (event) => {
         });
       }
       
-      let add_result = await createShow(event.nameShow,event.nameVenue, event.showTime)
+      let add_result = await createShow(event.nameShow,event.nameVenue, event.showTime, event.showDate)
       response = {
         statusCode: 200,
         
-        success: add_result
+        body: JSON.stringify(getShows(event.nameVenue))
       }
   } else {
       response = {

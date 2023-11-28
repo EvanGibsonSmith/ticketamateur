@@ -1,5 +1,6 @@
 
 import { post } from "./Api"
+import { authenticateUser } from "./AuthenticateController"
 
 export function createVenue() { 
     let venueName = document.getElementById("createVenueID").value
@@ -16,6 +17,7 @@ export function createVenue() {
     })
   }
 
+/* OLD VERSION
 export function deleteVenue() {
     let venueName = document.getElementById("deleteVenueID").value
     let payload = {"nameVenueDelete": venueName} 
@@ -30,6 +32,23 @@ export function deleteVenue() {
         }
         fetchResult() 
     console.log("Test delete successful")
+}
+*/
+
+export function deleteVenue(authPageToken) {
+    let venueName = document.getElementById("deleteVenueID").value
+
+    let payload = {"venueName": venueName} 
+
+    post('/deleteVenue', payload, response => {
+        let authResponse = authenticateUser(authPageToken) // FIXME security issue? COuld somebody fake input. Probably fine because of this is within API call
+        // TODO make it pass in and actually use authPageToken
+        //if (!authResponse) {
+        //    console.log("FAILED") // TODO make nicer than console log
+        //    return // get out of here
+        //}
+        console.log(response)
+    })
 }
 
 export function createShow() {

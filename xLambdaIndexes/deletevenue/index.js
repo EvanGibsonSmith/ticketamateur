@@ -13,7 +13,7 @@ exports.handler = async (event) => {
   
   let DeleteVenue = (name) => {
       return new Promise((resolve, reject) => {
-            pool.query("DELETE FROM Venues WHERE name=?", [name], (error, rows) => {
+            pool.query("DELETE FROM Venues WHERE venueName=?", [name], (error, rows) => {
                 if (error) { return reject(error); }
                 if ((rows) && (rows.affectedRows == 1)) {
                     return resolve(true);
@@ -26,7 +26,7 @@ exports.handler = async (event) => {
   
   let response = undefined
   try {
-    const result = await DeleteVenue(event.name)
+    const result = await DeleteVenue(event.venueName)
 
     response = {
       statusCode: 200,

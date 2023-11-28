@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-import { authenticateUser } from "./AuthenticateController";
+import { authenticateUser, generateNewVenueManagerAuthCode, generateVenueTest } from "./AuthenticateController";
 import './AuthenticatePage.css';
 
 
