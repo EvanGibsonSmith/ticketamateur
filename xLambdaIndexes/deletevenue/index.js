@@ -26,7 +26,7 @@ exports.handler = async (event) => {
   
   let response = undefined
   try {
-    const result = await DeleteVenue(event.name)
+    const result = await DeleteVenue(event.venueName)
 
     response = {
       statusCode: 200,
