@@ -25,7 +25,14 @@ exports.handler = async (event) => {
             });
         });
   }
-  
+  let getShows = (venue) => {
+    return new Promise((resolve, reject) => {
+        pool.query("SELECT * FROM Shows WHERE venueName=?", [venue], (error, rows) => {
+            if (error) { return reject(error); }
+            return resolve(rows);
+        })
+    })
+}
   let response = undefined
   const can_create = await ValidateExists(event.nameShow);
 
@@ -47,7 +54,7 @@ exports.handler = async (event) => {
       response = {
         statusCode: 200,
         
-        success: add_result
+        body: JSON.stringify(getShows(event.nameVenue))
       }
   } else {
       response = {
