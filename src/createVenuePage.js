@@ -26,6 +26,8 @@ export function VenueManager() {
                     <output type='text' id='authenticationToken'></output>
                 </div>
             </div>
+
+
             <button onClick={navigateVenueManager}>Venue Manager</button>
         </body>
     )
