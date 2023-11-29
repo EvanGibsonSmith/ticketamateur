@@ -6,7 +6,6 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
 export function Admin() {
-    const location = useLocation(); // FIXME I Don't know if I am using this properly
     const navigate = useNavigate();
 
     return (
