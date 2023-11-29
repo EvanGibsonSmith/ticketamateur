@@ -2,6 +2,7 @@ import React from "react";
 import { post } from "./Api";
 import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import { setAuthToken } from "./AdministratorPage";
 import { authenticateUser, generateNewVenueManagerAuthCode, generateVenueTest } from "./AuthenticateController";
 import './AuthenticatePage.css';
 
@@ -15,17 +16,15 @@ export function Authenticate() {
         setMessage(event.target.value);
     };
 
-    function authenticateUser2(authPageToken) { 
+    function authenticateUser2(authPageToken) { // TODO I feel like it's odd this isn't in the controller but it works
         let payload = {"authToken": authPageToken}
       
         post('/authenticate', payload, response => {
-          //console.log(payload)
-
           console.log(response)
                 switch (response.body.type) {
                     case "Admin":
                         console.log("Admin") 
-                        navigate('/admin')
+                        navigate('/admin') // TODO change titleData field name?
                         return;
                     case "manager":
                         console.log("VenueManager") 

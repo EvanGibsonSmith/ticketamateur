@@ -3,8 +3,12 @@ import "./AdministratorPage.css";
 import { deleteShow } from "./AdministratorController"
 import { listVenues } from "./AdministratorController";
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
+
 export function Admin() {
+    const location = useLocation(); // FIXME I Don't know if I am using this properly
     const navigate = useNavigate();
+
     return (
         <body>
             <h1>This is the admin page</h1>
@@ -14,7 +18,7 @@ export function Admin() {
                 </div>
             <div className="flex column">
                         <div className="flex row pad center">
-                            <button onClick={e => listVenues()}>List Venues</button>
+                            <button onClick={e => listVenues(null) /* TODO MAKE THIS PASS IN AUTH*/}>List Venues</button>
                         </div>
                         <div id = "listVenuesBox"className="flex column scroll list1 pad">
                             <text>No Venues</text>

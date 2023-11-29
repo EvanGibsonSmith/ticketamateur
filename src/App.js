@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Switch, Route, Routes, Link,} from "react-router-dom";
 import Consumer from './ConsumerPage';
-import Admin from './AdminPage';
+import Admin from './AdministratorPage';
 import VenueManager from './VenueManagerPage';
 import Authenticate from './AuthenticatePage';
 import CreateVenue from './createVenuePage';
