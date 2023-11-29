@@ -4,6 +4,7 @@ import Consumer from './ConsumerPage';
 import Admin from './AdminPage';
 import VenueManager from './VenueManagerPage';
 import Authenticate from './AuthenticatePage';
+import CreateVenue from './createVenuePage';
 import React from 'react';
 
 function App() {
@@ -32,6 +33,12 @@ function App() {
                   exact
                   path="/consumer"
                   element={<Consumer/>}
+              />
+
+              <Route
+                  exact
+                  path="/createvenue"
+                  element={<CreateVenue/>}
               />
           </Routes>
     </div>

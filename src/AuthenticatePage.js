@@ -40,6 +40,10 @@ export function Authenticate() {
         navigate("/consumer")
       }
 
+      const navigateCreateVenue= () => {
+        navigate("/createvenue")
+      }
+
     return (
         <body>
             <h1>This is the authenticate page, while we will need to actually authenticate later, below are buttons to send to other pages</h1>
@@ -50,6 +54,7 @@ export function Authenticate() {
             </div>
 
             <button onClick={navigateConsumer}>Consumer</button>
+            <button onClick={navigateCreateVenue}>Create Venue Page</button>
         </body>
     )
 }
