@@ -2,12 +2,18 @@ import React from "react";
 import "./VenueManagerPage.css";
 import { deleteVenue, createShow } from "./VenueManagerController"
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
 
 export function VenueManager() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const title = location.titleData
+    console.log(location)
+    
+    
     return (
         <body>
-            <h1>This is the Venue Manager page</h1>
+            <h1>Venue Manager Page </h1>
             <div className='flex-container-space column'>
                 <div className="flex row left50 pad">
                     <input type="text" id="deleteVenueID" placeholder="Enter Venue Here"/>

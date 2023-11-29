@@ -66,7 +66,7 @@ export function createShow() {
         console.log(response.body)
         let str = ''
              for (let c of response.constant) {
-                 str += c.showName + '<br>'
+                 str += "Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ '<br>'
              }
 
              // insert HTML in the <div> with 

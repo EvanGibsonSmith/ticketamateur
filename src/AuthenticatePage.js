@@ -20,6 +20,7 @@ export function Authenticate() {
       
         post('/authenticate', payload, response => {
           console.log(payload)
+
           console.log(response)
                 switch (response.body.type) {
                     case "Admin":
@@ -28,7 +29,8 @@ export function Authenticate() {
                         return;
                     case "manager":
                         console.log("VenueManager") 
-                        navigate('/venuemanager')
+                        console.log(response.constant)
+                        navigate('/venuemanager',{"titleData" :response.constant})
                     return;
                   default:
                     return navigate('/')
