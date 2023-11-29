@@ -41,11 +41,6 @@ export function createShow() {
     let payload = {"nameShow": nameShow, "nameVenue" : nameVenue, "showTime" : time, "showDate": date} 
   
     post('/createShow', payload, response => {
-        //console.log(payload)
-         console.log(response)
-        //console.log(response.listShows)
-        //console.log(response.constants)
-        console.log(response.body)
         let str = ''
              for (let c of response.constant) {
                  str += "Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ '<br>'

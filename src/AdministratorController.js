@@ -1,7 +1,8 @@
-import { post } from "./Api";
+import { get, post } from "./Api";
 import { authenticateUser } from "./AuthenticateController";
 
 export function listVenues(authToken) { 
+    /* MY BROKEN CODE
     console.log(authToken) // TODO just for testing delete me later
     let payload = {"/authToken": authToken} 
 
@@ -15,6 +16,7 @@ export function listVenues(authToken) {
         //}
         
         // if authResponse is good then we can list venues
+        console.log(response);
         let str = ''
         for (let c of response.constants) {
             str += c.venueName + '<br>'
@@ -24,11 +26,11 @@ export function listVenues(authToken) {
         // constant-list
         let cd = document.getElementById('listVenuesBox')
         cd.innerHTML = str
-    })
+    })*/
 
     
-    /* TRYING TO FIX THIS VERSION
-     get('/listVenues')
+    // TRYING TO FIX THIS VERSION
+    get('/listVenues')
         .then(function (response) {
 
             let str = ''
@@ -46,7 +48,6 @@ export function listVenues(authToken) {
             // not much to do
             console.log(error)
         })
-    */
 
 }
 
