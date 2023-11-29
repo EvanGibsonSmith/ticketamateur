@@ -2,9 +2,34 @@ import React from "react";
 import "./VenueManagerPage.css";
 import { createVenue, deleteVenue, createShow } from "./VenueManagerController"
 import { useNavigate } from "react-router-dom";
+import { post } from "./Api"
+import { useState } from 'react';
 
 export function VenueManager() {
     const navigate = useNavigate();
+    const [message, setMessage] = useState('');
+
+    function authenticateUser2(authPageToken) { 
+        let payload = {"authToken": authPageToken}
+      
+        post('/authenticate', payload, response => {
+          console.log(payload)
+          console.log(response)
+                switch (response.body.type) {
+                    case "manager":
+                        console.log("VenueManager") // TODO add page redirect
+                        navigate('/venuemanager')
+                    return;
+                  default:
+                    return navigate('/')
+                }
+            })
+      }
+
+    const handleChange = (event) => {
+        // 👇 Get input value from "event"
+        setMessage(event.target.value);
+    };
 
     const navigateVenueManager= () => {
         navigate("/venuemanager")
@@ -26,9 +51,11 @@ export function VenueManager() {
                     <output type='text' id='authenticationToken'></output>
                 </div>
             </div>
-
-
-            <button onClick={navigateVenueManager}>Venue Manager</button>
+            <div className="flex-container-row">
+                <p>Authenticate:    </p>
+                <input type="text" id="authenticatePageID" name="name" height="2" value={message} onChange={handleChange}/>
+                <button onClick={() => authenticateUser2(message)}>Submit</button>
+            </div>
         </body>
     )
 }
