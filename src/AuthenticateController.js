@@ -9,10 +9,10 @@ export function authenticateUser(authPageToken) {
     console.log(response)
           switch (response.body.type) {
             case "manager":
-              console.log("VenueManager") // TODO add page redirect
+              console.log("VenueManager")
               return 2
             case "Admin":
-              console.log("Admin") // TODO add page redirect
+              console.log("Admin")
               return 1
             default:
               return 3

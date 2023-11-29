@@ -23,11 +23,11 @@ export function Authenticate() {
           console.log(response)
                 switch (response.body.type) {
                     case "Admin":
-                        console.log("Admin") // TODO add page redirect
+                        console.log("Admin") 
                         navigate('/admin')
                         return;
                     case "manager":
-                        console.log("VenueManager") // TODO add page redirect
+                        console.log("VenueManager") 
                         navigate('/venuemanager')
                     return;
                   default:
