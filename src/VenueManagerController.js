@@ -12,7 +12,7 @@ export function createVenue() {
     let payload = {"nameVenue": venueName, "numberOfRows" : numberRows, "leftSeats" : numSeatsLeft, "centerSeats" : numSeatsCenter, "rightSeats" : numSeatsRight} 
   
     post('/createVenue', payload, response => {
-        document.getElementById("authenticationToken").value = response.body
+        document.getElementById("authenticationToken").value = response.success
         console.log(response)
     })
   }
