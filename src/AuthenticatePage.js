@@ -1,4 +1,5 @@
 import React from "react";
+import { post } from "./Api";
 import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { authenticateUser, generateNewVenueManagerAuthCode, generateVenueTest } from "./AuthenticateController";
@@ -14,22 +15,26 @@ export function Authenticate() {
         setMessage(event.target.value);
     };
 
-    const navigatePage = (message) => {
-        // 👇️ navigate to /
-        let token = authenticateUser(message)
-        switch (token) {
-            case "manager":
-              console.log("VenueManager") // TODO add page redirect
-              navigate("/venuemanager")
-              break;
-            case "admin":
-              console.log("Admin") // TODO add page redirect
-              navigate("/admin")
-              break;
-            default:
-              break;
-          }
-      };
+    function authenticateUser2(authPageToken) { 
+        let payload = {"authToken": authPageToken}
+      
+        post('/authenticate', payload, response => {
+          console.log(payload)
+          console.log(response)
+                switch (response.body.type) {
+                    case "Admin":
+                        console.log("Admin") // TODO add page redirect
+                        navigate('/admin')
+                        return;
+                    case "manager":
+                        console.log("VenueManager") // TODO add page redirect
+                        navigate('/venuemanager')
+                    return;
+                  default:
+                    return navigate('/')
+                }
+            })
+      }
 
       const navigateConsumer= () => {
         navigate("/consumer")
@@ -41,7 +46,7 @@ export function Authenticate() {
             <div className="flex-container-row">
                 <p>Authenticate:    </p>
                 <input type="text" id="authenticatePageID" name="name" height="2" value={message} onChange={handleChange}/>
-                <button onClick={() => navigatePage(message)}>Submit</button>
+                <button onClick={() => authenticateUser2(message)}>Submit</button>
             </div>
 
             <button onClick={navigateConsumer}>Consumer</button>
