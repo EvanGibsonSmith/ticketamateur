@@ -9,7 +9,7 @@ import './AuthenticatePage.css';
 export function Authenticate() {
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-
+    let invalid = ""
     const handleChange = (event) => {
         // 👇 Get input value from "event"
         setMessage(event.target.value);
@@ -19,7 +19,7 @@ export function Authenticate() {
         let payload = {"authToken": authPageToken}
       
         post('/authenticate', payload, response => {
-          console.log(payload)
+          //console.log(payload)
 
           console.log(response)
                 switch (response.body.type) {
@@ -32,6 +32,10 @@ export function Authenticate() {
                         console.log(response.constant)
                         navigate('/venuemanager',{"titleData" :response.constant})
                     return;
+                    case "false":
+                        invalid = "INVALID AUTHENITCATION"
+                        
+                        return;
                   default:
                     return navigate('/')
                 }
@@ -53,6 +57,7 @@ export function Authenticate() {
                 <p>Authenticate:    </p>
                 <input type="text" id="authenticatePageID" name="name" height="2" value={message} onChange={handleChange}/>
                 <button onClick={() => authenticateUser2(message)}>Submit</button>
+                <p>{invalid}</p>
             </div>
 
             <button onClick={navigateConsumer}>Consumer</button>
