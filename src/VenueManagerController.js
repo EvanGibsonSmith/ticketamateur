@@ -59,20 +59,20 @@ export function createShow() {
     let payload = {"nameShow": nameShow, "nameVenue" : nameVenue, "showTime" : time, "showDate": date} 
   
     post('/createShow', payload, response => {
-        console.log(payload)
-        console.log(response)
-        console.log(response.listShows)
-        console.log(response.constants)
-        // console.log(response.body)
-        // let str = ''
-        //     for (let c of response.listShows) {
-        //         str += c.venueName + '<br>'
-        //     }
+        //console.log(payload)
+         console.log(response)
+        //console.log(response.listShows)
+        //console.log(response.constants)
+        console.log(response.body)
+        let str = ''
+             for (let c of response.constant) {
+                 str += c.showName + '<br>'
+             }
 
-        //     // insert HTML in the <div> with 
-        //     // constant-list
-        //     let cd = document.getElementById('listShowsBoxVM')
-        //     cd.innerHTML = str
+             // insert HTML in the <div> with 
+             // constant-list
+             let cd = document.getElementById('listShowsBoxVM')
+             cd.innerHTML = str
     })
 }
 
