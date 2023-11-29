@@ -1,20 +1,39 @@
 import './App.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Routes, Link,} from "react-router-dom";
 import Consumer from './ConsumerPage';
 import Admin from './AdminPage';
 import VenueManager from './VenueManagerPage';
 import Authenticate from './AuthenticatePage';
+import React from 'react';
 
 function App() {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Navigate to="/authenticate" />} />
-        <Route path="/authenticate" element={<Authenticate />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/venuemanager" element={<VenueManager />} />
-        <Route path="/consumer" element={<Consumer />} />
-      </Routes>
+          <Routes>
+              <Route
+                  exact
+                  path="/"
+                  element={<Authenticate/>}
+              />
+
+              <Route
+                  exact
+                  path="/admin"
+                  element={<Admin/>}
+              />
+
+              <Route
+                  exact
+                  path="/venuemanager"
+                  element={<VenueManager/>}
+              />
+
+              <Route
+                  exact
+                  path="/consumer"
+                  element={<Consumer/>}
+              />
+          </Routes>
     </div>
   );
 }
