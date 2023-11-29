@@ -2,7 +2,9 @@ import React from "react";
 import "./AdministratorPage.css";
 import { deleteShow } from "./AdministratorController"
 import { listVenues } from "./AdministratorController";
+import { useNavigate } from "react-router";
 export function Admin() {
+    const navigate = useNavigate();
     return (
         <body>
             <h1>This is the admin page</h1>
@@ -26,6 +28,7 @@ export function Admin() {
                             <text>No Shows</text>
                         </div>
                     </div>
+                    <button onClick={e => navigate("/")}>Return to Authenticate Page</button>
         </body>
     )
 }

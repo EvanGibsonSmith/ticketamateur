@@ -1,8 +1,10 @@
 import React from "react";
 import "./VenueManagerPage.css";
 import { createVenue, deleteVenue, createShow } from "./VenueManagerController"
+import { useNavigate } from "react-router";
 
 export function VenueManager() {
+    const navigate = useNavigate();
     return (
         <body>
             <h1>This is the Venue Manager page</h1>
@@ -86,6 +88,7 @@ export function VenueManager() {
                 </div>
 
             </div>
+            <button onClick={e => navigate("/")}>Return to Authenticate Page</button>
         </body>
     )
 }
