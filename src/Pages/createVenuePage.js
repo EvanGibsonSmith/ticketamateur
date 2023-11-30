@@ -18,7 +18,7 @@ export function VenueManager() {
                 switch (response.body.type) {
                     case "manager":
                         console.log("VenueManager") // TODO add page redirect
-                        navigate('/venuemanager')
+                        navigate('/venuemanager', {"state" :response.constant[0]})
                     return;
                   default:
                     return navigate('/')
