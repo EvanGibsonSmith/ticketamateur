@@ -1,6 +1,6 @@
 import React from "react";
 import "./AdministratorPage.css";
-import { deleteShow } from "../Controller/AdministratorController"
+import { deleteShow, showReport } from "../Controller/AdministratorController"
 import { listVenues } from "../Controller/AdministratorController";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
@@ -25,7 +25,7 @@ export function Admin() {
                     </div>
                     <div className="flex column">
                         <div className="flex row pad">
-                            <button>Show Report</button>
+                            <button onClick={e => showReport() }>Show Report</button>
                         </div>
                         <div id = "listShowBox" className="flex column scroll list2 pad">
                             <text>No Shows</text>
