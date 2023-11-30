@@ -16,10 +16,6 @@ export function VenueManager() {
             <h1>Venue Manager Page For {title.venueName}</h1>
             <h2>This Venue has {title.numRows} rows, {title.numSeatsLeft} Seats in Left Section, {title.numSeatsCenter} Seats in Center Section, {title.numSeatsRight} Seats in Right Section</h2>
             <div className='flex-container-space column'>
-                <div className="flex row left50 pad">
-                    <input type="text" id="deleteVenueID" placeholder="Enter Venue Here"/>
-                    <button onClick={e => deleteVenue(title.venueName, title.authKey)}>Delete Venue</button>
-                </div>
                 <div className="flex row pad">
                     <input type="text" id="showName" placeholder="Enter Show Here"/>
                     <input type="text" id="venueNameShow" placeholder="Enter Venue Here"/>
@@ -82,7 +78,10 @@ export function VenueManager() {
                         </div>
                     </div>
                 </div>
-
+                <div className="flex row left50 pad">
+                    <input type="text" id="deleteVenueID" placeholder="Enter Venue Here"/>
+                    <button onClick={e => deleteVenue()}>Delete Venue</button>
+                </div>
             </div>
             <button onClick={e => navigate("/")}>Return to Authenticate Page</button>
         </body>
