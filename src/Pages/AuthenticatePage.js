@@ -28,8 +28,8 @@ export function Authenticate() {
                         return;
                     case "manager":
                         console.log("VenueManager") 
-                        console.log(response.constant)
-                        navigate('/venuemanager',{"titleData" :response.constant})
+                        console.log(response.constant[0])
+                        navigate('/venuemanager',{"state" :response.constant[0]})
                     return;
                     case "false":
                         invalid = "INVALID AUTHENITCATION"
