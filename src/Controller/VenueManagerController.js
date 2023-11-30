@@ -33,9 +33,8 @@ export function deleteVenue(venueName, authToken) {
     })
 }
 
-export function createShow() {
+export function createShow(nameVenue) {
     let nameShow = document.getElementById("showName").value
-    let nameVenue = document.getElementById("venueNameShow").value
     let time = document.getElementById("showTime").value
     let date = document.getElementById("showDate").value
     let payload = {"nameShow": nameShow, "nameVenue" : nameVenue, "showTime" : time, "showDate": date} 
