@@ -48,9 +48,28 @@ export function listVenues(authToken) {
             // not much to do
             console.log(error)
         })
+    }
 
+export function showReport(authToken) { 
+    get('/showReport')
+        .then(function (response) {
+
+            let str = ''
+            for (let c of response.constants) {
+                str += c.venueName + c.showName + '<br>'
+            }
+
+            // insert HTML in the <div> with 
+            // constant-list
+            let cd = document.getElementById('listShowBox')
+            cd.innerHTML = str
+
+        })
+        .catch(function (error) {
+            // not much to do
+            console.log(error)
+        })
 }
-
 export function deleteShow() {
     console.log("Test delete successful")
 }
