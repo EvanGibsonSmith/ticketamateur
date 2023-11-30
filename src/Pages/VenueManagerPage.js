@@ -80,7 +80,7 @@ export function VenueManager() {
                 </div>
                 <div className="flex row left50 pad">
                     <input type="text" id="deleteVenueID" placeholder="Enter Venue Here"/>
-                    <button onClick={e => deleteVenue()}>Delete Venue</button>
+                    <button onClick={e => deleteVenue(title.venueName, title.authKey)}>Delete Venue</button>
                 </div>
             </div>
             <button onClick={e => navigate("/")}>Return to Authenticate Page</button>
