@@ -10,7 +10,10 @@ export function VenueManager() {
     const title = location.state 
     console.log(title)
     
-    
+    function removeCurrentVenue(){
+        deleteVenue(title.venueName, title.authKey)
+        navigate("/")
+    }
     return (
         <body>
             <h1>Venue Manager Page For {title.venueName}</h1>
@@ -80,7 +83,7 @@ export function VenueManager() {
                 </div>
                 <div className="flex row left50 pad">
                     <input type="text" id="deleteVenueID" placeholder="Enter Venue Here"/>
-                    <button onClick={e => deleteVenue(title.venueName, title.authKey)}>Delete Venue</button>
+                    <button onClick={e => removeCurrentVenue()}>Delete Venue</button>
                 </div>
             </div>
             <button onClick={e => navigate("/")}>Return to Authenticate Page</button>
