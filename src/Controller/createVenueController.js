@@ -4,8 +4,6 @@ export function createVenue() {
         let payload = {"authToken": authPageToken}
       
         post('/authenticate', payload, response => {
-          console.log(payload)
-          console.log(response)
                 switch (response.body.type) {
                     case "manager":
                         console.log("VenueManager")
