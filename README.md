@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+Application Specific Notes 
+
+Currently there is no S3 Bucket for this react Application, which is why we submitted a video along with the src code. The reason it does not work is due to react routes using multiple pages and a S3 bucket only being able to handle one at a time.
+
+There is also no way for anyone to become an admin as they are hard coded into the Database as we didnt want just anyone to become an admin. The Admin code is 1234
+
+Other than those there no special instructions associated with this project. 
