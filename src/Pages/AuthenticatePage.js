@@ -24,7 +24,7 @@ export function Authenticate() {
                 switch (response.body.type) {
                     case "Admin":
                         console.log("Admin") 
-                        navigate('/admin') // TODO change titleData field name?
+                        navigate('/admin', {"state" : authPageToken}) // TODO change titleData field name?
                         return;
                     case "manager":
                         console.log("VenueManager") 

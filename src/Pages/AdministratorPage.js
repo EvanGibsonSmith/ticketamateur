@@ -7,7 +7,8 @@ import { useLocation } from "react-router-dom";
 
 export function Admin() {
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const AdminToken = location.state
     return (
         <body>
             <h1>This is the admin page</h1>
@@ -17,7 +18,7 @@ export function Admin() {
                 </div>
             <div className="flex column">
                         <div className="flex row pad center">
-                            <button onClick={e => listVenues("1234") /* TODO MAKE THIS PASS IN AUTH*/}>List Venues</button>
+                            <button onClick={e => listVenues(AdminToken) /* TODO MAKE THIS PASS IN AUTH*/}>List Venues</button>
                         </div>
                         <div id = "listVenuesBox"className="flex column scroll list1 pad">
                             <text>No Venues</text>
