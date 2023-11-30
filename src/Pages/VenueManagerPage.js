@@ -7,21 +7,22 @@ import { useLocation } from "react-router-dom";
 export function VenueManager() {
     const navigate = useNavigate();
     const location = useLocation();
-    const title = location.state 
+    const title = location.state;
     console.log(title)
     
     function removeCurrentVenue(){
         deleteVenue(title.venueName, title.authKey)
         navigate("/")
     }
+
     return (
         <body>
             <h1>Venue Manager Page For {title.venueName}</h1>
             <h2>This Venue has {title.numRows} rows, {title.numSeatsLeft} Seats in Left Section, {title.numSeatsCenter} Seats in Center Section, {title.numSeatsRight} Seats in Right Section</h2>
             <div className='flex-container-space column'>
                 <div className="flex row pad">
+                    <text type="text" id="venueNameShow" align-items="center">{title.venueName}</text>
                     <input type="text" id="showName" placeholder="Enter Show Here"/>
-                    <input type="text" id="venueNameShow" placeholder="Enter Venue Here"/>
                     <input type="text" id="showTime" placeholder="Enter Time Here"/>
                     <input type="text" id="showDate" placeholder="Enter Date Here"/>
                     <div className="flex column">
@@ -82,7 +83,6 @@ export function VenueManager() {
                     </div>
                 </div>
                 <div className="flex row left50 pad">
-                    <input type="text" id="deleteVenueID" placeholder="Enter Venue Here"/>
                     <button onClick={e => removeCurrentVenue()}>Delete Venue</button>
                 </div>
             </div>
