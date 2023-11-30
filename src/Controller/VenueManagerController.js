@@ -20,15 +20,9 @@ export function createVenue() {
 export function deleteVenue(venueName, authToken) {
     //let venueName = document.getElementById("deleteVenueID").value
 
-    let payload = {"venueName": venueName} 
-
-    post('/deleteVenue', payload, response => {// FIXME security issue I believe somebody could query deleteVenue directly and not need autentication since the check is in the response and not within the lambda function
-       //let authResponse = authenticateUser(authPageToken)
-        // TODO make it pass in and actually use authPageToken
-        //if (!authResponse) {
-            //console.log("FAILED") // TODO make nicer than console log
-            //return // get out of here
-        //}
+    let payload = {"venueName": venueName, "authToken" : authToken} 
+    console.log(payload)
+    post('/deleteVenue', payload, response => {
         console.log(response)
     })
 }
