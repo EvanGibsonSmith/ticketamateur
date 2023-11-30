@@ -16,7 +16,7 @@ export function Authenticate() {
         setMessage(event.target.value);
     };
 
-    function authenticateUser2(authPageToken) { // TODO I feel like it's odd this isn't in the controller but it works
+    function authenticateUser2(authPageToken) { // TODO THis has to be here in order for the navigate to work due to the navigate rules
         let payload = {"authToken": authPageToken}
       
         post('/authenticate', payload, response => {
