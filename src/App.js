@@ -1,10 +1,10 @@
 import './App.css';
 import {BrowserRouter as Router, Switch, Route, Routes, Link,} from "react-router-dom";
-import Consumer from './ConsumerPage';
-import Admin from './AdministratorPage';
-import VenueManager from './VenueManagerPage';
-import Authenticate from './AuthenticatePage';
-import CreateVenue from './createVenuePage';
+import Consumer from './Pages/ConsumerPage';
+import Admin from './Pages/AdministratorPage';
+import VenueManager from './Pages/VenueManagerPage';
+import Authenticate from './Pages/AuthenticatePage';
+import CreateVenue from './Pages/createVenuePage';
 import React from 'react';
 
 function App() {

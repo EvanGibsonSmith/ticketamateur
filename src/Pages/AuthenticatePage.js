@@ -1,9 +1,9 @@
 import React from "react";
-import { post } from "./Api";
+import { post } from "../Controller/Api";
 import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { setAuthToken } from "./AdministratorPage";
-import { authenticateUser, generateNewVenueManagerAuthCode, generateVenueTest } from "./AuthenticateController";
+import { authenticateUser, generateNewVenueManagerAuthCode, generateVenueTest } from "../Controller/AuthenticateController";
 import './AuthenticatePage.css';
 
 

@@ -1,6 +1,6 @@
 import React from "react";
 import "./VenueManagerPage.css";
-import { deleteVenue, createShow } from "./VenueManagerController"
+import { deleteVenue, createShow } from "../Controller/VenueManagerController"
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./AdministratorPage.css";
-import { deleteShow } from "./AdministratorController"
-import { listVenues } from "./AdministratorController";
+import { deleteShow } from "../Controller/AdministratorController"
+import { listVenues } from "../Controller/AdministratorController";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 

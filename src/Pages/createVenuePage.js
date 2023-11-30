@@ -1,8 +1,8 @@
 import React from "react";
 import "./VenueManagerPage.css";
-import { createVenue, deleteVenue, createShow } from "./VenueManagerController"
+import { createVenue, deleteVenue, createShow } from "../Controller/VenueManagerController"
 import { useNavigate } from "react-router-dom";
-import { post } from "./Api"
+import { post } from "../Controller/Api"
 import { useState } from 'react';
 
 export function VenueManager() {
