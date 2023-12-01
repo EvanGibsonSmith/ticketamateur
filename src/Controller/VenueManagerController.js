@@ -46,6 +46,15 @@ export function createShow(nameVenue) {
     })
 }
 
+export function activateShow(nameVenue, authToken) {
+    let nameShow = document.getElementById("activateShowName").value
+    let payload = {"nameShow": nameShow, "nameVenue" : nameVenue, "authToken" : authToken} 
+  
+    post('/activateShow', payload, response => {
+        console.log(response)
+    })
+}
+
 // export function createBlock() {
 //     let block = document.getElementById("enterBlockName").value
 //     let price = document.getElementById("enterBlockPrice").value
