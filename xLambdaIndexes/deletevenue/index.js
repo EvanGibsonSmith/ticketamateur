@@ -10,7 +10,19 @@ exports.handler = async (event) => {
       password: db_access.config.password,
       database: db_access.config.database
   });
-  
+  let isVenueManager = (auth) => {
+        return new Promise((resolve, reject) => {
+            pool.query("SELECT * FROM Venues WHERE authKey=?", [auth], (error, rows) => {
+                if (error) { return reject(error); }
+                console.log(rows)
+                if ((rows) && (rows.length == 1)) {
+                    return resolve(true); 
+                } else {
+                    return resolve(false);
+                }
+            });
+        });
+  }
   let DeleteVenue = (name) => {
       return new Promise((resolve, reject) => {
             pool.query("DELETE FROM Venues WHERE venueName=?", [name], (error, rows) => {
@@ -25,23 +37,30 @@ exports.handler = async (event) => {
   }
   
   let response = undefined
-  try {
+  let isAuthorized = isVenueManager();
+  if(isAuthorized){
+    try {
     const result = await DeleteVenue(event.venueName)
 
     response = {
       statusCode: 200,
       
-      body: JSON.stringify(result)
+      body:{"existed" :JSON.stringify(result)}
     }
   } catch (err) {
     response = {
       statusCode: 400,
       error: err
     }
-  } finally {
-    pool.end()   // disconnect from database to avoid "too many connections" problem that can occur
   }
-
+  }else{
+    response = {
+      statusCode: 400,
+      error: "Unauthorized"
+    }
+  }
+ 
+  pool.end()   // disconnect from database to avoid "too many connections" problem that can occur
   return response;
 }
 

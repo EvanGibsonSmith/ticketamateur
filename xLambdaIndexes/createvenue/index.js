@@ -14,7 +14,7 @@ exports.handler = async (event) => {
   
   let ValidateExists = (name) => {
         return new Promise((resolve, reject) => {
-            pool.query("SELECT * FROM Venues WHERE name=?", [name], (error, rows) => {
+            pool.query("SELECT * FROM Venues WHERE venueName=?", [name], (error, rows) => {
                 if (error) { return reject(error); }
                 console.log(rows)
                 if ((rows) && (rows.length == 1)) {
@@ -25,14 +25,15 @@ exports.handler = async (event) => {
             });
         });
   }
-  
+ 
   let response = undefined
   const can_create = await ValidateExists(event.nameVenue);
 
   if (!can_create) {
-      let CreateConstant = (name) => {
+      let CreateConstant = (name,numRows, numSeatsLeft,numSeatsCenter,numSeatsRight,auth) => {
         return new Promise((resolve, reject) => {
-            pool.query("INSERT into Venue(venueID,venueName) VALUES(?,?);", [randomInt(100),name], (error, rows) => {
+            pool.query("INSERT into Venues(venueName,numRows,numSeatsLeft, numSeatsCenter,numSeatsRight, authKey) VALUES(?,?,?,?,?,?);", 
+                        [name,numRows,numSeatsLeft,numSeatsCenter,numSeatsRight,auth], (error, rows) => {
                 if (error) { return reject(error); }
                 if ((rows) && (rows.affectedRows == 1)) {
                     return resolve(true);
@@ -42,12 +43,13 @@ exports.handler = async (event) => {
             });
         });
       }
+      let new_auth = randomInt(1000000000)
+      let add_result = await CreateConstant(event.nameVenue, event.numberOfRows,event.leftSeats, event.centerSeats,event.rightSeats, new_auth)
       
-      let add_result = await CreateConstant(event.name, event.value)
       response = {
         statusCode: 200,
         
-        success: add_result
+        success: new_auth, 
       }
   } else {
       response = {

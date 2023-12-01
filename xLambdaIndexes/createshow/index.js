@@ -14,7 +14,7 @@ exports.handler = async (event) => {
   
   let ValidateExists = (name) => {
         return new Promise((resolve, reject) => {
-            pool.query("SELECT * FROM Shows WHERE name=?", [name], (error, rows) => {
+            pool.query("SELECT * FROM Shows WHERE showName=?", [name], (error, rows) => {
                 if (error) { return reject(error); }
                 console.log(rows)
                 if ((rows) && (rows.length == 1)) {
@@ -36,7 +36,7 @@ exports.handler = async (event) => {
   let response = undefined
   const can_create = await ValidateExists(event.nameShow);
 
-  if (!can_create) {
+  //if (!can_create) {
       let createShow = (name, venue, time, date) => {
         return new Promise((resolve, reject) => {
             pool.query("INSERT into Shows(showID, showName, showTime, showDate, soldOut, activated, venueName) VALUES(?,?,?,?,?,?,?);", [randomInt(1000000000),name,time,date,0,0,venue], (error, rows) => {
@@ -51,11 +51,13 @@ exports.handler = async (event) => {
       }
       
       let add_result = await createShow(event.nameShow,event.nameVenue, event.showTime, event.showDate)
+      let shows = await getShows(event.nameVenue)
       response = {
         statusCode: 200,
         
-        body: JSON.stringify(getShows(event.nameVenue))
+        constant: shows
       }
+      /*
   } else {
       response = {
         statusCode: 400,
@@ -63,7 +65,7 @@ exports.handler = async (event) => {
         success: false
       };
   }
-
+    */
   pool.end();   // done with DB
   return response;
 };

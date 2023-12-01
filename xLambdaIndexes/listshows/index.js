@@ -12,7 +12,7 @@ exports.handler = async (event) => {
   });
   let isVenueManager = (auth) => {
     return new Promise((resolve, reject) => {
-        pool.query("SELECT * FROM Venue WHERE authKey=?", [auth], (error, rows) => {
+        pool.query("SELECT * FROM Venues WHERE authKey=?", [auth], (error, rows) => {
             if (error) { return reject(error); }
             console.log(rows)
             if ((rows) && (rows.length == 1)) {
@@ -25,18 +25,20 @@ exports.handler = async (event) => {
 }
   let ListShowReport = () => {
       return new Promise((resolve, reject) => {
-          pool.query("SELECT * FROM Shows", [], (error, rows) => {
+          pool.query("SELECT * FROM Shows where venueName = ?", [event.nameVenue], (error, rows) => {
             if (error) { return reject(error); }
             return resolve(rows);
         })
       })
   }
   let response = undefined
-  if(isVenueManager(event.authKey)){
+  let manager = await isVenueManager(event.authToken)
+  if(manager){
     const all_shows = await ListShowReport()
     response = {
         statusCode: 200,
-        constants: all_shows
+        constants: all_shows,
+        managerStatus : manager
     }
   }else{
     response ={

@@ -20,11 +20,11 @@ exports.handler = async (event) => {
       })
   }
   
-  const all_venues = await ListShowReport()
+  const showData = await ListShowReport()
   
   const response = {
     statusCode: 200,
-    constants: all_venues
+    constants: showData
   }
   
   pool.end()     // close DB connections

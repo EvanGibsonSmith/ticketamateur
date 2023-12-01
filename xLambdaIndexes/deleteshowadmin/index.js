@@ -10,24 +10,22 @@ exports.handler = async (event) => {
       password: db_access.config.password,
       database: db_access.config.database
   });
-  //Used to chek if the authentication code is actually tied to a venue
-  let isVenueManager = (auth) => {
+  let isAdmin = (auth) => {
     return new Promise((resolve, reject) => {
-        pool.query("SELECT * FROM Venues WHERE authKey=?", [auth], (error, rows) => { //SQL
-            if (error) { return reject(error); }//Error
+        pool.query("SELECT * FROM Admins WHERE auth=?", [auth], (error, rows) => {
+            if (error) { return reject(error); }
             console.log(rows)
-            if ((rows) && (rows.length == 1)) {//Should it return a line it means it exists 
+            if ((rows) && (rows.length == 1)) {
                 return resolve(true); 
             } else {
-                return resolve(false);//Doesnt Exist 
+                return resolve(false);
             }
         });
     });
   }
-  
-  let ActivateShow = () => {
+  let deleteShow = (id) => {
       return new Promise((resolve, reject) => {
-            pool.query("UPDATE Shows SET activated=1 WHERE showID =?", [event.showID], (error, rows) => {
+            pool.query("DELETE FROM Shows WHERE showID=?", [id], (error, rows) => {
                 if (error) { return reject(error); }
                 if ((rows) && (rows.affectedRows == 1)) {
                     return resolve(true);
@@ -39,28 +37,34 @@ exports.handler = async (event) => {
   }
   
   let response = undefined
-  let authed = await isVenueManager(event.authToken)
+  let authed = isAdmin(event.authToken)
   if(authed){
-    const result = await ActivateShow()
+    const result = await deleteShow(event.showID)
     if(result){
-      response = {
-      statusCode: 200,
-      
-      body: JSON.stringify(result)
-    }
+        response = {
+        statusCode: 200,
+        
+        body: JSON.stringify(result)
+        }
     }else{
-      response = {
-      statusCode: 400,
-      error: "Show Does Not Exist"
+        response = {
+            statusCode: 400,
+            error: "Show Doesnt Exist"
+            }
     }
-    }
+    
+
   }else{
     response = {
-      statusCode: 400,
-      error: "not Authorized"
-    }
+        statusCode: 400,
+        error: "Invalid AuthCode"
+        }
+
   }
-  
+    
+
+   
+    
   
     pool.end()   // disconnect from database to avoid "too many connections" problem that can occur
 

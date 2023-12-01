@@ -37,7 +37,7 @@ exports.handler = async (event) => {
   }
   
   let response = undefined
-  let authed = isVenueManager(event.authToken)
+  let authed = await isVenueManager(event.authToken)
   if(authed){
     const result = await deleteShow(event.showID)
     if(result){
@@ -49,7 +49,7 @@ exports.handler = async (event) => {
     }else{
         response = {
             statusCode: 400,
-            error: err
+            error: "No Show Under That ID that is Inactive"
             }
     }
     
@@ -57,7 +57,7 @@ exports.handler = async (event) => {
   }else{
     response = {
         statusCode: 400,
-        error: err
+        error: "Not Authorized"
         }
 
   }

@@ -10,7 +10,21 @@ exports.handler = async (event) => {
       password: db_access.config.password,
       database: db_access.config.database
   });
-  
+
+  let isAdmin = (auth) => {
+    return new Promise((resolve, reject) => {
+        pool.query("SELECT * FROM Admins WHERE auth=?", [auth], (error, rows) => {
+            if (error) { return reject(error); }
+            console.log(rows)
+            if ((rows) && (rows.length == 1)) {
+                return resolve(true); 
+            } else {
+                return resolve(false);
+            }
+        });
+    });
+  } 
+
   let ListVenues = () => {
       return new Promise((resolve, reject) => {
           pool.query("SELECT * FROM Venues", [], (error, rows) => {
@@ -20,12 +34,24 @@ exports.handler = async (event) => {
       })
   }
   
+  let response = undefined
   const all_venues = await ListVenues()
-  
-  const response = {
+  const admin = await isAdmin(event.authToken);
+  if(admin){
+    response = {
     statusCode: 200,
     constants: all_venues
   }
+    
+  }else{
+    response = {
+    statusCode: 400,
+    constants: false
+  }
+    
+  }
+  
+  
   
   pool.end()     // close DB connections
 
