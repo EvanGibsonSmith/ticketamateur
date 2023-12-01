@@ -38,6 +38,13 @@ export function showReport(authToken) {
             console.log(error)
         })
 }
-export function deleteShow() {
-    console.log("Test delete successful")
+
+export function deleteShow(showID, authToken) {
+    //let venueName = document.getElementById("deleteVenueID").value
+
+    let payload = {"showID": showID, "authToken" : authToken} 
+    console.log(payload)
+    post('/deleteShowAdmin', payload, response => {
+        console.log(response)
+    })
 }

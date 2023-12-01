@@ -46,6 +46,16 @@ export function createShow(nameVenue) {
     })
 }
 
+export function deleteShow(showID, authToken) {
+    //let venueName = document.getElementById("deleteVenueID").value
+
+    let payload = {"showID": showID, "authToken" : authToken} 
+    console.log(payload)
+    post('/deleteShowVenue', payload, response => {
+        console.log(response)
+    })
+}
+
 // export function createBlock() {
 //     let block = document.getElementById("enterBlockName").value
 //     let price = document.getElementById("enterBlockPrice").value
