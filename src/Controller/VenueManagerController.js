@@ -36,7 +36,7 @@ export function createShow(nameVenue) {
     post('/createShow', payload, response => {
         let str = ''
              for (let c of response.constant) {
-                 str += "Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ '<br>'
+                 str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ '<br>'
              }
 
              // insert HTML in the <div> with 
