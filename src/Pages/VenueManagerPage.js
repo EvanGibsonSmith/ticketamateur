@@ -1,6 +1,6 @@
 import React from "react";
 import "./VenueManagerPage.css";
-import { deleteVenue, createShow } from "../Controller/VenueManagerController"
+import { deleteVenue, createShow, deleteShow } from "../Controller/VenueManagerController"
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
@@ -41,8 +41,8 @@ export function VenueManager() {
                     </div>
                 </div>
                 <div className="flex row left50 pad">
-                    <input type="text" placeholder="Enter Show Here"/>
-                    <button>Delete Show</button>
+                    <input type="text" id= "deleteShowBox" placeholder="Enter Show Here"/>
+                    <button onClick={e => deleteShow(document.getElementById("deleteShowBox"), title.authKey)}>Delete Show</button>
                 </div>
                 <div className="flex row left50 pad">
                     <input type="text" placeholder="Enter Block"/>
