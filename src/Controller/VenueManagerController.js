@@ -46,11 +46,23 @@ export function createShow(nameVenue) {
     })
 }
 
+
 export function activateShow(nameVenue, authToken) {
     let nameShow = document.getElementById("activateShowName").value
     let payload = {"nameShow": nameShow, "nameVenue" : nameVenue, "authToken" : authToken} 
   
     post('/activateShow', payload, response => {
+        console.log(response)
+    })
+}
+
+
+export function deleteShow(showID, authToken) {
+    //let venueName = document.getElementById("deleteVenueID").value
+
+    let payload = {"showID": showID, "authToken" : authToken} 
+    console.log(payload)
+    post('/deleteShowVenue', payload, response => {
         console.log(response)
     })
 }
