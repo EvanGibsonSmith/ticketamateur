@@ -20,7 +20,7 @@ export function Admin() {
                         <div className="flex row pad center">
                             <button onClick={e => listVenues(AdminToken) /* TODO MAKE THIS PASS IN AUTH*/}>List Venues</button>
                         </div>
-                        <div id = "listVenuesBox"className="flex column scroll list1 pad">
+                        <div id = "listVenuesBox" className="flex column scroll list1 pad" style={{height: "300px", width: "600px"}}>
                             <text>No Venues</text>
                         </div>
                     </div>
@@ -28,7 +28,7 @@ export function Admin() {
                         <div className="flex row pad">
                             <button onClick={e => showReport() }>Show Report</button>
                         </div>
-                        <div id = "listShowBox" className="flex column scroll list2 pad">
+                        <div id = "listShowBox" className="flex column scroll list2 pad" style={{height: "300px", width: "600px"}}>
                             <text>No Shows</text>
                         </div>
                     </div>
