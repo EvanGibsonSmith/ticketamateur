@@ -1,9 +1,27 @@
 
 .flex-container-row {
+    position : absolute;
     display: flex;
     flex-direction: row;
+    top: 400px;
+    left: 300px;
 }
 
 .left50 {
     width: 50%;
+}
+
+.consumerButton{
+    position: absolute;
+    /*border-radius: 40px;*/
+    font-size: 20px;
+    top: 400px;
+    left: 700px;
+}
+.makeVenueButton{
+    position: absolute;
+   /*border-radius: 40px;*/
+    font-size: 20px;
+    top: 400px;
+    left: 900px; 
 }

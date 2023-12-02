@@ -51,7 +51,11 @@ export function Authenticate() {
 
     return (
         <body>
-            <h1>This is the authenticate page, while we will need to actually authenticate later, below are buttons to send to other pages</h1>
+            <h1>This is the Authenticate Page</h1>
+            <body> Below are three Buttons: </body>
+            <body> -- One Allows you to purchase a ticket</body>
+            <body> -- One allows for you to Create a New Venue</body>
+            <body> -- One allows you to access venues based on a key</body>
             <div className="flex-container-row">
                 <p>Authenticate:    </p>
                 <input type="text" id="authenticatePageID" name="name" height="2" value={message} onChange={handleChange}/>
@@ -59,8 +63,8 @@ export function Authenticate() {
                 <p>{invalid}</p>
             </div>
 
-            <button onClick={navigateConsumer}>Consumer</button>
-            <button onClick={navigateCreateVenue}>Create Venue Page</button>
+            <button className = "consumerButton" onClick={navigateConsumer}>Purchase Ticket</button>
+            <button className = "makeVenueButton"onClick={navigateCreateVenue}>Make Venue</button>
         </body>
     )
 }
