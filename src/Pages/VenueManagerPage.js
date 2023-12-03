@@ -23,8 +23,8 @@ export function VenueManager() {
                 <div className="flex row pad center">
                     <text type="text" id="venueNameShow">{title.venueName}</text>
                     <input type="text" className='height-50px' id="showName" placeholder="Enter Show Here" style={{width: "500px"}}/>
-                    <input type="text" className='height-50px' id="showTime" placeholder="Enter Time Here" style={{width: "200px"}}/>
-                    <input type="text" className='height-50px' id="showDate" placeholder="Enter Date Here" style={{width: "250px"}}/>
+                    <input type="time" className='height-50px' id="showTime" placeholder="Enter Time Here" style={{width: "200px"}}/>
+                    <input type="date" className='height-50px' id="showDate" placeholder="Enter Date Here" style={{width: "250px"}}/>
                     <div className="flex column">
                         <button onClick={e => createShow(title.venueName)}>Create Show</button>
                         <button>Delete Show</button>
