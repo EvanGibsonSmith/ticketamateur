@@ -23,8 +23,8 @@ export function VenueManager() {
                 <div className="flex row pad">
                     <text type="text" id="venueNameShow" align-items="center">{title.venueName}</text>
                     <input type="text" id="showName" placeholder="Enter Show Here"/>
-                    <input type="text" id="showTime" placeholder="Enter Time Here"/>
-                    <input type="text" id="showDate" placeholder="Enter Date Here"/>
+                    <input type="time" id="showTime" placeholder="Enter Time Here"/>
+                    <input type="date" id="showDate" placeholder="Enter Date Here"/>
                     <div className="flex column">
                         <button onClick={e => createShow(title.venueName)}>Create Show</button>
                         <button>Delete Show</button>
