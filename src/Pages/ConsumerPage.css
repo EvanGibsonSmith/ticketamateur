@@ -1,0 +1,115 @@
+
+.align-flex-start {
+    align-items: flex-start; 
+}
+
+.align-left {
+    align-items: left;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.border{
+    border: 5px;
+}
+
+.venueHolder {
+    outline: black 2px solid;
+    border-radius: 5px;
+    width: 400px;
+    height: 400px;
+}
+
+.black-border-container {
+    outline: black 2px solid;
+    border-radius: 5px;
+}
+
+.blue {
+    background-color: blue;
+    color: blue;
+}
+
+.height90 {
+    height: 90%;
+}
+
+.margin-vertical {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.margin {
+    margin: 5px;
+}
+
+.pad30 {
+    padding: 30px;
+}
+
+.flex {
+    display: flex;
+}
+
+.scroll {
+    overflow-y: scroll;
+}
+
+
+.column {
+    flex-direction: column;
+}
+
+
+.column-reverse {
+    flex-direction: column-reverse;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.justify-center {
+    justify-items: center;
+}
+
+.justify-spaced {
+    justify-content: space-between;
+}
+
+.center-items {
+    align-items: center;
+    justify-items: center;
+}
+
+#total-price {
+    outline: black 2px solid;
+    border-radius: 5px;
+    border: 5px;
+    padding: 30px;
+    margin: 5px;
+    width: 300px;
+    align-items: center;
+}
+
+.right-side-buttons {
+    outline: black 2px solid;
+    border-radius: 5px;
+    border: 5px;
+    padding: 30px;
+    margin: 5px;
+    width: 300px;
+    align-items: center;
+}
+
+.right-side-buttons:hover {
+    background-color: gainsboro;
+}
+
+.show-display {
+    margin-left: 5px; /* Just margin right now but use this class for those object if other stuff wanted */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

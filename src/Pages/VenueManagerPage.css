@@ -44,7 +44,7 @@
 }
 
 .scroll {
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .list1 {
