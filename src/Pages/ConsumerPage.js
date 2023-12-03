@@ -20,6 +20,12 @@ export function Consumer() {
                 </div>
                 <div className="flex column justify-spaced align-center margin">
                     <text id="total-price">Total Price: {totalPrice}</text>
+                    <select className="flex column align-left scroll margin-children" style={{fontSize :"25px",width:"300px", backgroundColor: "gainsboro"}}>
+                    <option className="show-display">Test Show 1</option>
+                    <option className="show-display">Test Show 2</option>
+                    <option className="show-display">Test Show 3</option>
+                    <option className="show-display">Test Show 4</option>
+                    </select>
                     <button className="right-side-buttons" onClick={e => availableSeats()}>Available Seats</button>
                     <button className="right-side-buttons" onClick={e => purchaseSeats()}>Purchase Seats</button>
                     <button className="right-side-buttons" onClick={e => listShows()}>List Shows</button>
