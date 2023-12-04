@@ -13,7 +13,7 @@ exports.handler = async (event) => {
   
   let SearchShows = () => {
       return new Promise((resolve, reject) => {
-          pool.query("SELECT * FROM Shows WHERE ((LOWER(venueName) LIKE '%?_%') AND (activated=TRUE))", [event.search], (error, rows) => {
+          pool.query("SELECT * FROM Shows WHERE ((LOWER(venueName) LIKE '%"+event.search+"_%') AND (activated=TRUE))", [], (error, rows) => {
             if (error) { return reject(error); }
             return resolve(rows);
         })
