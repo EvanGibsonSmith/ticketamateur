@@ -40,7 +40,7 @@ export function VenueManager() {
                 </div>
                 <div className="flex row left50 pad">
                     <input type="text" className='height-50px' id="deleteShowBox" placeholder="Enter Show ID Here"/>
-                    <button onClick={e => deleteShow(document.getElementById("deleteShowBox"), title.authKey)}>Delete Show</button>
+                    <button onClick={e => deleteShow(document.getElementById("deleteShowBox").value, title.authKey)}>Delete Show</button>
                 </div>
                 <div className="flex row left50 pad">
                     <input type="text" className='height-50px' placeholder="Enter Block ID"/>

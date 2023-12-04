@@ -58,8 +58,6 @@ export function activateShow(nameVenue, authToken) {
 
 
 export function deleteShow(showID, authToken) {
-    //let venueName = document.getElementById("deleteVenueID").value
-
     let payload = {"showID": showID, "authToken" : authToken} 
     console.log(payload)
     post('/deleteShowVenue', payload, response => {
