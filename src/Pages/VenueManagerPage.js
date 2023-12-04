@@ -1,6 +1,6 @@
 import React from "react";
 import "./VenueManagerPage.css";
-import { deleteVenue, createShow, activateShow, deleteShow } from "../Controller/VenueManagerController"
+import { deleteVenue, createShow, activateShow, deleteShow, listShows } from "../Controller/VenueManagerController"
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
@@ -55,7 +55,7 @@ export function VenueManager() {
                 <div className="flex row spaced pad">
                     <div className="flex column">
                         <div className="flex row pad">
-                            <button>List Shows</button>
+                            <button onClick={e => listShows(title.venueName, title.authKey)}>List Shows</button>
                         </div>
                         <div id = "listShowsBoxVM"className="flex column scroll list2 pad">
                             <text>No Shows</text>
