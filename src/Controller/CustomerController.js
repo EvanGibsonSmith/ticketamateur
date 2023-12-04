@@ -39,7 +39,20 @@ export function searchShow(searchQuery) {
 }
 
 export function availableSeats() {
-    // TODO
+    var showsSelect = document.getElementById("customerShowsList");
+    var selectedShows = showsSelect.options;
+    console.log(selectedShows); // TODO delete later
+    let payload = {"selectedShows": JSON.stringify(selectedShows)} 
+
+    post('/availableSeats', payload, response => { 
+        showsSelect.textContent = '';
+
+        for (var seat in response.seats) {
+            var nextSeat = document.createElement('option');
+            nextSeat.textContent = "" + seat.row + seat.column;
+            showsSelect.appendChild(nextSeat);
+        }
+    })
 }
 
 export function purchaseSeats() {
