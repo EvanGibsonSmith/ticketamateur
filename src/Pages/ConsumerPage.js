@@ -9,21 +9,34 @@ export function Consumer() {
         <body>
             <h1>This is the consumer page</h1>
             <div className="flex row align-flex-start">
+                <select multiple id="venueDisplay" className="pad margin" style={{width:"200px"}}>
+                    <option>A1</option>
+                    <option>A2</option>
+                    <option>A3</option>
+                    <option>A4</option>
+                    <option>A5</option>
+                    <option>A6</option>
+                    <option>A7</option>
+                    <option>A8</option>
+                    <option>B1</option>
+                    <option>B2</option>
+                    <option>B3</option>
+                    <option>B4</option>
+                    <option>B5</option>
+                    <option>B6</option>
+                    <option>B7</option>
+                    <option>B8</option>
+                </select>
                 <div className="flex align-center column width50 height50 align-flex-start">
-                    <div id="venueDisplay" className="flex column-reverse margin-vertical venueHolder" style={{width:"400px", height: "400px"}}>
-                        <p>Seat Test 1</p>
-                        <p>Seat Test 2</p>
-                        <p>Seat Test 3</p>
-                        <p>Seat Test 4</p>
-                    </div>
+
                 </div>
                 <div className="flex column justify-spaced align-center margin">
                     <text id="total-price">Total Price: {totalPrice}</text>
                     <select className="flex column align-left scroll margin-children" style={{fontSize :"25px",width:"300px", backgroundColor: "gainsboro"}}>
-                    <option className="show-display">Test Show 1</option>
-                    <option className="show-display">Test Show 2</option>
-                    <option className="show-display">Test Show 3</option>
-                    <option className="show-display">Test Show 4</option>
+                        <option className="show-display">Test Show 1</option>
+                        <option className="show-display">Test Show 2</option>
+                        <option className="show-display">Test Show 3</option>
+                        <option className="show-display">Test Show 4</option>
                     </select>
                     <button className="right-side-buttons" onClick={e => availableSeats()}>Available Seats</button>
                     <button className="right-side-buttons" onClick={e => purchaseSeats()}>Purchase Seats</button>
