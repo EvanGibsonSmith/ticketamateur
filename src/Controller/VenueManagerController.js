@@ -67,6 +67,16 @@ export function deleteShow(showID, authToken) {
     })
 }
 
+export function listShows(venueName, authToken) {
+    //let venueName = document.getElementById("deleteVenueID").value
+
+    let payload = {"nameVenue" : venueName, "authToken" : authToken} 
+    console.log(payload)
+    post('/listShows', payload, response => {
+        console.log(response)
+    })
+}
+
 // export function createBlock() {
 //     let block = document.getElementById("enterBlockName").value
 //     let price = document.getElementById("enterBlockPrice").value

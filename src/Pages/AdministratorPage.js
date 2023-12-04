@@ -13,7 +13,7 @@ export function Admin() {
         <body>
             <h1>This is the admin page</h1>
             <div className="flex row left50 pad">
-                    <input type="text" id="deleteShowID" placeholder="Enter Venue Here"/>
+                    <input type="text" id="deleteShowID" placeholder="Enter Show ID Here"/>
                     <button onClick={e => deleteShow(document.getElementById("deleteShowBox"), AdminToken)}>Remove Show</button>
                 </div>
             <div className="flex column">
