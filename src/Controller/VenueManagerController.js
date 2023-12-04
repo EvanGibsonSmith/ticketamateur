@@ -68,12 +68,16 @@ export function deleteShow(showID, authToken) {
 }
 
 export function listShows(venueName, authToken) {
-    //let venueName = document.getElementById("deleteVenueID").value
 
     let payload = {"nameVenue" : venueName, "authToken" : authToken} 
     console.log(payload)
     post('/listShows', payload, response => {
-        console.log(response)
+        let str = ''
+        for (let c of response.constants) {
+            str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ '<br>'
+        }
+        let cd = document.getElementById('listShowsBoxVM')
+        cd.innerHTML = str
     })
 }
 
