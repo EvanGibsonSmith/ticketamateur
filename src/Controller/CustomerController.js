@@ -1,8 +1,8 @@
-import { get } from "./Api";
+import { get, post } from "./Api";
 
 export let totalPrice = 0;
 
-export function listActiveShows (authToken) { 
+export function listActiveShows () { 
     get('/listActiveShows')
         .then(function (response) {
             let str = ''
@@ -20,8 +20,22 @@ export function listActiveShows (authToken) {
         })
 }
 
-export function searchShow() {
-    // TODO
+export function searchShow(searchQuery) {
+    console.log(searchQuery); // TODO DELETE THIS LATER
+    let payload = {"search": searchQuery} 
+
+    post('/searchShows', payload, response => { 
+
+        let str = ''
+        for (let c of response.constants) {
+            str += c.venueName + '<br>'
+        }
+
+        // insert HTML in the <div> with 
+        // constant-list
+        let cd = document.getElementById('customerShowsList')
+        cd.innerHTML = str
+    })
 }
 
 export function availableSeats() {
