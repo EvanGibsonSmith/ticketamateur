@@ -26,7 +26,7 @@ export function VenueManager() {
                     <input type="time" className='height-50px' id="showTime" placeholder="Enter Time Here" style={{width: "200px"}}/>
                     <input type="date" className='height-50px' id="showDate" placeholder="Enter Date Here" style={{width: "250px"}}/>
                     <div className="flex column">
-                        <button onClick={e => createShow(title.venueName)}>Create Show</button>
+                        <button onClick={e => createShow(title.venueName, title.numRows,title.numSeatsLeft,title.numSeatsCenter, title.numSeatsRight)}>Create Show</button>
                     </div>
                 </div>
                 <div className="flex row row-wrap pad">
