@@ -19,7 +19,7 @@ exports.handler = async (event) => {
       })
   }
   let response = undefined
-    const all_shows = await ListShowReport()
+    const all_shows = await listActiveShows()
     response = {
         statusCode: 200,
         constants: all_shows,
