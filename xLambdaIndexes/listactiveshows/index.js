@@ -23,7 +23,6 @@ exports.handler = async (event) => {
     response = {
         statusCode: 200,
         constants: all_shows,
-        managerStatus : manager
     } 
   
   
