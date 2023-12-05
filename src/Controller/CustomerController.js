@@ -39,6 +39,27 @@ export function searchActiveShows() {
 }
 
 export function availableSeats() {
+    var showsSelect = document.getElementById('customerShowsList');
+    let selectedIndex = showsSelect.options.selectedIndex;
+    if (selectedIndex!=-1) { // if something is actually selected
+        let selectedShow = selectedIndex.value; // TODO this gives the name not the id?
+
+        let payload = {"showID": selectedShow}
+        post('/availableSeats', payload, response => { 
+
+            showsSelect.textContent = '';
+
+            for (var seat in response.seats) {
+                var nextSeat = document.createElement('option');
+                nextSeat.textContent = "" + seat.row + seat.column;
+                showsSelect.appendChild(nextSeat);
+            }
+        })
+    }
+}
+
+/* COMPLETELY WRONG PUTTING HERE FOR POTENTIAL LATER USE 
+export function availableSeats() {
     var showsSelect = document.getElementById('seatsList');
     var selectedShows = showsSelect.children;
     var selectedShowsValues = [];
@@ -55,9 +76,9 @@ export function availableSeats() {
             var nextSeat = document.createElement('option');
             nextSeat.textContent = "" + seat.row + seat.column;
             showsSelect.appendChild(nextSeat);
-        }*/
+        }
     })
-}
+}*/
 
 export function purchaseSeats() {
     // TODO
