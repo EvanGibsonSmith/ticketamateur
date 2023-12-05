@@ -24,7 +24,7 @@ export function Consumer() {
                 <div className="flex column pad align-center">
                     <input id="searchshowinput" type="text" style={{width: "400px"}} placeholder="Search Show"></input>
                     <button id='searchshow' style={{width: "150px"}} onClick={e => searchActiveShows()}>Search Show</button>
-                    <select id="customerShowsList" className="flex column align-left scroll margin-children" style={{width: "500px", height: "600px", backgroundColor: "gainsboro"}}>
+                    <select id="customerShowsList" className="flex column align-left scroll margin-children" style={{width: "500px", height: "600px", backgroundColor: "gainsboro", display: "block"}}>
                         <option className="show-display">Test Show 1</option>
                         <option className="show-display">Test Show 2</option>
                         <option className="show-display">Test Show 3</option>
