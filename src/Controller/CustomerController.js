@@ -39,19 +39,23 @@ export function searchActiveShows() {
 }
 
 export function availableSeats() {
-    var showsSelect = document.getElementById("seatsList");
-    var selectedShows = showsSelect.options;
-    console.log(selectedShows); // TODO delete later (HOW DO I GET THE IDS FROM THIS? Name isn't unique after all. )
-    let payload = {"selectedShows": JSON.stringify(selectedShows)} // TODO how 
+    var showsSelect = document.getElementById('seatsList');
+    var selectedShows = showsSelect.children;
+    var selectedShowsValues = [];
+    for (let i of selectedShows) {
+        selectedShowsValues.push(i.value);
+    }
+    let payload = {"seats": selectedShowsValues} // TODO how 
 
     post('/availableSeats', payload, response => { 
-        showsSelect.textContent = '';
+        console.log(response);
+        /*showsSelect.textContent = '';
 
         for (var seat in response.seats) {
             var nextSeat = document.createElement('option');
             nextSeat.textContent = "" + seat.row + seat.column;
             showsSelect.appendChild(nextSeat);
-        }
+        }*/
     })
 }
 
