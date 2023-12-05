@@ -2,18 +2,17 @@ import { get, post } from "./Api";
 export let totalPrice = 0;
 
 export function listActiveShows () { 
+    var activeShowsBox = document.getElementById("customerShowsList");
     get('/listActiveShows')
         .then(function (response) {
-            console.log(response)
-            let str = ''
-            for (let c of response.constants) {
-                str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ",  Date of Show" + c.showDate + ", Time of Show" + c.showTime +'<br>'
+            activeShowsBox.textContent = '';
+            console.log(response.constants)
+            for (var i in response.constants) {
+                let show = response.constants[i];
+                var nextShow = document.createElement('option');
+                nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate 
+                activeShowsBox.appendChild(nextShow);
             }
-
-            // insert HTML in the <div> with 
-            // constant-list
-            let cd = document.getElementById('customerShowsList')
-            cd.innerHTML = str
         })
         .catch(function (error) {
             console.log(error)
