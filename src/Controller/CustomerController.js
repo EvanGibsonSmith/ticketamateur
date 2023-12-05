@@ -12,7 +12,7 @@ export function listActiveShows () {
 
             // insert HTML in the <div> with 
             // constant-list
-            let cd = document.getElementById('listShowBox')
+            let cd = document.getElementById('customerShowsList')
             cd.innerHTML = str
         })
         .catch(function (error) {
@@ -20,29 +20,28 @@ export function listActiveShows () {
         })
 }
 
-export function searchShow(searchQuery) {
-    console.log(searchQuery); // TODO DELETE THIS LATER
-    let payload = {"search": searchQuery} 
+export function searchActiveShows() {
+    let searchQuery = document.getElementById('searchshowinput').value;
+    let payload = {"search": searchQuery}
+    var activeShowsBox = document.getElementById("customerShowsList");
 
     post('/searchShows', payload, response => { 
-
-        let str = ''
-        for (let c of response.constants) {
-            str += c.venueName + '<br>'
+        activeShowsBox.textContent = '';
+        console.log(response.constants)
+        for (var i in response.constants) {
+            let show = response.constants[i];
+            var nextShow = document.createElement('option');
+            nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate 
+            activeShowsBox.appendChild(nextShow);
         }
-
-        // insert HTML in the <div> with 
-        // constant-list
-        let cd = document.getElementById('customerShowsList')
-        cd.innerHTML = str
     })
 }
 
 export function availableSeats() {
-    var showsSelect = document.getElementById("customerShowsList");
+    var showsSelect = document.getElementById("seatsList");
     var selectedShows = showsSelect.options;
-    console.log(selectedShows); // TODO delete later
-    let payload = {"selectedShows": JSON.stringify(selectedShows)} 
+    console.log(selectedShows); // TODO delete later (HOW DO I GET THE IDS FROM THIS? Name isn't unique after all. )
+    let payload = {"selectedShows": JSON.stringify(selectedShows)} // TODO how 
 
     post('/availableSeats', payload, response => { 
         showsSelect.textContent = '';
@@ -56,9 +55,5 @@ export function availableSeats() {
 }
 
 export function purchaseSeats() {
-    // TODO
-}
-
-export function listShows() {
     // TODO
 }
