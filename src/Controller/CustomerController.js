@@ -44,14 +44,14 @@ export function availableSeats() {
     if (selectedIndex!=-1) { // if something is actually selected
         let selectedShow = selectedIndex.value; // TODO this gives the name not the id?
 
-        let payload = {"showID": selectedShow}
-        post('/availableSeats', payload, response => { 
-
+        let payload = {"showID": "835680242"} // TODO make this dynamically change rather than being hard coded in
+        post('/showAvailableSeats', payload, response => { 
+            console.log(response)
             showsSelect.textContent = '';
 
             for (var seat in response.seats) {
                 var nextSeat = document.createElement('option');
-                nextSeat.textContent = "" + seat.row + seat.column;
+                nextSeat.textContent = "" + seat.seatRow + seat.seatColumn;
                 showsSelect.appendChild(nextSeat);
             }
         })
