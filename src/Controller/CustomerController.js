@@ -1,10 +1,10 @@
 import { get, post } from "./Api";
-
 export let totalPrice = 0;
 
 export function listActiveShows () { 
     get('/listActiveShows')
         .then(function (response) {
+            console.log(response)
             let str = ''
             for (let c of response.constants) {
                 str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ",  Date of Show" + c.showDate + ", Time of Show" + c.showTime +'<br>'
@@ -18,6 +18,7 @@ export function listActiveShows () {
         .catch(function (error) {
             console.log(error)
         })
+
 }
 
 export function searchActiveShows() {

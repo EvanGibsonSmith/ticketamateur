@@ -19,7 +19,7 @@ export function Consumer() {
                     </select>
                     <button className="right-side-buttons" onClick={e => availableSeats()}>Available Seats</button>
                     <button className="right-side-buttons" onClick={e => purchaseSeats()}>Purchase Seats</button>
-                    <button className="right-side-buttons" onClick={e => listActiveShows()}>List Active Shows</button>
+                    <button className="right-side-buttons" onClick={e => listActiveShows()}>List Shows</button>
                 </div>
                 <div className="flex column pad align-center">
                     <input id="searchshowinput" type="text" style={{width: "400px"}} placeholder="Search Show"></input>
