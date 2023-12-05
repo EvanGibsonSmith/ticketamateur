@@ -1,5 +1,4 @@
 import { get, post } from "./Api";
-
 export let totalPrice = 0;
 
 export function listActiveShows () { 

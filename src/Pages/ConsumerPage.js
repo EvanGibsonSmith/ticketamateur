@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import "./ConsumerPage.css";
-import { totalPrice, searchShow, availableSeats, purchaseSeats, listShows } from "../Controller/CustomerController";
+import { totalPrice, searchShow, availableSeats, purchaseSeats, listActiveShows } from "../Controller/CustomerController";
 
 export function Consumer() {
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ export function Consumer() {
                     </select>
                     <button className="right-side-buttons" onClick={e => availableSeats()}>Available Seats</button>
                     <button className="right-side-buttons" onClick={e => purchaseSeats()}>Purchase Seats</button>
-                    <button className="right-side-buttons" onClick={e => listShows()}>List Shows</button>
+                    <button className="right-side-buttons" onClick={e => listActiveShows()}>List Shows</button>
                 </div>
                 <div className="flex column pad align-center">
                     <input id="searchshowinput" type="text" style={{width: "400px"}} placeholder="Search Show"></input>
