@@ -49,7 +49,7 @@ export function createShow(nameVenue, numberRows, left, center, right) {
             var deleteSelectBox = document.getElementById("deleteShowSelect");
             var activateSelectBox = document.getElementById("activateShowSelect");
              for (let c of response.constant) {
-                 str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ '<br>'
+                 str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.price + '<br>'
                  var deleteOption = document.createElement('option');
                 var activateOption = document.createElement('option');
                 deleteOption.textContent = c.showID
@@ -66,10 +66,9 @@ export function createShow(nameVenue, numberRows, left, center, right) {
 }
 
 
-export function activateShow(nameVenue, authToken) {
-    let nameShow = document.getElementById("activateShowSelect").value
-    let payload = {"nameShow": nameShow, "nameVenue" : nameVenue, "authToken" : authToken} 
-  
+export function activateShow(showID, authToken) {
+    let payload = {"showID": showID, "authToken" : authToken} 
+    console.log(payload)
     post('/activateShow', payload, response => {
         console.log(response)
     })
