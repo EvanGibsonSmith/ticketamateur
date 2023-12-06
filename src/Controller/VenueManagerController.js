@@ -66,10 +66,9 @@ export function createShow(nameVenue, numberRows, left, center, right) {
 }
 
 
-export function activateShow(nameVenue, authToken) {
-    let nameShow = document.getElementById("activateShowSelect").value
-    let payload = {"nameShow": nameShow, "nameVenue" : nameVenue, "authToken" : authToken} 
-  
+export function activateShow(showID, authToken) {
+    let payload = {"showID": showID, "authToken" : authToken} 
+    console.log(payload)
     post('/activateShow', payload, response => {
         console.log(response)
     })

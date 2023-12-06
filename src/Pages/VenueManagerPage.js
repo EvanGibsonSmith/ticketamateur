@@ -53,7 +53,7 @@ export function VenueManager() {
                 <div className="flex row left50 pad">
                     <select id = "activateShowSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
                     </select>
-                    <button onClick={e => activateShow(title.venueName, title.authKey)}>Activate Show</button>
+                    <button onClick={e => activateShow(document.getElementById("activateShowSelect").value, title.authKey)}>Activate Show</button>
                 </div>      
                 
                 <div className="flex row spaced pad">
