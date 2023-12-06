@@ -31,10 +31,18 @@ export function createShow(nameVenue, numberRows, left, center, right) {
     let nameShow = document.getElementById("showName").value
     let time = document.getElementById("showTime").value
     let date = document.getElementById("showDate").value
-    let payload = {"nameShow": nameShow, "nameVenue" : nameVenue, "showTime" : time, "showDate": date, "numRows" : numberRows,
-    "numSeatsLeft": left,
-    "numSeatsCenter": center,
-    "numSeatsRight": right} 
+    let price = document.getElementById("showPrice").value
+    let payload = {
+        "nameShow": nameShow, 
+        "nameVenue" : nameVenue, 
+        "showTime" : time, 
+        "showDate": date,
+        "showPrice": price,
+        "numRows" : numberRows,
+        "numSeatsLeft": left,
+        "numSeatsCenter": center,
+        "numSeatsRight": right
+} 
     
     post('/createShow', payload, response => {
         let str = ''
