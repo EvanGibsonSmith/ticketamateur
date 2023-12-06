@@ -20,6 +20,20 @@ export function listActiveShows () {
 
 }
 
+export function showAllActiveShows() {
+    var activeShowsBox = document.getElementById("selectActiveShow");
+    let payload = {"search": ""}
+    post('/searchShows', payload, response => { 
+        console.log(response.constants)
+        for (var i in response.constants) {
+            let show = response.constants[i];
+            var nextShow = document.createElement('option');
+            nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate 
+            activeShowsBox.appendChild(nextShow);
+        }
+    })
+}
+
 export function searchActiveShows() {
     let searchQuery = document.getElementById('searchshowinput').value;
     let payload = {"search": searchQuery}
@@ -38,7 +52,7 @@ export function searchActiveShows() {
 }
 
 export function availableSeats() {
-    var showsSelect = document.getElementById('customerShowsList');
+    var showsSelect = document.getElementById('selectActiveShow');
     let selectedIndex = showsSelect.options.selectedIndex;
     if (selectedIndex!=-1) { // if something is actually selected
         let selectedShow = selectedIndex.value; // TODO this gives the name not the id?
@@ -56,28 +70,6 @@ export function availableSeats() {
         })
     }
 }
-
-/* COMPLETELY WRONG PUTTING HERE FOR POTENTIAL LATER USE 
-export function availableSeats() {
-    var showsSelect = document.getElementById('seatsList');
-    var selectedShows = showsSelect.children;
-    var selectedShowsValues = [];
-    for (let i of selectedShows) {
-        selectedShowsValues.push(i.value);
-    }
-    let payload = {"seats": selectedShowsValues} // TODO how 
-
-    post('/availableSeats', payload, response => { 
-        console.log(response);
-        /*showsSelect.textContent = '';
-
-        for (var seat in response.seats) {
-            var nextSeat = document.createElement('option');
-            nextSeat.textContent = "" + seat.row + seat.column;
-            showsSelect.appendChild(nextSeat);
-        }
-    })
-}*/
 
 export function purchaseSeats() {
     // TODO

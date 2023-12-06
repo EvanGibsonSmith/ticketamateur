@@ -45,6 +45,11 @@
     margin: 5px;
 }
 
+.margin-right {
+    margin-right: 5px;
+}
+
+
 .pad30 {
     padding: 30px;
 }
@@ -109,7 +114,7 @@
 }
 
 .show-display {
-    margin-left: 5px; /* Just margin right now but use this class for those object if other stuff wanted */
+    /*margin-left: 5px; // Just margin right now but use this class for those object if other stuff wanted 
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px;*/
 }
