@@ -46,8 +46,16 @@ export function createShow(nameVenue, numberRows, left, center, right) {
     
     post('/createShow', payload, response => {
         let str = ''
+            var deleteSelectBox = document.getElementById("deleteShowSelect");
+            var activateSelectBox = document.getElementById("activateShowSelect");
              for (let c of response.constant) {
                  str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ '<br>'
+                 var deleteOption = document.createElement('option');
+                var activateOption = document.createElement('option');
+                deleteOption.textContent = c.showID
+                activateOption.textContent = c.showID
+                deleteSelectBox.appendChild(deleteOption);
+                activateSelectBox.appendChild(activateOption);
              }
 
              // insert HTML in the <div> with 
