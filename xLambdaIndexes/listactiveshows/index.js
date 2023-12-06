@@ -12,7 +12,7 @@ exports.handler = async (event) => {
   });
   let listActiveShows = () => {
       return new Promise((resolve, reject) => {
-          pool.query("SELECT * FROM Shows where activated = ?", [true], (error, rows) => {
+          pool.query("SELECT * FROM Shows where activated = ?", [1], (error, rows) => {
             if (error) { return reject(error); }
             return resolve(rows);
         })
