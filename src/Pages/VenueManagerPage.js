@@ -14,7 +14,8 @@ export function VenueManager() {
         deleteVenue(title.venueName, title.authKey)
         navigate("/")
     }
-
+    //listShows(title.venueName, title.authKey)
+    /*<input type="text" className='height-50px' id="deleteShowBox" placeholder="Enter Show ID Here"/>*/
     return (
         <body>
             <h1>Venue Manager Page For {title.venueName}</h1>
@@ -40,8 +41,9 @@ export function VenueManager() {
                     
                 </div>
                 <div className="flex row left50 pad">
-                    <input type="text" className='height-50px' id="deleteShowBox" placeholder="Enter Show ID Here"/>
-                    <button onClick={e => deleteShow(document.getElementById("deleteShowBox").value, title.authKey)}>Delete Show</button>
+                    <select id = "deleteShowSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
+                    </select>
+                    <button onClick={e => deleteShow(document.getElementById("deleteShowSelect").value, title.authKey)}>Delete Show</button>
                 </div>
                 <div className="flex row left50 pad">
                     <input type="text" className='height-50px' placeholder="Enter Block ID"/>
@@ -49,7 +51,8 @@ export function VenueManager() {
                     <button>Delete Block</button>
                 </div>
                 <div className="flex row left50 pad">
-                    <input type="text" className='height-50px' id="activateShowName" placeholder="Enter Show ID Here"/>
+                    <select id = "activateShowSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
+                    </select>
                     <button onClick={e => activateShow(title.venueName, title.authKey)}>Activate Show</button>
                 </div>      
                 
@@ -58,7 +61,7 @@ export function VenueManager() {
                         <div className="flex row pad">
                             <button onClick={e => listShows(title.venueName, title.authKey)}>List Shows</button>
                         </div>
-                        <div id = "listShowsBoxVM"className="flex column scroll list2 pad">
+                        <div id = "listShowsBoxVM"className="flex column scroll list2 pad"style={{width:"700px"}}>
                             <text>No Shows</text>
                         </div>
                     </div>
