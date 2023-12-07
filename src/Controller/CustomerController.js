@@ -73,4 +73,15 @@ export function availableSeats() {
 
 export function purchaseSeats() {
     // TODO
+    let showID = document.getElementById("selectActiveShow").value
+    let section = document.getElementById("selectSection").value
+    let row = document.getElementById("selectRow").value
+    let column = document.getElementById("selectColumn").value
+    let payload = {"showID": showID, "section": section, "row" : row, "column": column}
+    console.log(payload)
+
+    // post('/purchaseSeat', payload, response => {
+    //     console.log(response)
+    // })
 }
+
