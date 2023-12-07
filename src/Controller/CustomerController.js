@@ -44,7 +44,7 @@ export function showAllActiveShows() {
 export function searchActiveShows() {
     let searchQuery = document.getElementById('searchshowinput').value;
     let payload = {"search": searchQuery}
-    var activeShowsBox = document.getElementById("customerShowsList");
+    var activeShowsBox = document.getElementById("selectActiveShow");
 
     post('/searchShows', payload, response => { 
         activeShowsBox.textContent = '';
@@ -53,13 +53,11 @@ export function searchActiveShows() {
         for (var i in response.constants) {
             
             let show = response.constants[i];
-            /*
             var nextShow = document.createElement('option');
-            nextShow.textContent = 
+            nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate 
+            nextShow.value = show.showID
             activeShowsBox.appendChild(nextShow);
-
-            */
-        str += show.showName + " " + show.showTime + " " + show.showDate +"<br>"
+            str += show.showName + " " + show.showTime + " " + show.showDate +"<br>"
         }
         let d = document.getElementById('customerShowsList')
         d.innerHTML = str
