@@ -83,7 +83,7 @@ export function availableSeats() {
                 let seat = response.body[i]
                 console.log("Seat: " + seat)
                 let nextSeat = document.createElement('option');
-                nextSeat.textContent = "" + seat.sectionName + " " + seat.seatRow + seat.seatColumn;
+                nextSeat.textContent = "" + seat.sectionName + " " + seat.seatRow + " " + seat.seatColumn;
                 showsSelect.appendChild(nextSeat);
             }
         })
@@ -93,14 +93,19 @@ export function availableSeats() {
 export function purchaseSeats() {
     // TODO
     let showID = document.getElementById("selectActiveShow").value
-    let section = document.getElementById("selectSection").value
-    let row = document.getElementById("selectRow").value
-    let column = document.getElementById("selectColumn").value
-    let payload = {"showID": showID, "section": section, "row" : row, "column": column}
-    console.log(payload)
-
-    post('/purchaseSeat', payload, response => {
-        console.log("Seat(s) Purchased: " + response.body)
-    })
+    let seats = document.getElementById("seatsList").options
+    for(let i = 0; i < seats.length; i++){
+        if(seats[i].selected == true){
+            let seatInfo = seats[i].value.split(" ")
+            let section = seatInfo[0]
+            let row = seatInfo[1]
+            let column = seatInfo[2]
+            // console.log("Section: " + section + ", Row: " + row + ", Column: " + column)
+            let payload = {"showID": showID, "section": section, "row" : row, "column": column}
+            console.log(payload)
+            post('/purchaseSeat', payload, response => {
+                console.log("Seat(s) Purchased: " + response.body + " " + section + row + column)
+            })
+        }
+    }
 }
-

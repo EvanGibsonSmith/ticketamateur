@@ -30,7 +30,7 @@ export function Consumer() {
                     <div className="flex row align-center" style={{width:"600px"}}>
                         <h3 className="margin-right"> Select Show </h3>
                         <div className="flex column align-center">
-                            <select id="selectActiveShow" style={{fontSize :"20px", backgroundColor: "gainsboro"}}>
+                            <select onChange={e => availableSeats()} id="selectActiveShow" style={{fontSize :"20px", backgroundColor: "gainsboro"}}>
                                 <option className="show-display">Test Show 1</option>
                                 <option className="show-display">Test Show 2</option>
                                 <option className="show-display">Test Show 3</option>
@@ -85,14 +85,12 @@ export function Consumer() {
                         <h3 className="margin-right"> Select Seat Column </h3>
                         <div className="flex column align-center">
                             <select id="selectColumn" style={{fontSize :"20px", backgroundColor: "gainsboro"}}>
-                                <option className="show-display">Test Column 1</option>
-                                <option className="show-display">2</option>
-                                <option className="show-display">1</option>
                                 <option className="show-display">0</option>
+                                <option className="show-display">1</option>
+                                <option className="show-display">2</option>
                             </select>
                         </div>
                     </div>
-                    <button id='showseats' style={{width: "150px"}} onClick={e => availableSeats()}>Show Available Seats</button>
                     <select multiple id="seatsList" className="flex column align-left scroll margin-children" style={{width: "500px", height: "600px", backgroundColor: "gainsboro"}}>
                         <option className="seat">A1</option>
                         <option className="seat">A2</option>
