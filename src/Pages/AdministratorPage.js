@@ -15,6 +15,7 @@ export function Admin() {
             <div className="flex row left50 pad">
                     <input type="text" id="deleteShowBox" placeholder="Enter Show ID Here"/>
                     <button onClick={e => deleteShow(document.getElementById("deleteShowBox").value, AdminToken)}>Remove Show</button>
+                    
                 </div>
             <div className="flex column">
                         <div className="flex row pad center">
@@ -26,7 +27,8 @@ export function Admin() {
                     </div>
                     <div className="flex column">
                         <div className="flex row pad">
-                            <button onClick={e => showReport() }>Show Report</button>
+                            <input type="text" id="reportBox" placeholder="Enter Venue Name Here"/>
+                            <button onClick={e => showReport(document.getElementById("reportBox").value, AdminToken) }>Show Report</button>
                         </div>
                         <div id = "listShowBox" className="flex column scroll list2 pad" style={{height: "300px", width: "600px"}}>
                             <text>No Shows</text>

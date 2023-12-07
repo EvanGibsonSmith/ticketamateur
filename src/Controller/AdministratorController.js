@@ -18,19 +18,17 @@ export function listVenues(authToken) { // TODO this will be ap post
     })
 }
 
-export function showReport(authToken) { 
-    get('/showReport')
-        .then(function (response) {
-
-            let str = ''
-            for (let c of response.constants) {
-                str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Revenue: $" + c.showPrice*c.seatsSold + ", Active Status: " + c.activated + ", Remaining Tickets: " + (c.totalSeats - c.seatsSold) +'<br>'
-            }
-
-            // insert HTML in the <div> with 
-            // constant-list
-            let cd = document.getElementById('listShowBox')
-            cd.innerHTML = str
+export function showReport(venueName, authToken) { 
+    let payload = {"nameVenue" : venueName, "authToken" : authToken} 
+    console.log(payload)
+    post('/showReport', payload, response => {
+        let str = ''
+        for (let c of response.constants) {
+            str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Revenue: $" + c.showPrice*c.seatsSold + ", Active Status: " + c.activated + ", Remaining Tickets: " + (c.totalSeats - c.seatsSold) +'<br>'
+        }
+        
+        let cd = document.getElementById('listShowBox')
+        cd.innerHTML = str
 
         })
         .catch(function (error) {
