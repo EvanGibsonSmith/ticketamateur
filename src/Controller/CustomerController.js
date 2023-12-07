@@ -78,11 +78,12 @@ export function availableSeats() {
 
     if (index!=-1) { // if something is actually selected
         let payload = {"showID": selectedShowID}
-        post('/showAvailableSeats', payload, response => { 
-            console.log("Seats: " + response.body)
-            for (var seat in response.body) {
-                var nextSeat = document.createElement('option');
-                nextSeat.textContent = "" + seat.seatRow + seat.seatColumn;
+        post('/showAvailableSeats', payload, response => {
+            for (let i in response.body) {
+                let seat = response.body[i]
+                console.log("Seat: " + seat)
+                let nextSeat = document.createElement('option');
+                nextSeat.textContent = "" + seat.sectionName + " " + seat.seatRow + seat.seatColumn;
                 showsSelect.appendChild(nextSeat);
             }
         })
