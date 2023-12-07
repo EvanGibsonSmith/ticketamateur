@@ -49,8 +49,7 @@ export function searchActiveShows() {
             nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate 
             nextShow.value = show.showID
             activeShowsBox.appendChild(nextShow);
-
-            */
+                
         str += show.showName + " " + show.showTime + " " + show.showDate
         if (show.soldOut==0) {
             str += "    Seats Available"
