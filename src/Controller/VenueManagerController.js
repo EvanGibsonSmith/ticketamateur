@@ -49,7 +49,7 @@ export function createShow(nameVenue, numberRows, left, center, right) {
             var deleteSelectBox = document.getElementById("deleteShowSelect");
             var activateSelectBox = document.getElementById("activateShowSelect");
              for (let c of response.constant) {
-                 str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.price + '<br>'
+                 str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.showPrice + '<br>'
                  var deleteOption = document.createElement('option');
                 var activateOption = document.createElement('option');
                 deleteOption.textContent = c.showID
@@ -113,15 +113,15 @@ export function showReport(venueName, authToken) {
     console.log(payload)
     var deleteSelectBox = document.getElementById("deleteShowSelect");
     var activateSelectBox = document.getElementById("activateShowSelect");
-    post('/showReportVM', payload, response => {
+    post('/showReportVenue', payload, response => {
         let str = ''
         deleteSelectBox.textContent = ''
         activateSelectBox.textContent = ''
         for (let c of response.constants) {
-            str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Price: " + c.price + '<br>'
+            str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Revenue: " + c.showPrice + ", Status: " + c.activated +'<br>'
             var deleteOption = document.createElement('option');
             var activateOption = document.createElement('option');
-            deleteOption.textContent = c.showID
+            deleteOption.textContent = c.showI
             activateOption.textContent = c.showID
             deleteSelectBox.appendChild(deleteOption);
             activateSelectBox.appendChild(activateOption);
@@ -129,10 +129,6 @@ export function showReport(venueName, authToken) {
         let cd = document.getElementById('listShowsBoxVM')
         cd.innerHTML = str
 
-        })
-        .catch(function (error) {
-            // not much to do
-            console.log(error)
         })
 }
 
