@@ -24,7 +24,7 @@ export function showReport(authToken) {
 
             let str = ''
             for (let c of response.constants) {
-                str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Price: " + c.showPrice + '<br>'
+                str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Revenue: $" + c.showPrice*c.seatsSold + '<br>'
             }
 
             // insert HTML in the <div> with 
