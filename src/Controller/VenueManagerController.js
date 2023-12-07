@@ -49,7 +49,7 @@ export function createShow(nameVenue, numberRows, left, center, right) {
             var deleteSelectBox = document.getElementById("deleteShowSelect");
             var activateSelectBox = document.getElementById("activateShowSelect");
              for (let c of response.constant) {
-                 str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.price + '<br>'
+                 str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.showPrice + '<br>'
                  var deleteOption = document.createElement('option');
                 var activateOption = document.createElement('option');
                 deleteOption.textContent = c.showID
@@ -118,7 +118,7 @@ export function showReport(venueName, authToken) {
         deleteSelectBox.textContent = ''
         activateSelectBox.textContent = ''
         for (let c of response.constants) {
-            str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Price: " + c.price + '<br>'
+            str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Price: " + c.showPrice + '<br>'
             var deleteOption = document.createElement('option');
             var activateOption = document.createElement('option');
             deleteOption.textContent = c.showID
