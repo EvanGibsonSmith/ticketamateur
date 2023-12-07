@@ -52,10 +52,32 @@ export function Consumer() {
                         <h3 className="margin-right"> Select Seat Row </h3>
                         <div className="flex column align-center">
                             <select id="selectRow" style={{fontSize :"20px", backgroundColor: "gainsboro"}}>
-                                <option className="show-display">Test Row 1</option>
-                                <option className="show-display">Test Row 2</option>
                                 <option className="show-display">A</option>
                                 <option className="show-display">B</option>
+                                <option className="show-display">C</option>
+                                <option className="show-display">D</option>
+                                <option className="show-display">E</option>
+                                <option className="show-display">F</option>
+                                <option className="show-display">G</option>
+                                <option className="show-display">H</option>
+                                <option className="show-display">I</option>
+                                <option className="show-display">J</option>
+                                <option className="show-display">K</option>
+                                <option className="show-display">L</option>
+                                <option className="show-display">M</option>
+                                <option className="show-display">N</option>
+                                <option className="show-display">O</option>
+                                <option className="show-display">P</option>
+                                <option className="show-display">Q</option>
+                                <option className="show-display">R</option>
+                                <option className="show-display">S</option>
+                                <option className="show-display">T</option>
+                                <option className="show-display">U</option>
+                                <option className="show-display">V</option>
+                                <option className="show-display">W</option>
+                                <option className="show-display">X</option>
+                                <option className="show-display">Y</option>
+                                <option className="show-display">Z</option>
                             </select>
                         </div>
                     </div>
