@@ -36,7 +36,7 @@ export function listActiveShows () {
 export function searchActiveShows() {
     let searchQuery = document.getElementById('searchshowinput').value;
     let payload = {"search": searchQuery}
-    var activeShowsBox = document.getElementById("customerShowsList");
+    var activeShowsBox = document.getElementById("selectActiveShow");
 
     post('/searchShows', payload, response => { 
         activeShowsBox.textContent = '';
@@ -45,9 +45,9 @@ export function searchActiveShows() {
         for (var i in response.constants) {
             
             let show = response.constants[i];
-            /*
             var nextShow = document.createElement('option');
-            nextShow.textContent = 
+            nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate 
+            nextShow.value = show.showID
             activeShowsBox.appendChild(nextShow);
 
             */
@@ -91,4 +91,15 @@ export function availableSeats() {
 
 export function purchaseSeats() {
     // TODO
+    let showID = document.getElementById("selectActiveShow").value
+    let section = document.getElementById("selectSection").value
+    let row = document.getElementById("selectRow").value
+    let column = document.getElementById("selectColumn").value
+    let payload = {"showID": showID, "section": section, "row" : row, "column": column}
+    console.log(payload)
+
+    // post('/purchaseSeat', payload, response => {
+    //     console.log(response)
+    // })
 }
+
