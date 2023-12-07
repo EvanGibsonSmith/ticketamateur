@@ -38,6 +38,40 @@ export function Consumer() {
                             </select>
                         </div>
                     </div>
+                    <div className="flex row align-center" style={{width:"600px"}}>
+                        <h3 className="margin-right"> Select Seat Section </h3>
+                        <div className="flex column align-center">
+                            <select id="selectSection" style={{fontSize :"20px", backgroundColor: "gainsboro"}}>
+                                <option className="show-display">Test Section 1</option>
+                                <option className="show-display">Test Section 2</option>
+                                <option className="show-display">Test Section 3</option>
+                                <option className="show-display">Test Section 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="flex row align-center" style={{width:"600px"}}>
+                        <h3 className="margin-right"> Select Seat Row </h3>
+                        <div className="flex column align-center">
+                            <select id="selectRow" style={{fontSize :"20px", backgroundColor: "gainsboro"}}>
+                                <option className="show-display">Test Row 1</option>
+                                <option className="show-display">Test Row 2</option>
+                                <option className="show-display">Test Row 3</option>
+                                <option className="show-display">Test Row 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="flex row align-center" style={{width:"600px"}}>
+                        <h3 className="margin-right"> Select Seat Column </h3>
+                        <div className="flex column align-center">
+                            <select id="selectColumn" style={{fontSize :"20px", backgroundColor: "gainsboro"}}>
+                                <option className="show-display">Test Column 1</option>
+                                <option className="show-display">Test Column 2</option>
+                                <option className="show-display">Test Column 3</option>
+                                <option className="show-display">Test Column 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id='showseats' style={{width: "150px"}} onClick={e => availableSeats()}>Show Available Seats</button>
                     <select multiple id="seatsList" className="flex column align-left scroll margin-children" style={{width: "500px", height: "600px", backgroundColor: "gainsboro"}}>
                         <option className="seat">A1</option>
                         <option className="seat">A2</option>

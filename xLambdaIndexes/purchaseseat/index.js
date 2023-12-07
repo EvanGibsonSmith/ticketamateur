@@ -14,12 +14,12 @@ exports.handler = async (event) => {
   let PurchaseSeat = () => {
     return new Promise((resolve, reject) => {
         // check whether or not the seat is available
-        pool.query("SELECT bought FROM seats WHERE 'showID'=?", [event.showID], (error, rows) => { //SQL
+        pool.query("SELECT bought FROM seats WHERE 'showID'=? AND section=? AND row=? AND column=?", [event.showID], [event.section], [event.row], [event.column], (error, rows) => { //SQL
             if (error) { return reject(error); }//Error
             console.log(rows)
             // if seat has not been bought
             if(!bought){
-              pool.query("UPDATE seats SET bought=? WHERE 'showID'=?", [true], [event.showID], (error, rows) => { //SQL
+              pool.query("UPDATE seats SET bought=? WHERE 'showID'=? AND section=? AND row=? AND column=?", [true], [event.showID], [event.section], [event.row], [event.column], (error, rows) => { //SQL
                 if (error) { return reject(error); }//Error
                 console.log(rows)
                 if ((rows) && (rows.length == 1)) {//Should it return a line it means it exists 
