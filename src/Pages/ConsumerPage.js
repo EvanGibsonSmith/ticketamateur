@@ -23,7 +23,7 @@ export function Consumer() {
                     <text id="total-price">Total Price: {totalPrice}</text>
                     <button className="right-side-buttons" onClick={e => availableSeats()}>Available Seats</button>
                     <button className="right-side-buttons" onClick={e => purchaseSeats()}>Purchase Seats</button>
-                    <button className="right-side-buttons" onClick={e => listActiveShows()}>List Shows</button>
+                    <button className="right-side-buttons" onClick={e => showAllActiveShows()}>List Shows</button>
                 </div>
                 <div id="seatsDisplay" className="flex column pad margin" style={{width:"200px", paddingLeft:"10px"}}>
                     <h2 type="text" style={{width: "400px"}} placeholder="Search Seats"> Seats </h2>
@@ -36,10 +36,8 @@ export function Consumer() {
                                 <option className="show-display">Test Show 3</option>
                                 <option className="show-display">Test Show 4</option>
                             </select>
-                            <button onClick={e => showAllActiveShows()}>Get All Shows</button>
                         </div>
                     </div>
-                    <button id='showseats' style={{width: "150px"}} onClick={e => availableSeats()}>Show Available Seats</button>
                     <select multiple id="seatsList" className="flex column align-left scroll margin-children" style={{width: "500px", height: "600px", backgroundColor: "gainsboro"}}>
                         <option className="seat">A1</option>
                         <option className="seat">A2</option>
