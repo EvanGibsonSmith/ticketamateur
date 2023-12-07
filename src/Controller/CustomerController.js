@@ -3,6 +3,7 @@ export let totalPrice = 0;
 
 export function listActiveShows () { 
     var activeShowsBox = document.getElementById("selectActiveShow");
+    let soldOutValue = ""
     get('/listActiveShows')
         .then(function (response) {
             activeShowsBox.textContent = '';
@@ -11,10 +12,17 @@ export function listActiveShows () {
             for (var i in response.constants) {
                 let show = response.constants[i];
                 var nextShow = document.createElement('option');
-                nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate 
+
+                if (show.soldOut==0) {
+                    soldOutValue = "Seats Available"
+                }
+                else {
+                    soldOutValue = "SOLD OUT"
+                }
+                nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate + "    " + soldOutValue
                 nextShow.value = show.showID
                 activeShowsBox.appendChild(nextShow);
-                str += show.showName + " " + show.showTime + " " + show.showDate +'<br>'
+                str += show.showName + " " + show.showTime + " " + show.showDate + "    " + soldOutValue + '<br>'
             }
             let cd = document.getElementById('customerShowsList')
              cd.innerHTML = str
@@ -24,23 +32,7 @@ export function listActiveShows () {
         })
 
 }
-/*
-export function showAllActiveShows() {
-    var activeShowsBox = document.getElementById("selectActiveShow");
-    activeShowsBox.textContent = ''
-    let payload = {"search": ""}
-    post('/searchShows', payload, response => { 
-        console.log(response.constants)
-        for (var i in response.constants) {
-            let show = response.constants[i];
-            var nextShow = document.createElement('option');
-            nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate
-            nextShow.setAttribute('showID', show.showID);
-            activeShowsBox.appendChild(nextShow);
-        }
-    })
-}
-*/
+
 export function searchActiveShows() {
     let searchQuery = document.getElementById('searchshowinput').value;
     let payload = {"search": searchQuery}
@@ -59,7 +51,15 @@ export function searchActiveShows() {
             activeShowsBox.appendChild(nextShow);
 
             */
-        str += show.showName + " " + show.showTime + " " + show.showDate +"<br>"
+        str += show.showName + " " + show.showTime + " " + show.showDate
+        if (show.soldOut==0) {
+            str += "    Seats Available"
+        }
+        else {
+            str += "    SOLD OUT"
+        }
+
+        str += "<br>"
         }
         let d = document.getElementById('customerShowsList')
         d.innerHTML = str
@@ -71,14 +71,14 @@ export function availableSeats() {
 
     let index = selectElement.options.selectedIndex
     let selectedShow = selectElement.options[index]
-    let selectedShowID = selectedShow.getAttribute("showid")
+    let selectedShowID = selectedShow.getAttribute("value")
     console.log(selectedShowID)
 
     let showsSelect = document.getElementById('seatsList');
     showsSelect.textContent = '';
 
     if (index!=-1) { // if something is actually selected
-        let payload = {"showID": selectedShowID} // TODO make this dynamically change rather than being hard coded in
+        let payload = {"showID": selectedShowID}
         post('/showAvailableSeats', payload, response => { 
             for (var seat in response.seats) {
                 var nextSeat = document.createElement('option');
