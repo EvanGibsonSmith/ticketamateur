@@ -108,6 +108,33 @@ export function listShows(venueName, authToken) {
         
     })
 }
+export function showReport(venueName, authToken) { 
+    let payload = {"nameVenue" : venueName, "authToken" : authToken} 
+    console.log(payload)
+    var deleteSelectBox = document.getElementById("deleteShowSelect");
+    var activateSelectBox = document.getElementById("activateShowSelect");
+    post('/showReportVM', payload, response => {
+        let str = ''
+        deleteSelectBox.textContent = ''
+        activateSelectBox.textContent = ''
+        for (let c of response.constants) {
+            str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Price: " + c.price + '<br>'
+            var deleteOption = document.createElement('option');
+            var activateOption = document.createElement('option');
+            deleteOption.textContent = c.showID
+            activateOption.textContent = c.showID
+            deleteSelectBox.appendChild(deleteOption);
+            activateSelectBox.appendChild(activateOption);
+        }
+        let cd = document.getElementById('listShowsBoxVM')
+        cd.innerHTML = str
+
+        })
+        .catch(function (error) {
+            // not much to do
+            console.log(error)
+        })
+}
 
 // export function createBlock() {
 //     let block = document.getElementById("enterBlockName").value
