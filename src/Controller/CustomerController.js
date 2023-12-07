@@ -2,25 +2,29 @@ import { get, post } from "./Api";
 export let totalPrice = 0;
 
 export function listActiveShows () { 
-    var activeShowsBox = document.getElementById("customerShowsList");
+    var activeShowsBox = document.getElementById("selectActiveShow");
     get('/listActiveShows')
         .then(function (response) {
             activeShowsBox.textContent = '';
             console.log(response.constants)
+            let str = ''
             for (var i in response.constants) {
                 let show = response.constants[i];
                 var nextShow = document.createElement('option');
                 nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate 
                 nextShow.value = show.showID
                 activeShowsBox.appendChild(nextShow);
+                str += show.showName + " " + show.showTime + " " + show.showDate +'<br>'
             }
+            let cd = document.getElementById('customerShowsList')
+             cd.innerHTML = str
         })
         .catch(function (error) {
             console.log(error)
         })
 
 }
-
+/*
 export function showAllActiveShows() {
     var activeShowsBox = document.getElementById("selectActiveShow");
     activeShowsBox.textContent = ''
@@ -36,7 +40,7 @@ export function showAllActiveShows() {
         }
     })
 }
-
+*/
 export function searchActiveShows() {
     let searchQuery = document.getElementById('searchshowinput').value;
     let payload = {"search": searchQuery}
@@ -45,12 +49,20 @@ export function searchActiveShows() {
     post('/searchShows', payload, response => { 
         activeShowsBox.textContent = '';
         console.log(response.constants)
+        let str = ''
         for (var i in response.constants) {
+            
             let show = response.constants[i];
+            /*
             var nextShow = document.createElement('option');
-            nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate 
+            nextShow.textContent = 
             activeShowsBox.appendChild(nextShow);
+
+            */
+        str += show.showName + " " + show.showTime + " " + show.showDate +"<br>"
         }
+        let d = document.getElementById('customerShowsList')
+        d.innerHTML = str
     })
 }
 
