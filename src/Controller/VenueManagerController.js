@@ -118,7 +118,7 @@ export function showReport(venueName, authToken) {
         deleteSelectBox.textContent = ''
         activateSelectBox.textContent = ''
         for (let c of response.constants) {
-            str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Revenue: $" + c.showPrice*c.seatsSold + ", Status: " + c.activated +'<br>'
+            str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Revenue: $" + c.showPrice*c.seatsSold + ", Active Status: " + c.activated + ", Remaining Tickets: " + (c.totalSeats - c.seatsSold) +'<br>'
             var deleteOption = document.createElement('option');
             var activateOption = document.createElement('option');
             deleteOption.textContent = c.showI
