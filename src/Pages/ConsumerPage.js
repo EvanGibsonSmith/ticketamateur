@@ -36,7 +36,6 @@ export function Consumer() {
                                 <option className="show-display">Test Show 3</option>
                                 <option className="show-display">Test Show 4</option>
                             </select>
-                            <button onClick={e => showAllActiveShows()}>Get All Shows</button>
                         </div>
                     </div>
                     <div className="flex row align-center" style={{width:"600px"}}>
