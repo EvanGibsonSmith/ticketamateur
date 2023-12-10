@@ -1,6 +1,6 @@
 import React from "react";
 import "./VenueManagerPage.css";
-import { deleteVenue, createShow, activateShow, deleteShow, listShows, showReport } from "../Controller/VenueManagerController"
+import { deleteVenue, createShow, activateShow, deleteShow, listShows, showReport, createBlock } from "../Controller/VenueManagerController"
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
@@ -33,11 +33,15 @@ export function VenueManager() {
                 </div>
                 <div className="flex row row-wrap pad">
                     <input type="text" className='height-50px' id="createBlockShowID" placeholder="Enter Show ID Here"/>
-                    <input type="text" className='height-50px' id="enterBlockName" placeholder="Enter Block Name"/>
+                    <select id="enterBlockSection" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
+                        <option className="section">Side Left</option>
+                        <option className="section">Center</option>
+                        <option className="section">Side Right</option>
+                    </select>
                     <input type="text" className='height-50px' id="enterBlockPrice" placeholder="Enter Block Price"/>
                     <input type="text" className='height-50px' id="startRow" placeholder="Start Row"/>
                     <input type="text" className='height-50px' id="endRow" placeholder="End Row"/>
-                    <button>Create Block</button>
+                    <button onClick={e => createBlock(title.authKey)}>Create Block</button>
                     
                 </div>
                 <div className="flex row left50 pad">

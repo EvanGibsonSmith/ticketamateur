@@ -132,15 +132,17 @@ export function showReport(venueName, authToken) {
         })
 }
 
-// export function createBlock() {
-//     let block = document.getElementById("enterBlockName").value
-//     let price = document.getElementById("enterBlockPrice").value
-//     let startRow = document.getElementById("startRow").value
-//     let endRow = document.getElementById("endRow").value
+export function createBlock(authKey) {
+    let showID = document.getElementById("createBlockShowID").value
+    let section = document.getElementById("enterBlockSection").value
+    let price = document.getElementById("enterBlockPrice").value
+    let startRow = document.getElementById("startRow").value
+    let endRow = document.getElementById("endRow").value
 
-//     let payload = {"block": block, "price" : price, "leftSeats" : startRow, "centerSeats" : endRow, "rightSeats" : numSeatsRight} 
-  
-//     post('/createBlock', payload, response => {
-//         console.log(response)
-//     })
-// }
+    let payload = {"authKey": authKey,"showID": showID, "section": section, "price" : price, "startRow" : startRow, "endRow" : endRow} 
+    console.log(payload)
+
+    // post('/createBlock', payload, response => {
+    //     console.log(response)
+    // })
+}
