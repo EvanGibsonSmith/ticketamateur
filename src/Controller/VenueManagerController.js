@@ -166,7 +166,7 @@ export function createBlock(authKey) {
     let payload = {"authKey": authKey,"showID": showID, "section": section, "price" : price, "startRow" : startRow, "endRow" : endRow} 
     console.log(payload)
 
-    // post('/createBlock', payload, response => {
-    //     console.log(response)
-    // })
+    post('/createBlock', payload, response => {
+        console.log(response)
+    })
 }
