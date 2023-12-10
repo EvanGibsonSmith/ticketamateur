@@ -1,6 +1,6 @@
 import React from "react";
 import "./VenueManagerPage.css";
-import { deleteVenue, createShow, activateShow, deleteShow, listShows, showReport, createBlock } from "../Controller/VenueManagerController"
+import { deleteVenue, createShow, activateShow, deleteShow, listShows, showReport, createBlock, deleteBlock } from "../Controller/VenueManagerController"
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
@@ -87,7 +87,7 @@ export function VenueManager() {
                         </select> 
                         <select id = "deleteBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}></select>
                         <div className="flex column">
-                            <button>Delete Block</button>
+                            <button onClick={e=> deleteBlock(title.authKey)}>Delete Block </button>
                         </div>
                     </div>
                 </div>

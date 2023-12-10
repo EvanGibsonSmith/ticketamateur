@@ -173,25 +173,22 @@ export function createBlock(authKey) {
          for (let c of response.constant) {
             let deleteOption = document.createElement('option');
             deleteOption.textContent = "Show ID Number: "+ c.showID + ", Block ID Number: " + c.blockID + ", Section: "+ c.section + ", Price: " + c.price + ", Start Row: " + c.startRow + ", endRow: " + c.endRow 
+            deleteOption.value = {"showID":c.showID, "blockID": c.blockID}
             listBlockSelecttBox.appendChild(deleteOption);
          }
     })
 }
 
 export function deleteBlock(authKey){
-    let showID = document.getElementById("selectActiveShow").value
-    let seats = document.getElementById("seatsList").options
+    let seats = document.getElementById("listBlocksBoxVM").options
     for(let i = 0; i < seats.length; i++){
         if(seats[i].selected == true){
-            let seatInfo = seats[i].value.split(" ")
-            let section = seatInfo[0]
-            let row = seatInfo[1]
-            let column = seatInfo[2]
-            // console.log("Section: " + section + ", Row: " + row + ", Column: " + column)
-            let payload = {"showID": showID, "section": section, "row" : row, "column": column}
+            let showID = seats[i].value.showID
+            let blockID = seats[i].value.blockID
+            let payload = {"showID": showID, "blockID": blockID, "authToken" : authKey}
             console.log(payload)
-            post('/purchaseSeat', payload, response => {
-                console.log("Seat(s) Purchased: " + response.body + " " + section + row + column)
+            post('/deleteBlock', payload, response => {
+                console.log(response)
             })
         }
     }
