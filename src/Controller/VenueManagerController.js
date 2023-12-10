@@ -170,3 +170,24 @@ export function createBlock(authKey) {
         console.log(response)
     })
 }
+
+export function deleteBlock(authKey){
+    let showID = document.getElementById("selectActiveShow").value
+    let seats = document.getElementById("seatsList").options
+    for(let i = 0; i < seats.length; i++){
+        if(seats[i].selected == true){
+            let seatInfo = seats[i].value.split(" ")
+            let section = seatInfo[0]
+            let row = seatInfo[1]
+            let column = seatInfo[2]
+            // console.log("Section: " + section + ", Row: " + row + ", Column: " + column)
+            let payload = {"showID": showID, "section": section, "row" : row, "column": column}
+            console.log(payload)
+            post('/purchaseSeat', payload, response => {
+                console.log("Seat(s) Purchased: " + response.body + " " + section + row + column)
+            })
+        }
+    }
+
+
+}
