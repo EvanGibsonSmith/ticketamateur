@@ -45,17 +45,29 @@ export function createShow(nameVenue, numberRows, left, center, right) {
 } 
     
     post('/createShow', payload, response => {
-        let str = ''
+            let str = ''
             var deleteSelectBox = document.getElementById("deleteShowSelect");
             var activateSelectBox = document.getElementById("activateShowSelect");
+            var listBlockSelecttBox = document.getElementById("listBlockSelect");
+            var createBlockSelectBox = document.getElementById("createBlockSelect")
+            deleteSelectBox.textContent = ''
+            activateSelectBox.textContent = ''
+            listBlockSelecttBox.textContent = ''
+            createBlockSelectBox.textContent = ''
              for (let c of response.constant) {
-                 str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.showPrice + '<br>'
-                 var deleteOption = document.createElement('option');
+                str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.showPrice + '<br>'
+                var deleteOption = document.createElement('option');
                 var activateOption = document.createElement('option');
+                var deleteBlockOption = document.createElement('option');
+                var createBlockSelectOption =document.createElement('option');
                 deleteOption.textContent = c.showID
                 activateOption.textContent = c.showID
+                deleteBlockOption.textContent = c.showID
+                createBlockSelectOption.textContent = c.showID
                 deleteSelectBox.appendChild(deleteOption);
                 activateSelectBox.appendChild(activateOption);
+                listBlockSelecttBox.appendChild(deleteBlockOption);
+                createBlockSelectBox.appendChild(createBlockSelectOption);
              }
 
              // insert HTML in the <div> with 
@@ -87,24 +99,36 @@ export function listShows(venueName, authToken) {
 
     let payload = {"nameVenue" : venueName, "authToken" : authToken} 
     console.log(payload)
-    var deleteSelectBox = document.getElementById("deleteShowSelect");
-    var activateSelectBox = document.getElementById("activateShowSelect");
     post('/listShows', payload, response => {
         let str = ''
+        var deleteSelectBox = document.getElementById("deleteShowSelect");
+        var activateSelectBox = document.getElementById("activateShowSelect");
+        var listBlockSelecttBox = document.getElementById("listBlockSelect");
+        var createBlockSelectBox = document.getElementById("createBlockSelect")
         deleteSelectBox.textContent = ''
         activateSelectBox.textContent = ''
-        for (let c of response.constants) {
-            str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ '<br>'
+        listBlockSelecttBox.textContent = ''
+        createBlockSelectBox.textContent = ''
+         for (let c of response.constants) {
+            str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.showPrice + '<br>'
             var deleteOption = document.createElement('option');
             var activateOption = document.createElement('option');
+            var deleteBlockOption = document.createElement('option');
+            var createBlockSelectOption =document.createElement('option');
             deleteOption.textContent = c.showID
             activateOption.textContent = c.showID
+            deleteBlockOption.textContent = c.showID
+            createBlockSelectOption.textContent = c.showID
             deleteSelectBox.appendChild(deleteOption);
             activateSelectBox.appendChild(activateOption);
-        }
-        let cd = document.getElementById('listShowsBoxVM')
-        cd.innerHTML = str
-        
+            listBlockSelecttBox.appendChild(deleteBlockOption);
+            createBlockSelectBox.appendChild(createBlockSelectOption);
+         }
+
+         // insert HTML in the <div> with 
+         // constant-list
+         let cd = document.getElementById('listShowsBoxVM')
+         cd.innerHTML = str
         
     })
 }
