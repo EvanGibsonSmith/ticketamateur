@@ -157,7 +157,7 @@ export function showReport(venueName, authToken) {
 }
 
 export function createBlock(authKey) {
-    let showID = document.getElementById("createBlockShowID").value
+    let showID = document.getElementById("createBlockSelect").value
     let section = document.getElementById("enterBlockSection").value
     let price = document.getElementById("enterBlockPrice").value
     let startRow = document.getElementById("startRow").value
