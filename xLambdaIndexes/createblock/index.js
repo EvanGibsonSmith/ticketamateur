@@ -29,7 +29,7 @@ exports.handler = async (event) => {
   if(authed){
       let createBlock = (showID, section, price, startRow, endRow) => {
         return new Promise((resolve, reject) => {
-            pool.query("INSERT into Block(blockID, startRow, endRow, showSection, price, showID) VALUES(?,?,?,?,?,?,?);", [randomInt(1000000000),startRow,endRow,section,price,showID], (error, rows) => {
+            pool.query("INSERT into Blocks(blockID, startRow, endRow, showSection, price, showID) VALUES(?,?,?,?,?,?);", [randomInt(1000000000),startRow,endRow,section,price,showID], (error, rows) => {
                 if (error) { return reject(error); }
                 if ((rows) && (rows.affectedRows == 1)) {
                     return resolve(true);
