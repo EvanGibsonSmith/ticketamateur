@@ -168,21 +168,13 @@ export function createBlock(authKey) {
 
     post('/createBlock', payload, response => {
         console.log(response)
-        let str = ''
         var listBlockSelecttBox = document.getElementById("listBlocksBoxVM");
-        var deleteSelectBox = document.getElementById("deleteBlockSelect");
         listBlockSelecttBox.textContent = ''
          for (let c of response.constant) {
-            str +="Show ID Number: "+ c.showID + ", Block ID Number: " + c.blockID + ", Section: "+ c.section + ", Price: " + c.price + ", Start Row: " + c.startRow + ", endRow: " + c.endRow + '<br>'
             let deleteOption = document.createElement('option');
-            deleteOption.textContent = c.blockID
+            deleteOption.textContent = "Show ID Number: "+ c.showID + ", Block ID Number: " + c.blockID + ", Section: "+ c.section + ", Price: " + c.price + ", Start Row: " + c.startRow + ", endRow: " + c.endRow 
             listBlockSelecttBox.appendChild(deleteOption);
          }
-
-         // insert HTML in the <div> with 
-         // constant-list
-         let cd = document.getElementById('listBlocksBoxVM')
-         cd.innerHTML = str
     })
 }
 
