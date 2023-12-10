@@ -71,9 +71,9 @@ export function VenueManager() {
                             <input type='text' className='height-50px' placeholder="Enter Show ID Here"></input>
                             <button>List Blocks</button>
                         </div>
-                        <div id = "listBlocksBoxVM" className="flex column scroll list2 pad">
-                            <text>No Blocks</text>
-                        </div>
+                        <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad">
+                            <option>No Blocks</option>
+                        </select>
                     </div>
                 </div>
                 <div className="flex row left50 pad">
