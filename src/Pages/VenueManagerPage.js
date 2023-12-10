@@ -32,7 +32,8 @@ export function VenueManager() {
                     </div>
                 </div>
                 <div className="flex row row-wrap pad">
-                    <input type="text" className='height-50px' id="createBlockShowID" placeholder="Enter Show ID Here"/>
+                <select id = "createBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
+                    </select>
                     <select id="enterBlockSection" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
                         <option className="section">Side Left</option>
                         <option className="section">Center</option>
