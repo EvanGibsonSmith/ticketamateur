@@ -31,7 +31,7 @@ export function VenueManager() {
                         <button onClick={e => createShow(title.venueName, title.numRows,title.numSeatsLeft,title.numSeatsCenter, title.numSeatsRight)}>Create Show</button>
                     </div>
                 </div>
-                <div className="flex row row-wrap pad">
+                <div className="flex row row-wrap pad center">
                 <select id = "createBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
                     </select>
                     <select id="enterBlockSection" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
