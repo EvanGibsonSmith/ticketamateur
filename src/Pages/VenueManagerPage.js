@@ -85,6 +85,7 @@ export function VenueManager() {
                         <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad">
                             <option>No Blocks</option>
                         </select> 
+                        <select id = "deleteBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}></select>
                         <div className="flex column">
                             <button>Delete Block</button>
                         </div>

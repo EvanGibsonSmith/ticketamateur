@@ -145,7 +145,7 @@ export function showReport(venueName, authToken) {
             str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Revenue: $" + c.showPrice*c.seatsSold + ", Active Status: " + c.activated + ", Remaining Tickets: " + (c.totalSeats - c.seatsSold) +'<br>'
             var deleteOption = document.createElement('option');
             var activateOption = document.createElement('option');
-            deleteOption.textContent = c.showI
+            deleteOption.textContent = c.showID
             activateOption.textContent = c.showID
             deleteSelectBox.appendChild(deleteOption);
             activateSelectBox.appendChild(activateOption);
@@ -163,10 +163,25 @@ export function createBlock(authKey) {
     let startRow = document.getElementById("startRow").value
     let endRow = document.getElementById("endRow").value
 
-    let payload = {"authKey": authKey,"showID": showID, "section": section, "price" : price, "startRow" : startRow, "endRow" : endRow} 
-    console.log(payload)
+    console.log("Auth Key: " + authKey)
+    let payload = {"authToken": authKey,"showID": showID, "section": section, "price" : price, "startRow" : startRow, "endRow" : endRow} 
 
     post('/createBlock', payload, response => {
         console.log(response)
+        let str = ''
+        var listBlockSelecttBox = document.getElementById("listBlocksBoxVM");
+        var deleteSelectBox = document.getElementById("deleteBlockSelect");
+        listBlockSelecttBox.textContent = ''
+         for (let c of response.constant) {
+            str +="Show ID Number: "+ c.showID + ", Block ID Number: " + c.blockID + ", Section: "+ c.section + ", Price: " + c.price + ", Start Row: " + c.startRow + ", endRow: " + c.endRow + '<br>'
+            let deleteOption = document.createElement('option');
+            deleteOption.textContent = c.blockID
+            listBlockSelecttBox.appendChild(deleteOption);
+         }
+
+         // insert HTML in the <div> with 
+         // constant-list
+         let cd = document.getElementById('listBlocksBoxVM')
+         cd.innerHTML = str
     })
 }
