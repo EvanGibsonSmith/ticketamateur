@@ -46,11 +46,7 @@ export function VenueManager() {
                     </select>
                     <button onClick={e => deleteShow(document.getElementById("deleteShowSelect").value, title.authKey)}>Delete Show</button>
                 </div>
-                <div className="flex row left50 pad">
-                    <input type="text" className='height-50px' placeholder="Enter Block ID"/>
-                    <input type="text" className='height-50px' placeholder="Enter Show ID"/>
-                    <button>Delete Block</button>
-                </div>
+                
                 <div className="flex row left50 pad">
                     <select id = "activateShowSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
                     </select>
@@ -75,7 +71,8 @@ export function VenueManager() {
                         </div>
                         <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad">
                             <option>No Blocks</option>
-                        </select>
+                        </select> 
+                        <button>Delete Block</button>
                     </div>
                 </div>
                 <div className="flex row left50 pad">
