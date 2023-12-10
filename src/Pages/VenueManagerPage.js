@@ -32,7 +32,8 @@ export function VenueManager() {
                     </div>
                 </div>
                 <div className="flex row row-wrap pad">
-                    <input type="text" className='height-50px' id="createBlockShowID" placeholder="Enter Show ID Here"/>
+                    <select id = "createBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
+                            </select>
                     <input type="text" className='height-50px' id="enterBlockName" placeholder="Enter Block Name"/>
                     <input type="text" className='height-50px' id="enterBlockPrice" placeholder="Enter Block Price"/>
                     <input type="text" className='height-50px' id="startRow" placeholder="Start Row"/>
@@ -68,7 +69,8 @@ export function VenueManager() {
                     </div>
                     <div className="flex column">
                         <div className="flex row pad">
-                            <input type='text' className='height-50px' placeholder="Enter Show ID Here"></input>
+                            <select id = "listBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
+                            </select>
                             <button>List Blocks</button>
                         </div>
                         <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad">
