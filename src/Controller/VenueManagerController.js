@@ -173,7 +173,7 @@ export function createBlock(authKey) {
          for (let c of response.constant) {
             let deleteOption = document.createElement('option');
             deleteOption.textContent = "Show ID Number: "+ c.showID + ", Block ID Number: " + c.blockID + ", Section: "+ c.section + ", Price: " + c.price + ", Start Row: " + c.startRow + ", endRow: " + c.endRow 
-            deleteOption.value = {"showID":c.showID, "blockID": c.blockID}
+            deleteOption.value = c.showID + " " + c.blockID
             listBlockSelecttBox.appendChild(deleteOption);
          }
     })
@@ -183,8 +183,9 @@ export function deleteBlock(authKey){
     let seats = document.getElementById("listBlocksBoxVM").options
     for(let i = 0; i < seats.length; i++){
         if(seats[i].selected == true){
-            let showID = seats[i].value.showID
-            let blockID = seats[i].value.blockID
+            let blockInfo = seats[i].value.split(" ")
+            let showID = blockInfo[i]
+            let blockID = blockInfo[i]
             let payload = {"showID": showID, "blockID": blockID, "authToken" : authKey}
             console.log(payload)
             post('/deleteBlock', payload, response => {
