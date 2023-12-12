@@ -168,7 +168,7 @@ export function createBlock(authKey) {
 
     post('/createBlock', payload, response => {
         console.log(response)
-        var listBlockSelecttBox = document.getElementById("listBlocksBoxVM");
+        var listBlockSelecttBox = document.getElementById("listBlocksBoxVM"); // FIXME selecttBox?
         listBlockSelecttBox.textContent = ''
          for (let c of response.constant) {
             let deleteOption = document.createElement('option');
@@ -193,6 +193,18 @@ export function deleteBlock(authKey){
             })
         }
     }
+}
 
 
+export function listBlocks(showID, authKey) {
+    let payload = {"showID": showID, "authToken": authKey}
+    let blocksContainer = document.getElementById("listBlocksBoxVM")
+    post('/listBlocks', payload, response => {
+        console.log(response)
+        for (let b of response.constant) {// FIXME I use constant (singular, not constants) because that is consistent with createBlock
+            let nextBlockElement = document.createElement('option');
+            nextBlockElement.textContent =  "Show ID Number: "+ b.showID + ", Block ID Number: " + b.blockID + ", Section: "+ b.section + ", Price: " + b.price + ", Start Row: " + b.startRow + ", endRow: " + b.endRow 
+            blocksContainer.appendChild(nextBlockElement)
+        }
+    })
 }

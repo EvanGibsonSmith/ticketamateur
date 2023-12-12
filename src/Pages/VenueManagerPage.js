@@ -1,6 +1,6 @@
 import React from "react";
 import "./VenueManagerPage.css";
-import { deleteVenue, createShow, activateShow, deleteShow, listShows, showReport, createBlock, deleteBlock } from "../Controller/VenueManagerController"
+import { deleteVenue, createShow, activateShow, deleteShow, listShows, showReport, createBlock, deleteBlock, listBlocks } from "../Controller/VenueManagerController"
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
@@ -79,7 +79,7 @@ export function VenueManager() {
                             <select id = "listBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
                             </select>
                             <div className="flex column">
-                                <button>List Blocks</button>
+                                <button onClick={e => listBlocks(null, title.authKey) /* PUT ACTUAL SHOWID IN NULL */}>List Blocks</button>
                             </div>
                         </div>
                         <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad">
