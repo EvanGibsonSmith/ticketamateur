@@ -19,7 +19,7 @@ export function VenueManager() {
     return (
         <body>
             <h1>Venue Manager Page For {title.venueName}</h1>
-            <h2>This Venue has {title.numRows} rows, {title.numSeatsLeft} Seats in Left Section, {title.numSeatsCenter} Seats in Center Section, {title.numSeatsRight} Seats in Right Section</h2>
+            <text>This Venue has {title.numRows} rows, {title.numSeatsLeft} Seats in Left Section, {title.numSeatsCenter} Seats in Center Section, {title.numSeatsRight} Seats in Right Section</text>
             <div className='flex-container-space column'>
                 <div className="flex row pad center">
                     <text type="text" id="venueNameShow">{title.venueName} Venue:</text>
@@ -70,7 +70,7 @@ export function VenueManager() {
                                 <button onClick={e => showReport(title.venueName, title.authKey)}>Show Report</button>
                                 </div>
                             </div>
-                        <div id = "listShowsBoxVM"className="flex column scroll list2 pad"style={{width:"700px"}}>
+                        <div id = "listShowsBoxVM"className="flex column scroll list2 pad"style={{width:"700px",backgroundColor:"#f8f8f8"}}>
                             <text>No Shows</text>
                         </div>
                     </div>
