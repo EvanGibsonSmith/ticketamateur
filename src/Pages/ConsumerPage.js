@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import "./ConsumerPage.css";
-import { totalPrice, searchActiveShows, availableSeats, purchaseSeats, listActiveShows, showAllActiveShows } from "../Controller/CustomerController";
+import { totalPrice, searchActiveShows, availableSeats, purchaseSeats, listActiveShows, showAllActiveShows, sortSeats } from "../Controller/CustomerController";
 
 export function Consumer() {
     const navigate = useNavigate();
@@ -37,7 +37,13 @@ export function Consumer() {
                                 <option className="show-display">Test Show 4</option>
                             </select>
                         </div>
-                    </div>                   
+                    </div>
+                    <select onChange={e => sortSeats()} id="sortBySeats" style={{fontSize :"20px", backgroundColor: "gainsboro"}}>
+                        <option className="sortSeats">Default</option>
+                        <option className="sortSeats">Price</option>
+                        <option className="sortSeats">Section</option>
+                        <option className="sortSeats">Row</option>
+                    </select>                   
                     <select multiple id="seatsList" className="flex column align-left scroll margin-children" style={{width: "500px", height: "600px", backgroundColor: "gainsboro"}}>
                         <option className="seat">A1</option>
                         <option className="seat">A2</option>

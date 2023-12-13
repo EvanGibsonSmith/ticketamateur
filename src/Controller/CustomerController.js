@@ -90,6 +90,34 @@ export function availableSeats() {
     }
 }
 
+export function sortSeats() {
+    let selectElement = document.querySelector('#selectActiveShow');
+    let selectSeatSort = document.querySelector('#sortBySeats').value;
+    console.log("Sort By: " + selectSeatSort);
+
+    let index = selectElement.options.selectedIndex
+    let selectedShow = selectElement.options[index]
+    let selectedShowID = selectedShow.getAttribute("value")
+    console.log(selectedShowID)
+
+    let showsSelect = document.getElementById('seatsList');
+    showsSelect.textContent = '';
+
+    if (index!=-1) { // if something is actually selected
+        let payload = {"showID": selectedShowID, "sort": selectSeatSort}
+        
+        post('/showAvailableSeats', payload, response => {
+            for (let i in response.body) {
+                let seat = response.body[i]
+                console.log("Seat: " + seat)
+                let nextSeat = document.createElement('option');
+                nextSeat.textContent = "" + seat.sectionName + " " + seat.seatRow + " " + seat.seatColumn;
+                showsSelect.appendChild(nextSeat);
+            }
+        })
+    }
+}
+
 export function purchaseSeats() {
     // TODO
     let showID = document.getElementById("selectActiveShow").value
