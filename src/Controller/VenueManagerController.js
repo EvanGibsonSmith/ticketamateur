@@ -168,12 +168,12 @@ export function createBlock(authKey) {
 
     post('/createBlock', payload, response => {
         console.log(response)
-        var listBlockSelecttBox = document.getElementById("listBlocksBoxVM");
+        var listBlockSelecttBox = document.getElementById("listBlocksBoxVM"); // FIXME selecttBox?
         listBlockSelecttBox.textContent = ''
          for (let c of response.constant) {
             let deleteOption = document.createElement('option');
             deleteOption.textContent = "Show ID Number: "+ c.showID + ", Block ID Number: " + c.blockID + ", Section: "+ c.section + ", Price: " + c.price + ", Start Row: " + c.startRow + ", endRow: " + c.endRow 
-            deleteOption.value = {"showID":c.showID, "blockID": c.blockID}
+            deleteOption.value = c.showID + " " + c.blockID
             listBlockSelecttBox.appendChild(deleteOption);
          }
     })
@@ -183,8 +183,10 @@ export function deleteBlock(authKey){
     let seats = document.getElementById("listBlocksBoxVM").options
     for(let i = 0; i < seats.length; i++){
         if(seats[i].selected == true){
-            let showID = seats[i].value.showID
-            let blockID = seats[i].value.blockID
+            console.log(seats[i].value.split(" "))
+            let blockInfo = seats[i].value.split(" ")
+            let showID = blockInfo[3].replace(",","")
+            let blockID = blockInfo[7].replace(",","")
             let payload = {"showID": showID, "blockID": blockID, "authToken" : authKey}
             console.log(payload)
             post('/deleteBlock', payload, response => {
@@ -192,6 +194,19 @@ export function deleteBlock(authKey){
             })
         }
     }
+}
 
 
+export function listBlocks(showID, authKey) {
+    let payload = {"showID": showID, "authToken": authKey}
+    let blocksContainer = document.getElementById("listBlocksBoxVM")
+    post('/listBlocks', payload, response => {
+        console.log(response)
+        blocksContainer.textContent = ''
+        for (let b of response.constant) {// FIXME I use constant (singular, not constants) because that is consistent with createBlock
+            let nextBlockElement = document.createElement('option');
+            nextBlockElement.textContent =  "Show ID Number: "+ b.showID + ", Block ID Number: " + b.blockID + ", Section: "+ b.section + ", Price: " + b.price + ", Start Row: " + b.startRow + ", endRow: " + b.endRow 
+            blocksContainer.appendChild(nextBlockElement)
+        }
+    })
 }

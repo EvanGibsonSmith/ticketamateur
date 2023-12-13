@@ -1,6 +1,6 @@
 import React from "react";
 import "./VenueManagerPage.css";
-import { deleteVenue, createShow, activateShow, deleteShow, listShows, showReport, createBlock, deleteBlock } from "../Controller/VenueManagerController"
+import { deleteVenue, createShow, activateShow, deleteShow, listShows, showReport, createBlock, deleteBlock, listBlocks } from "../Controller/VenueManagerController"
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export function VenueManager() {
     return (
         <body>
             <h1>Venue Manager Page For {title.venueName}</h1>
-            <h2>This Venue has {title.numRows} rows, {title.numSeatsLeft} Seats in Left Section, {title.numSeatsCenter} Seats in Center Section, {title.numSeatsRight} Seats in Right Section</h2>
+            <text>This Venue has {title.numRows} rows, {title.numSeatsLeft} Seats in Left Section, {title.numSeatsCenter} Seats in Center Section, {title.numSeatsRight} Seats in Right Section</text>
             <div className='flex-container-space column'>
                 <div className="flex row pad center">
                     <text type="text" id="venueNameShow">{title.venueName} Venue:</text>
@@ -70,7 +70,7 @@ export function VenueManager() {
                                 <button onClick={e => showReport(title.venueName, title.authKey)}>Show Report</button>
                                 </div>
                             </div>
-                        <div id = "listShowsBoxVM"className="flex column scroll list2 pad"style={{width:"700px"}}>
+                        <div id = "listShowsBoxVM"className="flex column scroll list2 pad"style={{width:"700px",backgroundColor:"#f8f8f8"}}>
                             <text>No Shows</text>
                         </div>
                     </div>
@@ -79,13 +79,12 @@ export function VenueManager() {
                             <select id = "listBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
                             </select>
                             <div className="flex column">
-                                <button>List Blocks</button>
+                                <button onClick={e => listBlocks(document.getElementById("listBlockSelect").value, title.authKey)}>List Blocks</button>
                             </div>
                         </div>
-                        <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad">
+                        <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad" style={{width:"700px",backgroundColor:"#f8f8f8"}}>
                             <option>No Blocks</option>
                         </select> 
-                        <select id = "deleteBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}></select>
                         <div className="flex column">
                             <button onClick={e=> deleteBlock(title.authKey)}>Delete Block </button>
                         </div>

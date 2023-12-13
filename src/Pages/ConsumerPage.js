@@ -23,6 +23,7 @@ export function Consumer() {
                     <text id="total-price">Total Price: {totalPrice}</text>
                     <button className="right-side-buttons" onClick={e => availableSeats()}>Available Seats</button>
                     <button className="right-side-buttons" onClick={e => purchaseSeats()}>Purchase Seats</button>
+                    <text id="didPurchaseSeat"></text>
                     <button className="right-side-buttons" onClick={e => listActiveShows()}>List Shows</button>
                 </div>
                 <div id="seatsDisplay" className="flex column pad margin" style={{width:"200px", paddingLeft:"10px"}}>
