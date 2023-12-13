@@ -79,10 +79,10 @@ export function VenueManager() {
                             <select id = "listBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
                             </select>
                             <div className="flex column">
-                                <button onClick={e => listBlocks(null, title.authKey) /* PUT ACTUAL SHOWID IN NULL */}>List Blocks</button>
+                                <button onClick={e => listBlocks(document.getElementById("listBlockSelect").value, title.authKey)}>List Blocks</button>
                             </div>
                         </div>
-                        <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad">
+                        <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad" style={{width:"700px",backgroundColor:"#f8f8f8"}}>
                             <option>No Blocks</option>
                         </select> 
                         <div className="flex column">
