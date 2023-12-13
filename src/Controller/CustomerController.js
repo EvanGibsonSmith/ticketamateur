@@ -159,6 +159,9 @@ export function purchaseSeats() {
                 if (response.statusCode==400) { // in this case somebody has already bought the ticket
                     document.getElementById("didPurchaseSeat").textContent = "Seat Already Bought"
                 }
+                else if(response.statusCode == 402){
+                    document.getElementById("didPurchaseSeat").textContent = "Unavailable: Show start time has passed." 
+                }
                 else {
                     document.getElementById("didPurchaseSeat").textContent = "Success!"
                 }
