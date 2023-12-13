@@ -91,7 +91,8 @@ export function availableSeats() {
 }
 
 export function purchaseSeats() {
-    // TODO
+    let current_date = new Date()
+    console.log(current_date)
     let showID = document.getElementById("selectActiveShow").value
     let seats = document.getElementById("seatsList").options
     for(let i = 0; i < seats.length; i++){
