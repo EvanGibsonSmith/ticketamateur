@@ -128,7 +128,12 @@ export function sortSeats() {
 
 export function purchaseSeats() {
     let current_date = new Date()
-    console.log(current_date)
+    let month = current_date.getMonth() +1
+    let day = current_date.getDate()
+    let year = current_date.getFullYear()
+    let hour = current_date.getHours()
+    let minute = current_date.getMinutes()
+    console.log(year + "-" + month + "-" + day)
     let showID = document.getElementById("selectActiveShow").value
     let seats = document.getElementById("seatsList").options
     for(let i = 0; i < seats.length; i++){
@@ -138,7 +143,7 @@ export function purchaseSeats() {
             let row = seatInfo[1]
             let column = seatInfo[2]
             // console.log("Section: " + section + ", Row: " + row + ", Column: " + column)
-            let payload = {"showID": showID, "section": section, "row" : row, "column": column}
+            let payload = {"showID": showID, "section": section, "row" : row, "column": column, "date": year + "-" + month + "-" + day, "time": hour + ":" + minute}
             post('/purchaseSeat', payload, response => {
                 if (response.statusCode==400) { // in this case somebody has already bought the ticket
                     document.getElementById("didPurchaseSeat").textContent = "Seat Already Bought"
