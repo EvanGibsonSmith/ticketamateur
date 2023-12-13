@@ -125,6 +125,7 @@ export function sortSeats() {
         let payload = {"showID": selectedShowID, "sortBy": sortedChoice}
         
         post('/showAvailableSeats', payload, response => {
+            console.log(response)
             for (let i in response.body) {
                 let seat = response.body[i]
                 console.log("Seat: " + seat)
