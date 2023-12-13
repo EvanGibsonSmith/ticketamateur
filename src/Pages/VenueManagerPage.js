@@ -16,6 +16,17 @@ export function VenueManager() {
     }
     //listShows(title.venueName, title.authKey)
     /*<input type="text" className='height-50px' id="deleteShowBox" placeholder="Enter Show ID Here"/>*/
+    function loadRow (){
+        var listRow = document.getElementById("startRow")
+        //listRow.textContent = ''
+        for(let i= 0; i<title.row; i++){
+            let Option= document.createElement('option')
+            let currentRow = String.fromCharCode(65 + i)
+            Option.textContent= currentRow
+            listRow.appendChild(Option)
+        }
+    }
+    window.onload=loadRow()
     return (
         <body>
             <h1>Venue Manager Page For {title.venueName}</h1>
