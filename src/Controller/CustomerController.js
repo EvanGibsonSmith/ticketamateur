@@ -13,7 +13,7 @@ export function listActiveShows () {
                 let show = response.constants[i];
                 var nextShow = document.createElement('option');
 
-                if (show.seatsSold==show.totalSeats) {
+                if (show.seatsSold!=show.totalSeats) {
                     soldOutValue = "Seats Available"
                 }
                 else {
@@ -78,7 +78,7 @@ export function availableSeats() {
     showsSelect.textContent = '';
 
     if (index!=-1) { // if something is actually selected
-        let payload = {"showID": selectedShowID}
+        let payload = {"showID": selectedShowID, "sortBy": "showID"}
         post('/showAvailableSeats', payload, response => {
             for (let i in response.body) {
                 let seat = response.body[i]
@@ -109,10 +109,20 @@ export function sortSeats() {
             sortedChoice = "showID"
             break;
         case "Price":
-            sortedChoice = "Price"
+            sortedChoice = "TBD"
+            break;
+        case "Section":
+            sortedChoice = "sectionName"
+            break;
+        case "Row":
+            sortedChoice = "seatRow"
+            break;
+        default:
+            sortedChoice = "showID"
+            break;
     }
     if (index!=-1) { // if something is actually selected
-        let payload = {"showID": selectedShowID, "sortBy": selectSeatSort}
+        let payload = {"showID": selectedShowID, "sortBy": sortedChoice}
         
         post('/showAvailableSeats', payload, response => {
             for (let i in response.body) {
