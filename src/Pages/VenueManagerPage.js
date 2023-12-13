@@ -16,6 +16,17 @@ export function VenueManager() {
     }
     //listShows(title.venueName, title.authKey)
     /*<input type="text" className='height-50px' id="deleteShowBox" placeholder="Enter Show ID Here"/>*/
+    function loadRow (){
+        var listRow = document.getElementById("startRow")
+        //listRow.textContent = ''
+        for(let i= 0; i<title.row; i++){
+            let Option= document.createElement('option')
+            let currentRow = String.fromCharCode(65 + i)
+            Option.textContent= currentRow
+            listRow.appendChild(Option)
+        }
+    }
+    window.onload=loadRow()
     return (
         <body>
             <h1>Venue Manager Page For {title.venueName}</h1>
@@ -32,16 +43,74 @@ export function VenueManager() {
                     </div>
                 </div>
                 <div className="flex row row-wrap pad center">
+                <text>Show ID: </text>
                 <select id = "createBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
                     </select>
+                    <text>Section: </text>
                     <select id="enterBlockSection" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
                         <option className="section">Side Left</option>
                         <option className="section">Center</option>
                         <option className="section">Side Right</option>
                     </select>
                     <input type="text" className='height-50px' id="enterBlockPrice" placeholder="Enter Block Price"/>
-                    <input type="text" className='height-50px' id="startRow" placeholder="Start Row"/>
-                    <input type="text" className='height-50px' id="endRow" placeholder="End Row"/>
+                    <text>Start Row: </text>
+                    <select id="startRow" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"75px"}}>
+                        <option className="row">A</option>
+                        <option className="row">B</option>
+                        <option className="row">C</option>
+                        <option className="row">D</option>
+                        <option className="row">E</option>
+                        <option className="row">F</option>
+                        <option className="row">G</option>
+                        <option className="row">H</option>
+                        <option className="row">I</option>
+                        <option className="row">J</option>
+                        <option className="row">K</option>
+                        <option className="row">L</option>
+                        <option className="row">M</option>
+                        <option className="row">N</option>
+                        <option className="row">O</option>
+                        <option className="row">P</option>
+                        <option className="row">Q</option>
+                        <option className="row">R</option>
+                        <option className="row">S</option>
+                        <option className="row">T</option>
+                        <option className="row">U</option>
+                        <option className="row">V</option>
+                        <option className="row">W</option>
+                        <option className="row">X</option>
+                        <option className="row">Y</option>
+                        <option className="row">Z</option>
+                    </select>
+                    <text>End Row: </text>
+                    <select id="endRow" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"75px"}}>
+                        <option className="row">A</option>
+                        <option className="row">B</option>
+                        <option className="row">C</option>
+                        <option className="row">D</option>
+                        <option className="row">E</option>
+                        <option className="row">F</option>
+                        <option className="row">G</option>
+                        <option className="row">H</option>
+                        <option className="row">I</option>
+                        <option className="row">J</option>
+                        <option className="row">K</option>
+                        <option className="row">L</option>
+                        <option className="row">M</option>
+                        <option className="row">N</option>
+                        <option className="row">O</option>
+                        <option className="row">P</option>
+                        <option className="row">Q</option>
+                        <option className="row">R</option>
+                        <option className="row">S</option>
+                        <option className="row">T</option>
+                        <option className="row">U</option>
+                        <option className="row">V</option>
+                        <option className="row">W</option>
+                        <option className="row">X</option>
+                        <option className="row">Y</option>
+                        <option className="row">Z</option>
+                    </select>
                     <div className="flex column">
                     <button onClick={e => createBlock(title.authKey)}>Create Block</button>
                     </div>
