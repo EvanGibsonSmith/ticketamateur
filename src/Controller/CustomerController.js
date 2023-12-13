@@ -13,7 +13,7 @@ export function listActiveShows () {
                 let show = response.constants[i];
                 var nextShow = document.createElement('option');
 
-                if (show.soldOut==0) {
+                if (show.seatsSold==show.totalSeats) {
                     soldOutValue = "Seats Available"
                 }
                 else {
@@ -51,7 +51,8 @@ export function searchActiveShows() {
             activeShowsBox.appendChild(nextShow);
                 
         str += show.showName + " " + show.showTime + " " + show.showDate
-        if (show.soldOut==0) {
+        console.log(show.seatsSold + " " + show.totalSeats)
+        if (show.seatsSold==show.totalSeats) {
             str += "    Seats Available"
         }
         else {
@@ -90,6 +91,34 @@ export function availableSeats() {
     }
 }
 
+export function sortSeats() {
+    let selectElement = document.querySelector('#selectActiveShow');
+    let selectSeatSort = document.querySelector('#sortBySeats').value;
+    console.log("Sort By: " + selectSeatSort);
+
+    let index = selectElement.options.selectedIndex
+    let selectedShow = selectElement.options[index]
+    let selectedShowID = selectedShow.getAttribute("value")
+    console.log(selectedShowID)
+
+    let showsSelect = document.getElementById('seatsList');
+    showsSelect.textContent = '';
+
+    if (index!=-1) { // if something is actually selected
+        let payload = {"showID": selectedShowID, "sort": selectSeatSort}
+        
+        post('/showAvailableSeats', payload, response => {
+            for (let i in response.body) {
+                let seat = response.body[i]
+                console.log("Seat: " + seat)
+                let nextSeat = document.createElement('option');
+                nextSeat.textContent = "" + seat.sectionName + " " + seat.seatRow + " " + seat.seatColumn;
+                showsSelect.appendChild(nextSeat);
+            }
+        })
+    }
+}
+
 export function purchaseSeats() {
     let current_date = new Date()
     console.log(current_date)
@@ -103,8 +132,13 @@ export function purchaseSeats() {
             let column = seatInfo[2]
             // console.log("Section: " + section + ", Row: " + row + ", Column: " + column)
             let payload = {"showID": showID, "section": section, "row" : row, "column": column}
-            console.log(payload)
             post('/purchaseSeat', payload, response => {
+                if (response.statusCode==400) { // in this case somebody has already bought the ticket
+                    document.getElementById("didPurchaseSeat").textContent = "Seat Already Bought"
+                }
+                else {
+                    document.getElementById("didPurchaseSeat").textContent = "Success!"
+                }
                 console.log("Seat(s) Purchased: " + response.body + " " + section + row + column)
             })
         }
