@@ -110,9 +110,19 @@ export function sortSeats() {
             break;
         case "Price":
             sortedChoice = "TBD"
+            break;
+        case "Section":
+            sortedChoice = "sectionName"
+            break;
+        case "Row":
+            sortedChoice = "seatRow"
+            break;
+        default:
+            sortedChoice = "showID"
+            break;
     }
     if (index!=-1) { // if something is actually selected
-        let payload = {"showID": selectedShowID, "sortBy": selectSeatSort}
+        let payload = {"showID": selectedShowID, "sortBy": sortedChoice}
         
         post('/showAvailableSeats', payload, response => {
             for (let i in response.body) {
