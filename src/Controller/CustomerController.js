@@ -13,7 +13,7 @@ export function listActiveShows () {
                 let show = response.constants[i];
                 var nextShow = document.createElement('option');
 
-                if (show.soldOut==0) {
+                if (show.seatsSold==show.totalSeats) {
                     soldOutValue = "Seats Available"
                 }
                 else {
@@ -51,7 +51,8 @@ export function searchActiveShows() {
             activeShowsBox.appendChild(nextShow);
                 
         str += show.showName + " " + show.showTime + " " + show.showDate
-        if (show.soldOut==0) {
+        console.log(show.seatsSold + " " + show.totalSeats)
+        if (show.seatsSold==show.totalSeats) {
             str += "    Seats Available"
         }
         else {
@@ -102,8 +103,13 @@ export function purchaseSeats() {
             let column = seatInfo[2]
             // console.log("Section: " + section + ", Row: " + row + ", Column: " + column)
             let payload = {"showID": showID, "section": section, "row" : row, "column": column}
-            console.log(payload)
             post('/purchaseSeat', payload, response => {
+                if (response.statusCode==400) { // in this case somebody has already bought the ticket
+                    document.getElementById("didPurchaseSeat").textContent = "Seat Already Bought"
+                }
+                else {
+                    document.getElementById("didPurchaseSeat").textContent = "Success!"
+                }
                 console.log("Seat(s) Purchased: " + response.body + " " + section + row + column)
             })
         }
