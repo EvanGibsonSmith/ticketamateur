@@ -103,9 +103,16 @@ export function sortSeats() {
 
     let showsSelect = document.getElementById('seatsList');
     showsSelect.textContent = '';
-
+    let sortedChoice = ""
+    switch(selectSeatSort){
+        case "Default":
+            sortedChoice = "showID"
+            break;
+        case "Price":
+            sortedChoice = "Price"
+    }
     if (index!=-1) { // if something is actually selected
-        let payload = {"showID": selectedShowID, "sort": selectSeatSort}
+        let payload = {"showID": selectedShowID, "sortBy": selectSeatSort}
         
         post('/showAvailableSeats', payload, response => {
             for (let i in response.body) {
