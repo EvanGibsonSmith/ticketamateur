@@ -91,6 +91,7 @@ export function deleteShow(showID, authToken) {
     let payload = {"showID": showID, "authToken" : authToken} 
     console.log(payload)
     post('/deleteShowVenue', payload, response => {
+        document.getElementById("didShowDelete").textContent = "Press List Show to verify!"
         console.log(response)
     })
 }
@@ -190,6 +191,7 @@ export function deleteBlock(authKey){
             let payload = {"showID": showID, "blockID": blockID, "authToken" : authKey}
             console.log(payload)
             post('/deleteBlock', payload, response => {
+                document.getElementById("didBlockDelete").textContent = "Press List Blocks to verify!"
                 console.log(response)
             })
         }

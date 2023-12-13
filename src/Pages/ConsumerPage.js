@@ -13,10 +13,7 @@ export function Consumer() {
                     <input id="searchshowinput" type="text" style={{width: "400px"}} placeholder="Search Show"></input>
                     <button id='searchshow' style={{width: "150px"}} onClick={e => searchActiveShows()}>Search Show</button>
                     <div id="customerShowsList" style={{width: "500px", height: "600px", backgroundColor: "gainsboro", display: "block"}}>
-                        <p className="show-display">Test Show 1</p>
-                        <p className="show-display">Test Show 2</p>
-                        <p className="show-display">Test Show 3</p>
-                        <p className="show-display">Test Show 4</p>
+                        <p className="show-display">Press "List Shows" to view</p>
                     </div>
                 </div>
                 <div className="flex column justify-spaced align-center margin">
@@ -32,10 +29,7 @@ export function Consumer() {
                         <h3 className="margin-right"> Select Show </h3>
                         <div className="flex column align-center">
                             <select onChange={e => availableSeats()} id="selectActiveShow" style={{fontSize :"20px", backgroundColor: "gainsboro"}}>
-                                <option className="show-display">Test Show 1</option>
-                                <option className="show-display">Test Show 2</option>
-                                <option className="show-display">Test Show 3</option>
-                                <option className="show-display">Test Show 4</option>
+                                <option className="show-display">Press "List Shows" to view</option>
                             </select>
                         </div>
                     </div>
@@ -46,10 +40,7 @@ export function Consumer() {
                         <option className="sortSeats">Row</option>
                     </select>                   
                     <select multiple id="seatsList" className="flex column align-left scroll margin-children" style={{width: "500px", height: "600px", backgroundColor: "gainsboro"}}>
-                        <option className="seat">A1</option>
-                        <option className="seat">A2</option>
-                        <option className="seat">A3</option>
-                        <option className="seat">A4</option>
+                        <option className="seat">Select a show from the dropdown or press "Availabe Seats" to view available seats.</option>
                     </select>
                 </div>
             </div>

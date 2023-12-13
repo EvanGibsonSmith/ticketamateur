@@ -120,6 +120,7 @@ export function VenueManager() {
                     </select>
                     <div className="flex column">
                     <button onClick={e => deleteShow(document.getElementById("deleteShowSelect").value, title.authKey)}>Delete Show</button>
+                    <text id="didShowDelete"></text>
                     </div>
                 </div>
                 
@@ -140,7 +141,7 @@ export function VenueManager() {
                                 </div>
                             </div>
                         <div id = "listShowsBoxVM"className="flex column scroll list2 pad"style={{width:"700px",backgroundColor:"#f8f8f8"}}>
-                            <text>No Shows</text>
+                            <text>Press "List Shows" to view</text>
                         </div>
                     </div>
                     <div className="flex column">
@@ -152,10 +153,11 @@ export function VenueManager() {
                             </div>
                         </div>
                         <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad" style={{width:"700px",backgroundColor:"#f8f8f8"}}>
-                            <option>No Blocks</option>
+                            <option>Press "List Block" to view</option>
                         </select> 
                         <div className="flex column">
                             <button onClick={e=> deleteBlock(title.authKey)}>Delete Block </button>
+                            <text id="didBlockDelete"></text>
                         </div>
                     </div>
                 </div>

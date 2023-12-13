@@ -21,8 +21,8 @@ export function Admin() {
                         <div className="flex row pad center">
                             <button onClick={e => listVenues(AdminToken) /* TODO MAKE THIS PASS IN AUTH*/}>List Venues</button>
                         </div>
-                        <div id = "listVenuesBox" className="flex column scroll list1 pad" style={{height: "300px", width: "600px"}}>
-                            <text>No Venues</text>
+                        <div id = "listVenuesBox" className="flex column scroll list1 pad" style={{height: "300px", width: "600px", backgroundColor:"#f8f8f8"}}>
+                            <text>Press "List Venues" to view.</text>
                         </div>
                     </div>
                     <div className="flex column">
@@ -30,8 +30,8 @@ export function Admin() {
                             <input type="text" id="reportBox" placeholder="Enter Venue Name Here"/>
                             <button onClick={e => showReport(document.getElementById("reportBox").value, AdminToken) }>Show Report</button>
                         </div>
-                        <div id = "listShowBox" className="flex column scroll list2 pad" style={{height: "300px", width: "600px"}}>
-                            <text>No Shows</text>
+                        <div id = "listShowBox" className="flex column scroll list2 pad" style={{height: "300px", width: "600px", backgroundColor:"#f8f8f8"}}>
+                            <text>Choose a venue to view.</text>
                         </div>
                     </div>
                     <button onClick={e => navigate("/")}>Return to Authenticate Page</button>
