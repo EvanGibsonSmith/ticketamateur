@@ -207,7 +207,7 @@ export function listBlocks(showID, authKey) {
         blocksContainer.textContent = ''
         for (let b of response.constant) {
             let nextBlockElement = document.createElement('option');
-            nextBlockElement.textContent =  "Show ID Number: "+ b.showID + ", Block ID Number: " + b.blockID + ", Section: "+ b.showSection + ", Price: " + b.price + ", Start Row: " + b.startRow + ", endRow: " + b.endRow 
+            nextBlockElement.textContent =  "Show ID Number: "+ b.showID + ", Block ID Number: " + b.blockID + ", Section: "+ b.showSection + ", Price: " + b.price + ", Start Row: " + b.startRow + ", End Row: " + b.endRow 
             blocksContainer.appendChild(nextBlockElement)
         }
     })
