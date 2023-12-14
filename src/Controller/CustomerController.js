@@ -109,13 +109,13 @@ export function sortSeats() {
             sortedChoice = "showID"
             break;
         case "Price":
-            sortedChoice = "seatPrice"
+            sortedChoice = "seatPrice desc"
             break;
         case "Section":
             sortedChoice = "sectionName"
             break;
         case "Row":
-            sortedChoice = "seatRow"
+            sortedChoice = "seatRow asc"
             break;
         default:
             sortedChoice = "showID"
