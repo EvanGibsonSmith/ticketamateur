@@ -84,7 +84,7 @@ export function availableSeats() {
                 let seat = response.body[i]
                 console.log("Seat: " + seat)
                 let nextSeat = document.createElement('option');
-                nextSeat.textContent = "" + seat.sectionName + " " + seat.seatRow + " " + seat.seatColumn;
+                nextSeat.textContent = "Section: " + seat.sectionName + ", Row: " + seat.seatRow + ", Column: " + seat.seatColumn + ", Ticket: $" + seat.seatPrice;
                 showsSelect.appendChild(nextSeat);
             }
         })
@@ -109,7 +109,7 @@ export function sortSeats() {
             sortedChoice = "showID"
             break;
         case "Price":
-            sortedChoice = "TBD"
+            sortedChoice = "seatPrice"
             break;
         case "Section":
             sortedChoice = "sectionName"
@@ -130,7 +130,7 @@ export function sortSeats() {
                 let seat = response.body[i]
                 console.log("Seat: " + seat)
                 let nextSeat = document.createElement('option');
-                nextSeat.textContent = "" + seat.sectionName + " " + seat.seatRow + " " + seat.seatColumn;
+                nextSeat.textContent = "Section: " + seat.sectionName + ", Row: " + seat.seatRow + ", Column: " + seat.seatColumn + ", Ticket: $" + seat.seatPrice;
                 showsSelect.appendChild(nextSeat);
             }
         })
