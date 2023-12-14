@@ -132,33 +132,34 @@ export function VenueManager() {
                     </div>
                 </div>      
                 
-                <div className="flex row spaced pad">
-                    <div className="flex column">
-                        <div className="flex row pad center">
-                            <div className="flex row">
-                                <button onClick={e => listShows(title.venueName, title.authKey)}>List Shows</button>
-                                <button onClick={e => showReport(title.venueName, title.authKey)}>Show Report</button>
-                                </div>
+                
+                <div className="flex column">
+                    <div className="flex row pad center">
+                        <div className="flex row">
+                            <button onClick={e => listShows(title.venueName, title.authKey)}>List Shows</button>
+                            <button onClick={e => showReport(title.venueName, title.authKey)}>Show Report</button>
                             </div>
-                        <div id = "listShowsBoxVM"className="flex column scroll list2 pad"style={{width:"700px",backgroundColor:"#f8f8f8"}}>
-                            <text>Press "List Shows" to view</text>
                         </div>
+                    <div id = "listShowsBoxVM"className="flex column scroll list2 pad"style={{width:"75%",backgroundColor:"#f8f8f8"}}>
+                        <text>Press "List Shows" to view</text>
                     </div>
-                    <div className="flex column">
-                        <div className="flex row pad">
-                            <select id = "listBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
-                            </select>
-                            <div className="flex column">
-                                <button onClick={e => listBlocks(document.getElementById("listBlockSelect").value, title.authKey)}>List Blocks</button>
-                            </div>
-                        </div>
-                        <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad" style={{width:"700px",backgroundColor:"#f8f8f8", overflow:"scroll"}}>
-                            <option>Press "List Block" to view</option>
-                        </select> 
-                        <div className="flex column">
-                            <button onClick={e=> deleteBlock(title.authKey)}>Delete Block </button>
+                </div>
+                <div className="flex column">
+                    <div className="flex row pad">
+                        <select id = "listBlockSelect" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
+                        </select>
+                        <div className="flex row">
+                            <button onClick={e => listBlocks(document.getElementById("listBlockSelect").value, title.authKey)}>List Blocks</button>
+                            <button onClick={e=> deleteBlock(title.authKey) }style ={{width: "50%"}}>Delete Block </button>
                             <text id="didBlockDelete"></text>
                         </div>
+                    </div>
+                    
+                    <div className="flex column">
+                        <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad" style={{width:"75%",backgroundColor:"#f8f8f8", overflow:"scroll"}}>
+                        <option>Press "List Block" to view</option>
+                        </select> 
+                        
                     </div>
                 </div>
                 
