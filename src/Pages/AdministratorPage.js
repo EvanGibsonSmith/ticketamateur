@@ -19,7 +19,7 @@ export function Admin() {
                 </div>
             <div className="flex column">
                         <div className="flex row pad center">
-                            <button onClick={e => listVenues(AdminToken) /* TODO MAKE THIS PASS IN AUTH*/}>List Venues</button>
+                            <button onClick={e => listVenues(AdminToken)}>List Venues</button>
                         </div>
                         <div id = "listVenuesBox" className="flex column scroll list1 pad" style={{height: "300px", width: "600px", backgroundColor:"#f8f8f8"}}>
                             <text>Press "List Venues" to view.</text>
