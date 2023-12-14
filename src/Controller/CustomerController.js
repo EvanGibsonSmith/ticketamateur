@@ -154,9 +154,9 @@ export function purchaseSeats() {
             let section = seatInfo[1].replace(",", "")
             let row = seatInfo[3].replace(",", "")
             let column = seatInfo[5].replace(",", "")
-            purchaseCost = purchaseCost + seats[i].seatPrice
-            console.log("Section: " + section + " Row: " + row + " Column: " + column)
-            let payload = {"showID": showID, "section": section, "row" : row, "column": column, "date": year + "-" + month + "-" + day, "time": hour + ":" + minute, "cost": purchaseCost}
+            let seatPrice = seatInfo[7].replace("$", "")
+            console.log("Section: " + section + " Row: " + row + " Column: " + column + " Price: " + seatPrice)
+            let payload = {"showID": showID, "section": section, "row" : row, "column": column, "date": year + "-" + month + "-" + day, "time": hour + ":" + minute, "cost": seatPrice}
             post('/purchaseSeat', payload, response => {
                 if (response.statusCode==400) { // in this case somebody has already bought the ticket
                     document.getElementById("didPurchaseSeat").textContent = "Seat Already Bought"
