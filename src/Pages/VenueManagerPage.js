@@ -48,9 +48,9 @@ export function VenueManager() {
                     </select>
                     <text>Section: </text>
                     <select id="enterBlockSection" className="flex column align-left row scroll margin-children" style={{fontSize :"25px",width:"200px"}}>
-                        <option className="section">Side Left</option>
+                        <option className="section">Left</option>
                         <option className="section">Center</option>
-                        <option className="section">Side Right</option>
+                        <option className="section">Right</option>
                     </select>
                     <input type="text" className='height-50px' id="enterBlockPrice" placeholder="Enter Block Price"/>
                     <text>Start Row: </text>
