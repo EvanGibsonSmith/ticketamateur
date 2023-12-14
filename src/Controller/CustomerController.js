@@ -137,6 +137,83 @@ export function sortSeats() {
     }
 }
 
+// export function purchaseSeats() {
+//     let current_date = new Date()
+//     let month = current_date.getMonth() +1
+//     let day = current_date.getDate()
+//     let year = current_date.getFullYear()
+//     let hour = current_date.getHours()
+//     let minute = current_date.getMinutes()
+//     console.log(year + "-" + month + "-" + day)
+//     let showID = document.getElementById("selectActiveShow").value
+//     let seats = document.getElementById("seatsList").options
+//     let purchaseCost = 0
+//     for(let i = 0; i < seats.length; i++){
+//         if(seats[i].selected == true){
+//             let seatInfo = seats[i].value.split(" ")
+//             let section = seatInfo[1].replace(",", "")
+//             let row = seatInfo[3].replace(",", "")
+//             let column = seatInfo[5].replace(",", "")
+//             let seatPrice = seatInfo[7].replace("$", "")
+//             console.log("THE SEAT PRICE" + seatInfo[7])
+//             console.log("Section: " + section + " Row: " + row + " Column: " + column + " Price: " + seatPrice)
+//             let payload = {"showID": showID, "section": section, "row" : row, "column": column, "date": year + "-" + month + "-" + day, "time": hour + ":" + minute, "cost": seatPrice}
+//             post('/purchaseSeat', payload, response => {
+//                 if (response.statusCode==400) { // in this case somebody has already bought the ticket
+//                     document.getElementById("didPurchaseSeat").textContent = "Seat Already Bought"
+//                 }
+//                 else if(response.statusCode == 402){
+//                     document.getElementById("didPurchaseSeat").textContent = "Unavailable: Show start time has passed." 
+//                 }
+//                 else {
+//                     document.getElementById("didPurchaseSeat").textContent = "Success!"
+//                 }
+//                 console.log("Seat(s) Purchased: " + response.body + " " + section + row + column)
+//             })
+//         }
+//     }
+// }
+
+function continue_if_needed(i) {
+    let current_date = new Date()
+    let month = current_date.getMonth() +1
+    let day = current_date.getDate()
+    let year = current_date.getFullYear()
+    let hour = current_date.getHours()
+    let minute = current_date.getMinutes()
+    console.log(year + "-" + month + "-" + day)
+    let showID = document.getElementById("selectActiveShow").value
+    let seats = document.getElementById("seatsList").options
+    for(;i < seats.length; i++){
+        if(seats[i].selected == true){
+            let seatInfo = seats[i].value.split(" ")
+            let section = seatInfo[1].replace(",", "")
+            let row = seatInfo[3].replace(",", "")
+            let column = seatInfo[5].replace(",", "")
+            let seatPrice = seatInfo[7].replace("$", "")
+            console.log("THE SEAT PRICE" + seatInfo[7])
+            console.log("Section: " + section + " Row: " + row + " Column: " + column + " Price: " + seatPrice)
+            let payload = {"showID": showID, "section": section, "row" : row, "column": column, "date": year + "-" + month + "-" + day, "time": hour + ":" + minute, "cost": seatPrice}
+            post('/purchaseSeat', payload, response => {
+                if (response.statusCode==400) { // in this case somebody has already bought the ticket
+                    document.getElementById("didPurchaseSeat").textContent = "Seat Already Bought"
+                }
+                else if(response.statusCode == 402){
+                    document.getElementById("didPurchaseSeat").textContent = "Unavailable: Show start time has passed." 
+                }
+                else {
+                    document.getElementById("didPurchaseSeat").textContent = "Success!"
+                }
+                console.log("Seat(s) Purchased: " + response.body + " " + section + row + column)
+
+                // continue
+                continue_if_needed(i+1)
+            })
+            break;
+        }
+    }
+}
+
 export function purchaseSeats() {
     let current_date = new Date()
     let month = current_date.getMonth() +1
@@ -169,7 +246,12 @@ export function purchaseSeats() {
                     document.getElementById("didPurchaseSeat").textContent = "Success!"
                 }
                 console.log("Seat(s) Purchased: " + response.body + " " + section + row + column)
+
+                // continue
+                continue_if_needed(i+1)
             })
+
+            break;  // DONE and handing off to the handle
         }
     }
 }
