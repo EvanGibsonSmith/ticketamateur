@@ -166,14 +166,14 @@ export function createBlock(authKey) {
 
     console.log("Auth Key: " + authKey)
     let payload = {"authToken": authKey,"showID": showID, "section": section, "price" : price, "startRow" : startRow, "endRow" : endRow} 
-
+    console.log()
     post('/createBlock', payload, response => {
         console.log(response)
         var listBlockSelecttBox = document.getElementById("listBlocksBoxVM"); // FIXME selecttBox?
         listBlockSelecttBox.textContent = ''
          for (let c of response.constant) {
             let deleteOption = document.createElement('option');
-            deleteOption.textContent = "Show ID Number: "+ c.showID + ", Block ID Number: " + c.blockID + ", Section: "+ c.section + ", Price: " + c.price + ", Start Row: " + c.startRow + ", endRow: " + c.endRow 
+            deleteOption.textContent = "Show ID Number: "+ c.showID + ", Block ID Number: " + c.blockID + ", Section: "+ c.showSection + ", Price: " + c.price + ", Start Row: " + c.startRow + ", endRow: " + c.endRow 
             deleteOption.value = c.showID + " " + c.blockID
             listBlockSelecttBox.appendChild(deleteOption);
          }
