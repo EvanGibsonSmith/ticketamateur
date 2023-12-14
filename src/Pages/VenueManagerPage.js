@@ -152,7 +152,7 @@ export function VenueManager() {
                                 <button onClick={e => listBlocks(document.getElementById("listBlockSelect").value, title.authKey)}>List Blocks</button>
                             </div>
                         </div>
-                        <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad" style={{width:"700px",backgroundColor:"#f8f8f8"}}>
+                        <select multiple id = "listBlocksBoxVM" className="flex column scroll list2 pad" style={{width:"700px",backgroundColor:"#f8f8f8", overflow:"scroll"}}>
                             <option>Press "List Block" to view</option>
                         </select> 
                         <div className="flex column">
