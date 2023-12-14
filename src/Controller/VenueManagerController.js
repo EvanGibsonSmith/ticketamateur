@@ -55,7 +55,7 @@ export function createShow(nameVenue, numberRows, left, center, right) {
             listBlockSelecttBox.textContent = ''
             createBlockSelectBox.textContent = ''
              for (let c of response.constant) {
-                str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.showPrice + '<br>'
+                str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.showPrice + ", Revenue: " + c.revenue + '<br>'
                 var deleteOption = document.createElement('option');
                 var activateOption = document.createElement('option');
                 var deleteBlockOption = document.createElement('option');
@@ -111,7 +111,8 @@ export function listShows(venueName, authToken) {
         listBlockSelecttBox.textContent = ''
         createBlockSelectBox.textContent = ''
          for (let c of response.constants) {
-            str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.showPrice + '<br>'
+            let seatsRemaining = c.totalSeats - c.seatsSold
+            str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate + ", Price: " + c.showPrice + ", Revenue: " + c.revenue + ", Total Seats: " + c.totalSeats + ", Remaining Seats: " + seatsRemaining + '<br>'
             var deleteOption = document.createElement('option');
             var activateOption = document.createElement('option');
             var deleteBlockOption = document.createElement('option');
@@ -207,7 +208,7 @@ export function listBlocks(showID, authKey) {
         blocksContainer.textContent = ''
         for (let b of response.constant) {
             let nextBlockElement = document.createElement('option');
-            nextBlockElement.textContent =  "Show ID Number: "+ b.showID + ", Block ID Number: " + b.blockID + ", Section: "+ b.showSection + ", Price: " + b.price + ", Start Row: " + b.startRow + ", End Row: " + b.endRow 
+            nextBlockElement.textContent =  "Show ID Number: "+ b.showID + ", Block ID Number: " + b.blockID + ", Section: "+ b.sectionName + ", Price: " + b.price + ", Total Seats In Block: " + b.totalSeats + ", Purchased Seats In Block: " + b.purchasedSeats + ", Remaining Seats In Block: " + b.remainingSeats + ", Start Row: " + b.startRow + ", endRow: " + b.endRow
             blocksContainer.appendChild(nextBlockElement)
         }
     })
