@@ -10,14 +10,13 @@ export function Consumer() {
             <h1>This is the consumer page</h1>
             <div className="flex row align-flex-start">
                 <div className="flex column pad align-center">
-                    <input id="searchshowinput" type="text" style={{width: "400px"}} placeholder="Search Show"></input>
-                    <button id='searchshow' style={{width: "150px"}} onClick={e => searchActiveShows()}>Search Show</button>
+                    <input id="searchshowinput" type="text" style={{width: "400px"}} placeholder="Type here to Search Show and Venue"></input>
+                    <button id='searchshow' style={{width: "150px"}} onClick={e => searchActiveShows()}>Search Show/Venue</button>
                     <div id="customerShowsList" style={{width: "500px", height: "600px", backgroundColor: "gainsboro", display: "block"}}>
                         <p className="show-display">Press "List Shows" to view</p>
                     </div>
                 </div>
                 <div className="flex column justify-spaced align-center margin">
-                    <text id="total-price">Total Price: {totalPrice}</text>
                     <button className="right-side-buttons" onClick={e => availableSeats()}>Available Seats</button>
                     <button className="right-side-buttons" onClick={e => purchaseSeats()}>Purchase Seats</button>
                     <text id="didPurchaseSeat"></text>
