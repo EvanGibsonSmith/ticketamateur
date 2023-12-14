@@ -130,7 +130,7 @@ export function sortSeats() {
                 let seat = response.body[i]
                 console.log("Seat: " + seat)
                 let nextSeat = document.createElement('option');
-                nextSeat.textContent = "Section: " + seat.sectionName + ", Row: " + seat.seatRow + ", Column: " + seat.seatColumn + ", Ticket: $" + seat.seatPrice;
+                nextSeat.textContent = "Section: " + seat.sectionName + " , Row: " + seat.seatRow + " , Column: " + seat.seatColumn + " , Ticket: $" + seat.seatPrice;
                 showsSelect.appendChild(nextSeat);
             }
         })
@@ -151,11 +151,11 @@ export function purchaseSeats() {
     for(let i = 0; i < seats.length; i++){
         if(seats[i].selected == true){
             let seatInfo = seats[i].value.split(" ")
-            let section = seatInfo[0]
-            let row = seatInfo[1]
-            let column = seatInfo[2]
+            let section = seatInfo[1].replace(",", "")
+            let row = seatInfo[3].replace(",", "")
+            let column = seatInfo[5].replace(",", "")
             purchaseCost = purchaseCost + seats[i].seatPrice
-            // console.log("Section: " + section + ", Row: " + row + ", Column: " + column)
+            console.log("Section: " + section + " Row: " + row + " Column: " + column)
             let payload = {"showID": showID, "section": section, "row" : row, "column": column, "date": year + "-" + month + "-" + day, "time": hour + ":" + minute, "cost": purchaseCost}
             post('/purchaseSeat', payload, response => {
                 if (response.statusCode==400) { // in this case somebody has already bought the ticket
