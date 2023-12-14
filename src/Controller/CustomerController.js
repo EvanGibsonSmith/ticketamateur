@@ -130,7 +130,7 @@ export function sortSeats() {
                 let seat = response.body[i]
                 console.log("Seat: " + seat)
                 let nextSeat = document.createElement('option');
-                nextSeat.textContent = "Section: " + seat.sectionName + " , Row: " + seat.seatRow + " , Column: " + seat.seatColumn + " , Ticket: $" + seat.seatPrice;
+                nextSeat.textContent = "Section: " + seat.sectionName + ", Row: " + seat.seatRow + ", Column: " + seat.seatColumn + ", Ticket: $" + seat.seatPrice;
                 showsSelect.appendChild(nextSeat);
             }
         })
@@ -155,6 +155,7 @@ export function purchaseSeats() {
             let row = seatInfo[3].replace(",", "")
             let column = seatInfo[5].replace(",", "")
             let seatPrice = seatInfo[7].replace("$", "")
+            console.log("THE SEAT PRICE" + seatInfo[7])
             console.log("Section: " + section + " Row: " + row + " Column: " + column + " Price: " + seatPrice)
             let payload = {"showID": showID, "section": section, "row" : row, "column": column, "date": year + "-" + month + "-" + day, "time": hour + ":" + minute, "cost": seatPrice}
             post('/purchaseSeat', payload, response => {
