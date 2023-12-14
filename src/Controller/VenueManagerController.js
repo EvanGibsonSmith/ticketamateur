@@ -205,7 +205,7 @@ export function listBlocks(showID, authKey) {
     post('/listBlocks', payload, response => {
         console.log(response)
         blocksContainer.textContent = ''
-        for (let b of response.constant) {// FIXME I use constant (singular, not constants) because that is consistent with createBlock
+        for (let b of response.constant) {
             let nextBlockElement = document.createElement('option');
             nextBlockElement.textContent =  "Show ID Number: "+ b.showID + ", Block ID Number: " + b.blockID + ", Section: "+ b.showSection + ", Price: " + b.price + ", Start Row: " + b.startRow + ", endRow: " + b.endRow 
             blocksContainer.appendChild(nextBlockElement)
