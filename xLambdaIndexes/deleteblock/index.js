@@ -38,24 +38,80 @@ exports.handler = async (event) => {
   
   let isShowActive = (id) => {
     return new Promise((resolve, reject) => {
-          pool.query("SELECT * FROM Shows WHERE showID=? AND activated=0", [id], (error, rows) => {
+          pool.query("SELECT * FROM Shows WHERE showID=? AND activated!=1", [id], (error, rows) => {
+              console.log("THEID" +id)
               if (error) { return reject(error); }
-              if ((rows) && (rows.affectedRows == 1)) {
+              if ((rows) && (rows.length == 1)) {
                   return resolve(true);
               } else {
+                  console.log(rows)
                   return resolve(false);
               }
           });
     });
 }
+let getShowData = () => {
+    return new Promise((resolve, reject) => {
+          pool.query("SELECT showPrice FROM Shows WHERE showID=? AND activated!=1", [event.showID], (error, rows) => {
+              if (error) { return reject(error); }
+              if ((rows) && (rows.length == 1)) {
+                  return resolve(rows);
+              } else {
+                  console.log(rows)
+                  return resolve(false);
+              }
+          });
+    });
+}
+let getBlockData = () => {
+    return new Promise((resolve, reject) => {
+          pool.query("SELECT * FROM Blocks WHERE blockID = ?", [event.blockID], (error, rows) => {
+              if (error) { return reject(error); }
+              if ((rows) && (rows.length == 1)) {
+                  return resolve(rows);
+              } else {
+                  console.log(rows)
+                  return resolve(false);
+              }
+          });
+    });
+}
+let updateSeats =(bdata,sdata)=>{
+            
+            
+            let defaultPrice = sdata[0].showPrice
+            console.log("PRICE" +defaultPrice)
+            let sRow = bdata[0].startRow
+            let eRow = bdata[0].endRow
+            let sectionN = bdata[0].showSection
+          return new Promise((resolve, reject) => {
+            pool.query("UPDATE Seats SET seatPrice = ? WHERE showID = ? AND sectionName =? AND seatRow>=? AND seatRow<=?", [defaultPrice,event.showID,sectionN, sRow,eRow], (error, rows) => {
+                if (error) { return reject(error); }
+                if ((rows) && (rows.affectedRows != 0)) {
+                        return resolve(true);
+                    } else {
+                        return resolve(false);
+                }
+                });
+            });
+        
+          
+      }
+  let result = false
   let response = false
   let authed = await isVenueManager(event.authToken)
   let active = await isShowActive(event.showID)
+  let showData = await getShowData()
+  let blockData = await getBlockData()
+  console.log(showData[0])
+  console.log(blockData[0])
   if(authed){
     if(active){
+        let updated = await updateSeats(blockData,showData )
         result = await deleteBlock(event.blockID)
     }
     if(result){
+        
         response = {
         statusCode: 200,
         

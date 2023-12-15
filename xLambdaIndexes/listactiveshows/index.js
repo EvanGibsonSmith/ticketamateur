@@ -12,7 +12,7 @@ exports.handler = async (event) => {
   });
   let listActiveShows = () => {
       return new Promise((resolve, reject) => {
-          pool.query("SELECT * FROM Shows where activated = ?", [1], (error, rows) => {
+          pool.query("SELECT * FROM Shows where activated = ? ORDER BY showDate, showTime", [1], (error, rows) => {
             if (error) { return reject(error); }
             return resolve(rows);
         })
@@ -22,7 +22,7 @@ exports.handler = async (event) => {
     const all_shows = await listActiveShows()
     response = {
         statusCode: 200,
-        constants: all_shows,
+        constants: all_shows
     } 
   
   

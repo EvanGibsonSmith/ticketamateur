@@ -24,19 +24,77 @@ exports.handler = async (event) => {
         });
     });
   }
+  let getSeatPurchased =(section, srow,erow,showID)=> {
+    return new Promise((resolve, reject) => {
+          pool.query("SELECT Count(seatBought) as seatSold FROM Seats WHERE showID = ? AND sectionName =? AND seatRow>=? AND seatRow<=? AND seatBought=1 GROUP BY seatBought ", [showID,section, srow,erow], (error, rows) => {
+              if (error) { return reject(error); }
+              if ((rows) && (rows.length != 0)) {
+                  console.log(rows)
+                  return resolve(rows);
+              } else {
+                  return resolve(false);
+              }
+          });
+    });
+  }
+  let getSeatTotal =(section, srow,erow,showID)=> {
+    return new Promise((resolve, reject) => {
+          pool.query("SELECT Count(*) as seatTotal FROM Seats WHERE showID = ? AND sectionName =? AND seatRow>=? AND seatRow<=?", [showID,section, srow,erow], (error, rows) => {
+              if (error) { return reject(error); }
+              if ((rows) && (rows.length != 0)) {
+                  return resolve(rows);
+              } else {
+                  console.log(rows)
+                  return resolve(false);
+              }
+          });
+    });
+  }
+  let getBlocksData = () =>{
+     return new Promise((resolve, reject) => {
+          pool.query("SELECT * from Blocks WHERE showID = ?", [event.showID], (error, rows) => {
+              if (error) { return reject(error); }
+              if ((rows) && (rows.length != 0)) {
+                  return resolve(rows);
+              } else {
+                  console.log(rows)
+                  return resolve(false);
+              }
+          });
+    });
+    
+  }
+  
+  
   let response = undefined
   let authed = await isVenueManager(event.authToken)
   if(authed){
-      let getBlocks = (showID) => {
-        return new Promise((resolve, reject) => {
-            pool.query("SELECT * FROM Blocks WHERE showID=?", [showID], (error, rows) => {
-                if (error) { return reject(error); }
-                return resolve(rows);
-            })
-        })
+      let blockData = await getBlocksData(event.showID)
+      console.log(blockData)
+      let blocks = []
+      console.log("RUNNING")
+      for(let i = 0; i< blockData.length ; i++){
+        console.log("RUNNING")
+        let sRow = blockData[i].startRow
+        let eRow = blockData[i].endRow
+        let section = blockData[i].showSection
+        let showID = blockData[i].showID
+        let totalSeats = await getSeatTotal(section,sRow,eRow,showID) 
+        let totalSeat = totalSeats[0].seatTotal
+        let price = blockData[i].price
+        let blockID = blockData[i].blockID
+        let purchasedSeats = await getSeatPurchased(section,sRow,eRow,showID)
+        console.log(purchasedSeats)
+        let purchasedSeat = 0
+        if(purchasedSeats){
+           purchasedSeat = purchasedSeats[0].seatSold
+        }
+        let seatsLeft =totalSeat -purchasedSeat
+        let pay = {"showID": showID, "sectionName":section, "startRow":sRow, "endRow":eRow, "purchasedSeats":purchasedSeat, "totalSeats": totalSeat, "price":price, "blockID":blockID, "remainingSeats":seatsLeft}
+        //console.log(pay)
+        blocks.push(pay)
       }
       
-      let blocks = await getBlocks(event.showID)
       response = {
         statusCode: 200,
         constant: blocks

@@ -11,9 +11,9 @@ exports.handler = async (event) => {
       password: db_access.config.password,
       database: db_access.config.database
   });
-  let isVenueManager = (auth) => {
+  let isVenueManager = () => {
     return new Promise((resolve, reject) => {
-        pool.query("SELECT * FROM Venues WHERE authKey=?", [auth], (error, rows) => {
+        pool.query("SELECT * FROM Venues WHERE authKey=?", [event.authToken], (error, rows) => {
             if (error) { return reject(error); }
             console.log(rows)
             if ((rows) && (rows.length == 1)) {
@@ -25,7 +25,7 @@ exports.handler = async (event) => {
     });
   }
   let response = undefined
-  let authed = await isVenueManager(event.authToken)
+  let authed = await isVenueManager()
   if(authed){
       let createBlock = (showID, section, price, startRow, endRow) => {
         return new Promise((resolve, reject) => {
@@ -47,9 +47,22 @@ exports.handler = async (event) => {
             })
         })
       }
-      
+      let updateSeats =()=>{
+          return new Promise((resolve, reject) => {
+            pool.query("UPDATE Seats SET seatPrice =? WHERE showID = ? AND sectionName =? AND seatRow>=? AND seatRow<=?", [event.price,event.showID,event.section, event.startRow,event.endRow], (error, rows) => {
+                if (error) { return reject(error); }
+                if ((rows) && (rows.affectedRows != 0)) {
+                    return resolve(true);
+                } else {
+                    return resolve(false);
+                }
+            });
+        });
+          
+      }
       let add_result = await createBlock(event.showID,event.section, event.price, event.startRow, event.endRow)
       let blocks = await getBlocks(event.showID)
+      let updatedSeatPrices = await updateSeats()
       response = {
         statusCode: 200,
         constant: blocks
@@ -58,7 +71,7 @@ exports.handler = async (event) => {
       response = {
         statusCode: 400,
         
-        success: false
+        success: authed
       };
   }
   pool.end();   // done with DB

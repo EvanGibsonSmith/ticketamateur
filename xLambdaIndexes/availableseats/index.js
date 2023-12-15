@@ -12,12 +12,12 @@ exports.handler = async (event) => {
       database: db_access.config.database
   });
   
-let getAvailableSeats = (showIDs) => {
+let getAvailableSeats = () => {
     return new Promise((resolve, reject) => {
-        pool.query("(SELECT * FROM Seats WHERE ((showID IN ?) AND (seatBought=0)))", [showIDs], (error, rows) => {
+        pool.query("SELECT * FROM Seats WHERE showID = ? AND seatBought=0 ORDER BY "+ event.sortBy, [event.showID], (error, rows) => {
             if (error) { return reject(error); }
             console.log(rows)
-            if ((rows) && (rows.length == 1)) {
+            if ((rows) && (rows.length != 0)) {
                 return resolve(rows); 
             } else {
                 return resolve(false);
@@ -26,14 +26,14 @@ let getAvailableSeats = (showIDs) => {
     });
 }
   
-let response = undefined
+//let response = undefined
 const seats = await getAvailableSeats(event.selectedShows);
 
 // TODO generate body for the response
-response = {
+let response = {
 statusCode: 200,
 
-body: {"seats": seats}
+body: seats
 }
 
   pool.end();   // done with DB

@@ -10,21 +10,19 @@ exports.handler = async (event) => {
       password: db_access.config.password,
       database: db_access.config.database
   });
-  
-  let isAdmin = () => {
-    return new Promise((resolve, reject) => {
-        pool.query("SELECT * FROM Admins WHERE auth=?", [event.authToken], (error, rows) => {
-            if (error) { return reject(error); }
-            console.log(rows)
-            if ((rows) && (rows.length == 1)) {
-                return resolve(true); 
-            } else {
-                return resolve(false);
-            }
-        });
-    });
-  }
-  
+  let isVenueManager = () => {
+      return new Promise((resolve, reject) => {
+          pool.query("SELECT * FROM Venues WHERE authKey=?", [event.authToken], (error, rows) => {
+              if (error) { return reject(error); }
+              console.log(rows)
+              if ((rows) && (rows.length == 1)) {
+                  return resolve(true); 
+              } else {
+                  return resolve(false);
+              }
+          });
+      });
+}
   let ListShowReport = () => {
       return new Promise((resolve, reject) => {
           pool.query("SELECT * FROM Shows WHERE venueName =?", [event.nameVenue], (error, rows) => {
@@ -33,22 +31,20 @@ exports.handler = async (event) => {
         })
       })
   }
-  let response = undefined
+  let response =undefined
   const showData = await ListShowReport()
-  const admin = await isAdmin()
-  if(admin){
-    response = {
+  let manager = await isVenueManager()
+  if(manager){
+   response = {
     statusCode: 200,
     constants: showData
   }
   }else{
     response = {
-    statusCode: 200,
-    constants: [false]
-    }
-    
+    statusCode: 400,
+    error:"NOT A MANAGER"
   }
-  
+  }
   pool.end()     // close DB connections
 
   return response;

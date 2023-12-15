@@ -13,13 +13,14 @@ exports.handler = async (event) => {
   
   let SearchShows = () => {
       return new Promise((resolve, reject) => {
-          pool.query("SELECT * FROM Shows WHERE ((LOWER(venueName) LIKE '%" + event.search + "%') AND (activated=1))", [], (error, rows) => {
+          pool.query("SELECT * FROM Shows WHERE (((LOWER(showTime) LIKE '%" + event.search + "%')OR(LOWER(showDate) LIKE '%" + event.search + "%')OR(LOWER(showName) LIKE '%" + event.search + "%')OR(LOWER(venueName) LIKE '%" + event.search + "%')) AND (activated=1))ORDER BY showDate, showTime", [], (error, rows) => {
             if (error) { return reject(error); }
             return resolve(rows);
         })
       })
   }
-
+  let response = undefined
+  
   const searched_shows = await SearchShows()
   response = {
       statusCode: 200,

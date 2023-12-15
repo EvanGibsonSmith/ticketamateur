@@ -10,50 +10,98 @@ exports.handler = async (event) => {
       password: db_access.config.password,
       database: db_access.config.database
   });
-
-  let PurchaseSeat = () => {
-    return new Promise((resolve, reject) => {
-        // check whether or not the seat is available
-        pool.query("SELECT bought FROM seats WHERE 'showID'=? AND section=? AND row=? AND column=?", [event.showID], [event.section], [event.row], [event.column], (error, rows) => { //SQL
-            if (error) { return reject(error); }//Error
-            console.log(rows)
-            // if seat has not been bought
-            if(!bought){
-              pool.query("UPDATE seats SET bought=? WHERE 'showID'=? AND section=? AND row=? AND column=?", [true], [event.showID], [event.section], [event.row], [event.column], (error, rows) => { //SQL
-                if (error) { return reject(error); }//Error
-                console.log(rows)
-                if ((rows) && (rows.length == 1)) {//Should it return a line it means it exists 
+  let soldSeat = () => {
+        return new Promise((resolve, reject) => {
+            pool.query("SELECT * FROM"+ " Seats WHERE showID=? AND sectionName=? AND seatRow=? AND seatColumn=? AND seatBought = 1", [event.showID, event.section, event.row, event.column], (error, rows) => {
+                if (error) { return reject(error); }
+                if ((rows) && (rows.length == 1)) {
                     return resolve(true); 
                 } else {
-                    return resolve(false);//Seat doesnt exist 
+                    return resolve(false);
                 }
-              });
-            }
-            // seat already purchased
-            else{
-              return resolve(false);
+            });
+        });
+  }
+
+let PurchaseSeat = () => {
+    return new Promise((resolve, reject) => {
+            //console.log("TESTESTE")
+            pool.query("UPDATE Seats SET seatBought=? WHERE showID=? AND sectionName=? AND seatRow=? AND seatColumn=?", [1, event.showID, event.section, event.row, event.column], (error, rows) => {
+            //console.log("TESTESTE")
+            if (error) { return reject(error); }
+            if ((rows) && (rows.affectedRows == 1)) {
+                return resolve(rows);
+            } else {
+                return resolve(false);
             }
         });
     });
   }
+  let updateCounter = () =>{
+      return new Promise((resolve, reject) => {
+            //console.log("TESTESTE")
+            pool.query("UPDATE Shows SET seatsSold= seatsSold + 1 WHERE showID=?", [event.showID], (error, rows) => {
+            //console.log("TESTESTE")
+            if (error) { return reject(error); }
+            if ((rows) && (rows.affectedRows == 1)) {
+                return resolve(true);
+            } else {
+                return resolve(false);
+            }
+        });
+    });
+  }
+  let checkStillOpen=()=>{
+      return new Promise((resolve, reject) => {
+            pool.query("SELECT * FROM Shows WHERE showID=? AND showDate<=? AND showTime<=?", [event.showID,event.date,event.time], (error, rows) => {
+                if (error) { return reject(error); }
+                if ((rows) && (rows.length == 1)) {
+                    return resolve(true); 
+                } else {
+                    return resolve(false);
+                }
+            });
+        });
+  }
+  let updateRevenue=()=>{
+      return new Promise((resolve,reject) => {
+          pool.query("UPDATE Shows SET revenue= revenue + ? WHERE showID=?", [event.cost, event.showID], (error, rows) => {
+              if (error) { return reject(error); }
+              else {return resolve(true); }
+          });
+      });
+  }
   
   let response = undefined
-  const result = await PurchaseSeat()
-  if(result){
-    response = {
-    statusCode: 200,
+  let sold = await soldSeat()
+  if(!sold){
+    const result = await PurchaseSeat()
+    const upped = await updateCounter()
+    const past = await checkStillOpen()
+    if(!past){
+        const revenue = await updateRevenue()
+     response = {
+         statusCode: 200,
+         body:result,
+         updated: upped
+        }
+    }else{
+        response = {
+      statusCode: 402,
+      body: {"error":"Show start time has passed."}
+    }
+    }
+    }else{
+      response = {
+      statusCode: 400,
+      body: {"error":"Seat Sold"}
+    }
+      
+    }
     
-    body: JSON.stringify(result)
-  }
-  }else{
-    response = {
-    statusCode: 400,
-    error: "Show Does Not Exist"
-  }
-  }
   
   
-    pool.end()   // disconnect from database to avoid "too many connections" problem that can occur
+  pool.end()   // disconnect from database to avoid "too many connections" problem that can occur
 
   return response;
 }
