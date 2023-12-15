@@ -83,6 +83,11 @@ export function activateShow(showID, authToken) {
     console.log(payload)
     post('/activateShow', payload, response => {
         console.log(response)
+        if (response.statusCode==400) { // in this case somebody has already bought the ticket
+            document.getElementById("didBlockDelete").textContent = "Seat Already Bought"
+        }else {
+            document.getElementById("didBlockDelete").textContent = "Success!"
+        }
     })
 }
 
@@ -112,7 +117,7 @@ export function listShows(venueName, authToken) {
         createBlockSelectBox.textContent = ''
          for (let c of response.constants) {
             let seatsRemaining = c.totalSeats - c.seatsSold
-            str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate + ", Price: " + c.showPrice + ", Revenue: " + c.revenue + ", Total Seats: " + c.totalSeats + ", Remaining Seats: " + seatsRemaining + '<br>'
+            str +="Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate+ ", Price: " + c.showPrice + ", Revenue: " + c.revenue + '<br>'
             var deleteOption = document.createElement('option');
             var activateOption = document.createElement('option');
             var deleteBlockOption = document.createElement('option');
@@ -144,7 +149,8 @@ export function showReport(venueName, authToken) {
         deleteSelectBox.textContent = ''
         activateSelectBox.textContent = ''
         for (let c of response.constants) {
-            str += "Name Of Venue: "+ c.venueName + ", Name Of Show: " + c.showName + ", Show ID: " + c.showID + ", Revenue: $" + c.revenue + ", Active Status: " + c.activated + ", Remaining Tickets: " + (c.totalSeats - c.seatsSold) +'<br>'
+            let seatsRemaining = c.totalSeats - c.seatsSold
+            str += "Show ID Number:"+ c.showID + " Name: " + c.showName + " Time: "+ c.showTime + " Date: "+ c.showDate + ", Price: " + c.showPrice + ", Revenue: " + c.revenue + ", Total Seats: " + c.totalSeats + ", Remaining Seats: " + seatsRemaining + '<br>'
             var deleteOption = document.createElement('option');
             var activateOption = document.createElement('option');
             deleteOption.textContent = c.showID

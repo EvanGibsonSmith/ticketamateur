@@ -129,6 +129,7 @@ export function VenueManager() {
                     </select>
                     <div className="flex column">
                     <button onClick={e => activateShow(document.getElementById("activateShowSelect").value, title.authKey)}>Activate Show</button>
+                    <text id="didBlockDelete"></text>
                     </div>
                 </div>      
                 
