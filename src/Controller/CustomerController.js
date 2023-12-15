@@ -22,7 +22,7 @@ export function listActiveShows () {
                 nextShow.textContent = show.showName + " " + show.showTime + " " + show.showDate + "    " + soldOutValue
                 nextShow.value = show.showID
                 activeShowsBox.appendChild(nextShow);
-                str += show.showName + " " + show.showTime + " " + show.showDate +"Venue Name: " + show.nameVenue +"    " + soldOutValue + '<br>'
+                str += show.showName + " " + show.showTime + " " + show.showDate +" Venue Name: " + show.venueName +"    " + soldOutValue + '<br>'
             }
             let cd = document.getElementById('customerShowsList')
              cd.innerHTML = str
@@ -50,7 +50,7 @@ export function searchActiveShows() {
             nextShow.value = show.showID
             activeShowsBox.appendChild(nextShow);
                 
-        str += show.showName + " " + show.showTime + " " + show.showDate + "Venue Name: " + show.nameVenue
+        str += show.showName + " " + show.showTime + " " + show.showDate + " Venue Name: " + show.venueName
         console.log(show.seatsSold + " " + show.totalSeats)
         if (show.seatsSold!=show.totalSeats) {
             str += "    Seats Available"
