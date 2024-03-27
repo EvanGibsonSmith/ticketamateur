@@ -1,80 +1,16 @@
-# Getting Started with Create React App
-
+# Dependencies
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Because this is a react project it can be run with "npm start" in the browser
 
-## Available Scripts
+You should be able to just use "npm install" if you are not just using the src folder.
 
-In the project directory, you can run:
+React is required, including Routes for the project to run.
 
-### `npm start`
+# Description
+This is a basic concert ticket website mockup created for Software Engineering CS3733 with Professor Heineman. Without regard to graphics, this website was a mockup to demonstrate a full working website using AWS. This website was live for a few weeks and demonstrated all of the working components including the SQL backend, REST API, and frontend with javascript and React.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Features
+This website was a general mockup of a working website, in which there were three types of users. There were ticket buyers, venue managers, administrators. By creating a login (which game a random key) and a role you could log in, the ticket buyers can search through venues and buy available tickets through from venue managers. The venue managers can create venues, including the name, time of event, etc. Last, the administrators have the power to remove venues, add venues, reset ticket sales, etc.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
-
-Application Specific Notes 
-
-Currently there is no S3 Bucket for this react Application, which is why we submitted a video along with the src code. The reason it does not work is due to react routes using multiple pages and a S3 bucket only being able to handle one at a time.
-
-There is also no way for anyone to become an admin as they are hard coded into the Database as we didnt want just anyone to become an admin. The Admin code is 1234
-
-Other than those there no special instructions associated with this project. 
+# Improvements
+This was created without graphics in mind, so the human interaction aspect wasn't really considered.
